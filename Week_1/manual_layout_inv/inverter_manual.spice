@@ -1,0 +1,21 @@
+* SPICE3 file created from inverter_manual.ext - technology: sky130A
+.lib /home/pramit/work/open_pdks/sky130/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+*.subckt inverter_manual Vin Vout Vdd GND
+X0 Vout Vin GND GND sky130_fd_pr__nfet_01v8 ad=1.218e+11p pd=1.42e+06u as=1.218e+11p ps=1.42e+06u w=420000u l=1e+06u
+X1 Vout Vin Vdd Vdd sky130_fd_pr__pfet_01v8 ad=2.436e+11p pd=2.26e+06u as=2.436e+11p ps=2.26e+06u w=840000u l=1e+06u
+C0 Vout Vdd 0.14fF
+C1 Vin Vdd 0.42fF
+C2 Vout Vin 0.17fF
+C3 Vout GND 0.30fF
+C4 Vin GND 0.64fF
+C5 Vdd GND 0.71fF
+*.ends
+Vin Vin GND pulse(0 1.8 1n 1n 1n 4n 10n)
+V2 Vdd GND 1.8
+
+
+.tran 0.01n 60n
+.control
+run
+.endc
+.end

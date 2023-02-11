@@ -1,0 +1,104 @@
+magic
+tech sky130A
+magscale 1 2
+timestamp 1676054237
+<< nwell >>
+rect -60 62 328 176
+rect -46 60 -40 62
+rect -60 48 -40 60
+rect 268 48 328 62
+<< psubdiff >>
+rect -20 -670 336 -662
+rect -20 -714 72 -670
+rect 114 -674 336 -670
+rect 114 -714 190 -674
+rect -20 -718 190 -714
+rect 232 -718 336 -674
+rect -20 -732 336 -718
+<< nsubdiff >>
+rect -18 132 278 140
+rect -18 92 84 132
+rect 118 92 154 132
+rect 188 92 278 132
+rect -18 84 278 92
+<< psubdiffcont >>
+rect 72 -714 114 -670
+rect 190 -718 232 -674
+<< nsubdiffcont >>
+rect 84 92 118 132
+rect 154 92 188 132
+<< locali >>
+rect -28 75 4 142
+rect 71 132 217 142
+rect 71 92 84 132
+rect 118 92 154 132
+rect 188 92 217 132
+rect 71 75 217 92
+rect 284 75 299 142
+rect -12 2 22 75
+rect 230 -95 329 -46
+rect 100 -301 178 -218
+rect 100 -470 178 -379
+rect 280 -310 329 -95
+rect 280 -534 329 -360
+rect 240 -535 329 -534
+rect -17 -662 23 -589
+rect 240 -591 332 -535
+rect 240 -592 300 -591
+rect 50 -670 265 -662
+rect 50 -714 72 -670
+rect 114 -674 265 -670
+rect 114 -714 190 -674
+rect 50 -718 190 -714
+rect 232 -718 265 -674
+rect 50 -732 265 -718
+rect 335 -732 336 -662
+<< viali >>
+rect 4 75 71 142
+rect 217 75 284 142
+rect 100 -379 178 -301
+rect 280 -360 329 -310
+rect -20 -732 50 -662
+rect 265 -732 335 -662
+<< metal1 >>
+rect -8 142 296 148
+rect -8 75 4 142
+rect 71 75 217 142
+rect 284 75 296 142
+rect -8 70 296 75
+rect -8 69 83 70
+rect 205 69 296 70
+rect 94 -301 184 -289
+rect -41 -379 100 -301
+rect 178 -379 184 -301
+rect 274 -310 335 -298
+rect 274 -360 280 -310
+rect 329 -359 394 -310
+rect 329 -360 335 -359
+rect 274 -372 335 -360
+rect 94 -391 184 -379
+rect -38 -656 346 -654
+rect -38 -662 347 -656
+rect -38 -732 -20 -662
+rect 50 -732 265 -662
+rect 335 -732 347 -662
+rect -38 -738 347 -732
+rect -38 -742 346 -738
+use sky130_fd_pr__nfet_01v8_UEAQL8  sky130_fd_pr__nfet_01v8_UEAQL8_0
+timestamp 1676050182
+transform 1 0 134 0 1 -533
+box -158 -99 158 99
+use sky130_fd_pr__pfet_01v8_RDZKMP  sky130_fd_pr__pfet_01v8_RDZKMP_0
+timestamp 1676050182
+transform 1 0 134 0 1 -108
+box -194 -148 194 182
+<< labels >>
+flabel metal1 -30 -342 -30 -342 0 FreeSans 320 0 0 0 Vin
+port 5 nsew
+flabel metal1 384 -340 384 -340 1 FreeSans 320 0 0 0 Vout
+port 8 n
+flabel metal1 s 140 122 140 122 1 FreeSans 320 0 0 0 Vdd
+port 12 n
+flabel metal1 s 142 -694 142 -694 1 FreeSans 320 0 0 0 GND
+port 16 n
+<< end >>
