@@ -35,10 +35,10 @@
   
 
   - [Simulation of a function *Fn= [(B+D).(A+C)+E.F]'* using Magic and Ngspice](#simulation-of-a-function-using-magic-and-ngspice)
-    * [Pre-layout Simulation](https://github.com/prajwalita17/msvsd8tsram/edit/main/README.md#4a-pre-layout-simulation-of-function-fn-using-ngspice)
-    * [Post-layout Simulation](https://github.com/prajwalita17/msvsd8tsram/edit/main/README.md#4b-post-layout-simulation-of-function-fn-using-magic-and-ngspice)
-    * [Comparison of results](#comparison-of-results)
-    * [LVS Report](https://github.com/prajwalita17/msvsd8tsram/blob/main/README.md#4d-lvs-report)
+    * [Pre-layout Simulation]()
+    * [Post-layout Simulation]()
+    * [Comparison of results]()
+    * [LVS Report]()
 
 - [WEEK 2]()
   
