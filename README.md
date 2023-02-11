@@ -10,33 +10,37 @@
 |7.||4|Compare the results obtained in 5) and 6) | |
 |8.||5|Enroll in FREE VSD-custom layout course |✅|
 |9.||6|Create the design shown in section 7 of the course and perform pre-layout using xschem or ngspice|✅|
-|10.||6|Post layout characterization using 2) and 3)|✅|
+|10.||6|Post layout characterization using 2) and 3)||
 |11.||6|Update your findings on your GitHub repo with the title “Week 0”|✅|
 
 # Index
-- [Installation of Oracle Virtual Box with Ubuntu 22.04](https://github.com/prajwalita17/msvsd8tsram/blob/main/README.md#installation-of-oracle-virtual-box-with-ubuntu-2204)
-- [Installation of Tools and SKY130 PDKs](https://github.com/prajwalita17/msvsd8tsram/blob/main/README.md#1-installation-of-tools-and-sky130-pdks)
-  * [Magic](https://github.com/prajwalita17/msvsd8tsram/blob/main/README.md#1a-magic)
-  * [Ngspice](https://github.com/prajwalita17/msvsd8tsram/blob/main/README.md#1b-ngspice)
-  * [Netgen](https://github.com/prajwalita17/msvsd8tsram/edit/main/README.md#1c-netgen)
-  * [Xschem](https://github.com/prajwalita17/msvsd8tsram/edit/main/README.md#1d-xschem)
-  * [Open_PDKs](https://github.com/prajwalita17/msvsd8tsram/edit/main/README.md#1e-open_pdks)
-  * [ALIGN Tool](https://github.com/prajwalita17/msvsd8tsram/edit/main/README.md#1f-align-tool)
-  * [Verifying the open_pdk installation](https://github.com/prajwalita17/msvsd8tsram/edit/main/README.md#2g-verifiying-the-open_pdk-installation)
-- [Simulation of Inverter using Xschem and Ngspice]()
-  * [Pre-layout Simulation](https://github.com/prajwalita17/msvsd8tsram/edit/main/README.md#2-pre-layout-simulation-using-xschem-and-ngspice)
-    + [DC Analaysis of CMOS inverter](https://github.com/prajwalita17/msvsd8tsram/edit/main/README.md#2a-dc-analaysis-of-cmos-inverter)
-    + [Transient Analaysis of CMOS inverter](https://github.com/prajwalita17/msvsd8tsram/edit/main/README.md#2b-transient-analaysis-of-cmos-inverter)
-  - [Simulation of Inverter using Ngspice]()
-  * [Pre-layout Simulation](https://github.com/prajwalita17/msvsd8tsram/edit/main/README.md#3a-pre-layout-simulation-of-inverter-using-ngspice)
-  * [Post-layout Simulation](https://github.com/prajwalita17/msvsd8tsram/edit/main/README.md#3b-post-layout-simulation-of-inverter-using-ngspice)
-  * [Comparison of pre-layout and post-layout timing parameters](https://github.com/prajwalita17/msvsd8tsram/edit/main/README.md#3c-comparison-of-pre-layout-and-post-layout-timing-parameters-for-inverter)
-  * [LVS Report](https://github.com/prajwalita17/msvsd8tsram/blob/main/README.md#3d-lvs-report)
-- [Simulation of a function *Fn= [(B+D).(A+C)+E.F]'* using Magic and Ngspice](#simulation-of-a-function-using-magic-and-ngspice)
-  * [Pre-layout Simulation](https://github.com/prajwalita17/msvsd8tsram/edit/main/README.md#4a-pre-layout-simulation-of-function-fn-using-ngspice)
-  * [Post-layout Simulation](https://github.com/prajwalita17/msvsd8tsram/edit/main/README.md#4b-post-layout-simulation-of-function-fn-using-magic-and-ngspice)
-  * [Comparison of results](#comparison-of-results)
-  * [LVS Report](https://github.com/prajwalita17/msvsd8tsram/blob/main/README.md#4d-lvs-report)
+- [Installation of Oracle Virtual Box with Ubuntu 22.04](#1-installation-of-oracle-virtual-box-with-ubuntu-2204)
+- [Installation of Tools and SKY130 PDKs](#2-installation-of-tools-and-sky130-pdks)
+  * [Magic](#2a-magic)
+  * [Ngspice](#2b-ngspice)
+  * [Netgen](#2c-netgen)
+  * [Xschem](#2d-xschem)
+  * [Open_PDKs](#2e-open_pdks)
+  * [ALIGN Tool](#2f-align-tool)
+- [WEEK 1](#week-1)
+    * [Simulation of Inverter using Xschem and Ngspice](#3-simulation-of-inverter-using-xschem-and-ngspice)
+        + [Pre-layout Simulation](#3a-pre-layout-simulation-using-xschem-and-ngspice)
+            + [ DC Analaysis](#3ai-dc-analaysis-of-cmos-inverter)
+            + [ Transient Analysis](#3aii-transient-analaysis-of-cmos-inverter)
+    - [Simulation of Inverter Netlist (manually made) using Ngspice](#4-simulation-of-inverter-using-ngspice)
+  * [Pre-layout Simulation (Netlist from Xschem)](#4a-pre-layout-simulation-of-inverter-using-ngspice)
+  * [Post-layout Simulation (Netlist from Magic )](#4b-post-layout-simulation-of-inverter-using-ngspice)
+  * [Comparison of pre-layout and post-layout timing parameters](#4c-comparison-of-pre-layout-and-post-layout-timing-parameters-for-inverter)
+  * [LVS Report](#4d-lvs-report)
+  
+
+  - [Simulation of a function *Fn= [(B+D).(A+C)+E.F]'* using Magic and Ngspice](#simulation-of-a-function-using-magic-and-ngspice)
+    * [Pre-layout Simulation](https://github.com/prajwalita17/msvsd8tsram/edit/main/README.md#4a-pre-layout-simulation-of-function-fn-using-ngspice)
+    * [Post-layout Simulation](https://github.com/prajwalita17/msvsd8tsram/edit/main/README.md#4b-post-layout-simulation-of-function-fn-using-magic-and-ngspice)
+    * [Comparison of results](#comparison-of-results)
+    * [LVS Report](https://github.com/prajwalita17/msvsd8tsram/blob/main/README.md#4d-lvs-report)
+
+- [WEEK 2]()
   
 # 1. Installation of Oracle Virtual Box with Ubuntu 22.04
 
@@ -229,41 +233,26 @@ schematic2layout.py ../examples/telescopic_ota -p ../pdks/FinFET14nm_Mock_PDK/
 EXAMPLE 2:
 schematic2layout.py ../ALIGN-pdk-sky130/examples/five_transistor_ota -p ../pdks/SKY130_PDK/
 ```
-## 2.g. Verifiying the open_pdk installation
-An initial working directory can be made by copying the required files as follows:
-```
-$ mkdir LAB1
-$ cd LAB1
-$ mkdir mag
-$ mkdir netgen
-$ mkdir xschem
-$ cd xschem
-$ cp /usr/local/share/pdk/sky130A/libs.tech/xschem/xschemrc .
-$ cp /usr/local/share/pdk/sky130A/libs.tech/ngspice/spinit .spiceinit
-$ cd ../mag
-$ cp /usr/local/share/pdk/sky130A/libs.tech/magic/sky130A.magicrc .magicrc
-$ cd ../netgen
-$ cp /usr/local/share/pdk/sky130A/libs.tech/netgen//sky130A_setup.tcl .
-```
+# WEEK 1
 # 3. Simulation of Inverter using Xschem and Ngspice
 Invoke Xschem by typing `xschem` as shown
 ```
-     ~/VSD_8TSRAM/LAB1/xschem$ xschem
+xschem --rcfile /home/pramit/work/open_pdks/sky130/sky130A/libs.tech/xschem/xschemrc
 ```
 
-![image](https://user-images.githubusercontent.com/104830557/218099150-16d93b7a-4bfe-42de-99da-753df315fbc7.png)
+![image](images/xschem_inverter_sim_error_width_setting.jpg)
+
 
 ## 3.a Pre-layout Simulation using Xschem and Ngspice
 
-### 3.a.i. DC Analaysis of CMOS inverter
-
+## 3.a.i. DC Analaysis of CMOS inverter
 Create the schematic for inverter in Xschem. The TT_MODELS contain the process corner details for PMOS and NMOS. The contents of TT_MODELS will be
 ```
 name= TT_MODELS1
 only_toplevel=true
 format="tcleval(@value)"
 ** opencircuitdesign pdks install
-.lib $::SKYWATER_MODELS/sky130.lib.spice tt
+.lib /home/pramit/work/open_pdks/sky130/sky130A/libs.tech/ngspice/sky130.lib.spice tt
 "
 spice_ignore=false
 ```
@@ -274,37 +263,34 @@ DC analysis is done by using the `.dc` command using `code_shown.sym` from compo
 ```
 The schematic is as shown.
 
-![image](https://user-images.githubusercontent.com/104830557/217892948-42cfc89b-df8e-4f48-a0d5-bbc9d4754f22.png)
+![image](images/xschem_inverter_sim_error_width_setting.jpg)
 
-Go to `Options> Spice netlist` to set the netlist option. Click on `Netlist` from the menu to generate a spice file for the schematic created. Click on `Simulate` to run the simulation and obtain the voltage-transfer characteristic(VTC) for the inverter.
+Click on `Netlist` from the menu to generate a spice file for the schematic created. Then click on `Simulate` to run the simulation and obtain the voltage-transfer characteristic(VTC) for the inverter.
 
-![image](https://user-images.githubusercontent.com/104830557/217897083-a9f9b789-49d3-4bbd-861f-c7a76b4d5e0c.png)
-
-The VTC is as shown.
-
-![image](https://user-images.githubusercontent.com/104830557/217896817-b1cc6ba3-343f-476d-9bec-bf5c09375f64.png)
+![image](images/simulation.png)
 
 From the VTC, we get the values of the following parameters.
 
-$V_{OL}$= 0 V, $V_{IL}$= 750 mV V, $V_{IH}$= 921.8 mA V, $V_{OH}$= 1.8 V
+$V_{OL}$= 0 V, $V_{IL}$= 750 mV, $V_{IH}$= 926.2 mV, $V_{OH}$= 1.8 V
 
 The obtained values can be used to calculate noise margins.
 
 NML = $V_{IL}$ - $V_{OL}$= 750 mV
 
-NMH = $V_{OH}$ - $V_{IH}$= 878 mV
+
+NMH = $V_{OH}$ - $V_{IH}$= 874 mV
 
 
-### 3.a.ii. Transient Analaysis of CMOS inverter
+## 3.a.ii. Transient Analaysis of CMOS inverter
 The transient analysis of the inverter can be obtained by adding `.tran ` in the `code_shown.sym` block.
 
-![image](https://user-images.githubusercontent.com/104830557/217892619-3aaac162-2c3f-4811-a245-152ecafc1003.png)
-Go to `Options> Spice netlist` to set the netlist option. Click on `Netlist` from the menu to generate a spice file for the schematic created. Click on `Simulate` to run the simulation and obtain the out vs time and in vs time.
+![image](images/transient_schem.png)
+Click on `Netlist` from the menu to generate a spice file for the schematic created. Click on `Simulate` to run the simulation and obtain the out vs time and in vs time.
 
-![image](https://user-images.githubusercontent.com/104830557/217894614-6f71e536-1c11-4dd3-943d-31820b1d2e99.png)
+![image](images/transient_response.png)
 The graph shows the input and output variations with time. Timing parameters can be calculated from the graph below.
 
-![image](https://user-images.githubusercontent.com/104830557/217895260-eae643c1-9253-4513-ad7e-5502bb917441.png)
+![image](images/prelayout_sim_ngspice_trans.png)
 
 The timing parameters are calculated as
 
@@ -314,77 +300,176 @@ Fall time = **time(@20 % of Vout)** - **time(@80% of Vout)**
 
 Cell Rise Delay =**time taken by output to rise to its 50% value** - **time taken by the input to fall to its 50% value**
 
-Cell Rise Delay =**time taken by output to fall to its 50% value** - **time taken by the input to rise to its 50% value**
+Cell Fall Delay =**time taken by output to fall to its 50% value** - **time taken by the input to rise to its 50% value**
 
 The timing parameters obtained from pre-layout simulations is tabulated below.
 
 | Parameter    | Value| 
 |----------|-----|
-|Rise Time|82.1 ps|
-|Fall Time|4.1 ps|
-|Cell Rise Delay|66.6 ps|
-|Cell Fall Delay|56.3 ps|
+|Rise Time|51.85 ps|
+|Fall Time|51.85 ps|
+|Cell Rise Delay|301.6 ps|
+|Cell Fall Delay|379.3 ps|
 
 
 # 4. Simulation of Inverter using Ngspice
 
-The tech file ['min2.tech']() and model file used [130nm BSIM4 model card for bulk CMOS](http://ptm.asu.edu/modelcard/2006/130nm_bulk.pm) has been for simulation of inverter and boolean function in the next section.
+The tech file ['sky130A.tech']() and model file used from [$PDK_ROOT/sky130/sky130A/libs.tech/ngspice/sky130.lib.spice]() has been for simulation of inverter and boolean function in the next section.
 
 ## 4.a. Pre-layout Simulation of Inverter using Ngspice
-The figure shown the pre-layout netlist of the inverter
+The pre-layout netlist of the inverter for simulation using ngspice.
 
-![image](https://user-images.githubusercontent.com/104830557/218102867-11f3b0fd-0f88-41c6-8e6e-430f0f9a5224.png)
+![image](images/prelayout_sim_ngspice_sky130.png)
 
-
-![image](https://user-images.githubusercontent.com/104830557/218084345-fe34ce3e-eea0-4c61-a677-79e4abebec33.png)
+Transient response for pre-layout simulation.
+![image](images/prelayout_sim_ngspice_trans.png)
 
 ## 4.b. Post-layout Simulation of Inverter using Ngspice
-The layout  'inv.mag' was drawn in Magic as shown.
-![image](https://user-images.githubusercontent.com/104830557/218103878-9ff2a9bf-27ee-4a01-b286-c82596e604c9.png)
+The layout  'inverter_manual.mag' was drawn in Magic as shown using sky130A pdk.
 
-Extract the netlist from the layout using
+![image](images/inverter_manual_layout.png)
+
+Extracting the netlist from the layout using
 ```
 extract all
 ext2spice rthesh 0 cthresh 0
 ext2spice
 ```
-Simulate the spice file extracted from magic after modifications. 
+Spice file extracted from magic after modifications. 
 
-![image](https://user-images.githubusercontent.com/104830557/218105205-85ed2b21-1df1-4640-b39d-b40c4257add0.png)
+```
+* SPICE3 file created from inverter_manual.ext - technology: sky130A
+.lib /home/pramit/work/open_pdks/sky130/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+*.subckt inverter_manual Vin Vout Vdd GND
+X0 Vout Vin GND GND sky130_fd_pr__nfet_01v8 ad=1.218e+11p pd=1.42e+06u as=1.218e+11p ps=1.42e+06u w=420000u l=1e+06u
+X1 Vout Vin Vdd Vdd sky130_fd_pr__pfet_01v8 ad=2.436e+11p pd=2.26e+06u as=2.436e+11p ps=2.26e+06u w=840000u l=1e+06u
+C0 Vout Vdd 0.14fF
+C1 Vin Vdd 0.42fF
+C2 Vout Vin 0.17fF
+C3 Vout GND 0.30fF
+C4 Vin GND 0.64fF
+C5 Vdd GND 0.71fF
+*.ends
+Vin Vin GND pulse(0 1.8 1n 1n 1n 4n 10n)
+V2 Vdd GND 1.8
 
-Use `ngspice inv.spice`and `plot out vs time in` to get the following plot.
 
-![image](https://user-images.githubusercontent.com/104830557/218082285-c7cc110d-a2ef-4f98-93bc-f9784ff3692e.png)
+.tran 0.01n 60n
+.control
+run
+.endc
+.end
+```
+
+Use `ngspice inverter_manual.spice`and `plot Vout Vin` to get the following plot.
+
+![image](images/post_layout_sim.png)
+
+From the transient response it can be clearly seen that due to manual layout, a lot of parasitics have been introduced which are cousing the output waveform to have overshoots and undershoots. By proper placement and routing this can be minimized if not avoided completely.
+
+The timing parameters are calculated as
+
+Rise time = **time(@80 % of Vout)** - **time(@20% of Vout)**
+
+Fall time = **time(@20 % of Vout)** - **time(@80% of Vout)**
+
+Cell Rise Delay =**time taken by output to rise to its 50% value ** - **time taken by the input to fall to its 50% value**
+
+Cell Fall Delay =**time taken by output to fall to its 50% value** - **time taken by the input to rise to its 50% value**
+
+The timing parameters obtained from pre-layout simulations is tabulated below.
+
+| Parameter    | Value| 
+|----------|-----|
+|Rise Time|125.64 ps|
+|Fall Time|91.56 ps|
+|Cell Rise Delay|484.88 ps|
+|Cell Fall Delay|212.3 ps|
 
 ## 4.c. Comparison of Pre-layout and Post-layout timing parameters for inverter.
 
 | Parameter    | Value from Pre-layout Simulation| Value from Post-layout Simulation|
 |----------|-----|-----|
-|Rise Time|40.8 ps|54.679 ps|
-|Fall Time|25.01 ps|26.97 ps|
-|Cell Rise Delay|32.79 ps|41.29 ps|
-|Cell Fall Delay|4.3 ps|4.4 ps|
+|Rise Time|51.85 ps|125.64 ps|
+|Fall Time|51.85 ps|91.56 ps|
+|Cell Rise Delay|301.6 ps|484.88 ps|
+|Cell Fall Delay|379.3 ps|212.3 ps|
+
+From this comparison it can be understood clearly about the importance of good placement and layout of the inverter so that the `timing parameters can be improved further significantly`.
+
+
 ## 4.d LVS Report
-The layout vs schematic compares the pre-layout netlist with the netlist extracted from the layout. The mismatch is due to the extra parasitic capacitances in the post-layout netlist. The report `comp.out` is obtained using Netgen by typing the following command.
+The layout vs schematic compares the pre-layout netlist with the netlist extracted from the layout. The mismatch is due to the extra parasitic capacitances in the post-layout netlist. 
+However if we manually remove the parasitic capacitances introduced in the extracted netlist then the LVS matches both the spice files uniquely.
+The report `comp.out` is obtained using Netgen by typing the following command.
 ```
-~/VSD_8TSRAM/LAB1/netgen$ netgen -batch lvs INV_pre.spice INV_post.spice
+netgen -batch lvs inverter_ngspice_pre.spice inverter_manual.spice
 ```
 The content of the report is as shown.
 
 Subcircuit summary:
-Circuit 1: INV_pre.spice                   |Circuit 2: INV_post.spice
+Circuit 1: inverter_ngspice_pre.spice                   |Circuit 2: inverter_manual.spice
 -------------------------------------------|-------------------------------------------
 nmos (1)                                   |nmos (1)
 pmos (1)                                   |pmos (1)
 vsrc (2)                                   |vsrc (2)
-(no matching element)                      |c (5)
-Number of devices: 4 **Mismatch**          |Number of devices: 9 **Mismatch**
-Number of nets: 5                          |Number of nets: 5
+Number of devices: 4                       |Number of devices: 4 
+Number of nets: 4                          |Number of nets: 4
 
-Netlists do not match.
+From `comp.out` file, the net result of the lvs is shown below
+```
+
+Circuit 1 cell sky130_fd_pr__nfet_01v8 and Circuit 2 cell sky130_fd_pr__nfet_01v8 are black boxes.
+Equate elements:  no current cell.
+Device classes sky130_fd_pr__nfet_01v8 and sky130_fd_pr__nfet_01v8 are equivalent.
+
+Circuit 1 cell sky130_fd_pr__pfet_01v8 and Circuit 2 cell sky130_fd_pr__pfet_01v8 are black boxes.
+Equate elements:  no current cell.
+Device classes sky130_fd_pr__pfet_01v8 and sky130_fd_pr__pfet_01v8 are equivalent.
+
+Subcircuit summary:
+Circuit 1: inverter_manual.spice           |Circuit 2: inverter_ngspice_pre.spice      
+-------------------------------------------|-------------------------------------------
+sky130_fd_pr__nfet_01v8 (1)                |sky130_fd_pr__nfet_01v8 (1)                
+sky130_fd_pr__pfet_01v8 (1)                |sky130_fd_pr__pfet_01v8 (1)                
+vsrc (2)                                   |vsrc (2)                                   
+Number of devices: 4                       |Number of devices: 4                       
+Number of nets: 4                          |Number of nets: 4                          
+---------------------------------------------------------------------------------------
+Netlists match uniquely with property errors.
+sky130_fd_pr__pfet_01v8:1 vs. sky130_fd_pr__pfet_01v8:M2:
+ l circuit1: 1   circuit2: 0.15   (delta=148%, cutoff=0%)
+ w circuit1: 0.84   circuit2: 1   (delta=17.4%, cutoff=0%)
+sky130_fd_pr__pfet_01v8:1 vs. sky130_fd_pr__pfet_01v8:M2:
+Property ps in circuit1 has no matching property in circuit2
+sky130_fd_pr__pfet_01v8:1 vs. sky130_fd_pr__pfet_01v8:M2:
+Property as in circuit1 has no matching property in circuit2
+sky130_fd_pr__pfet_01v8:1 vs. sky130_fd_pr__pfet_01v8:M2:
+Property pd in circuit1 has no matching property in circuit2
+sky130_fd_pr__pfet_01v8:1 vs. sky130_fd_pr__pfet_01v8:M2:
+Property ad in circuit1 has no matching property in circuit2
+sky130_fd_pr__nfet_01v8:0 vs. sky130_fd_pr__nfet_01v8:M1:
+ l circuit1: 1   circuit2: 0.15   (delta=148%, cutoff=0%)
+ w circuit1: 0.42   circuit2: 1   (delta=81.7%, cutoff=0%)
+sky130_fd_pr__nfet_01v8:0 vs. sky130_fd_pr__nfet_01v8:M1:
+Property ps in circuit1 has no matching property in circuit2
+sky130_fd_pr__nfet_01v8:0 vs. sky130_fd_pr__nfet_01v8:M1:
+Property as in circuit1 has no matching property in circuit2
+sky130_fd_pr__nfet_01v8:0 vs. sky130_fd_pr__nfet_01v8:M1:
+Property pd in circuit1 has no matching property in circuit2
+sky130_fd_pr__nfet_01v8:0 vs. sky130_fd_pr__nfet_01v8:M1:
+Property ad in circuit1 has no matching property in circuit2
 Cells have no pins;  pin matching not needed.
-Device classes INV_pre.spice and INV_post.spice are equivalent.
-Final result: Netlists do not match.
+Device classes inverter_manual.spice and inverter_ngspice_pre.spice are equivalent.
+
+Final result: Circuits match uniquely.
+Property errors were found.
+
+The following cells had property errors:
+ inverter_manual.spice
+```
+It can be seen that there are some property errors present in `inverter_manual.spice` file, which is postlayout, extracted netlist.
+Next step can be to prevent the property error arising in the post layout netlist.
 
 # 5. Simulation of a function using Magic and Ngspice
 Euler path and stick diagrams are helpful for getting better layouts for circuits with many MOSFETs. One such funtion is implemented here using CMOS.
