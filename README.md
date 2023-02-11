@@ -458,10 +458,10 @@ It can be seen that there are some property errors present in `inverter_manual.s
 Next step can be to prevent the property error arising in the post layout netlist.
 
 ## References
-
-http://opencircuitdesign.com/magic/
+http://opencircuitdesign.com/magic/  
 http://opencircuitdesign.com/open_pdks/
 https://xschem.sourceforge.io/stefan/xschem_man/xschem_man.html
+https://sourceforge.net/p/ngspice/discussion/
 
 
 
