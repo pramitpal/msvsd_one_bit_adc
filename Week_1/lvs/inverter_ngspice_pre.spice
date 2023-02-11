@@ -1,0 +1,16 @@
+
+.lib /home/pramit/work/open_pdks/sky130/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+
+XM1 Vout Vin GND GND sky130_fd_pr__nfet_01v8 L=0.15 W=1
+XM2 Vout Vin Vdd Vdd sky130_fd_pr__pfet_01v8 L=0.15 W=1 
+
+Vin Vin GND pulse(0 1.8 1n 1n 1n 4n 10n)
+V2 Vdd GND 1.8
+
+
+.tran 0.01n 60n
+.control
+run
+.endc
+.end

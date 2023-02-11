@@ -1,0 +1,49 @@
+
+Circuit 1 cell sky130_fd_pr__nfet_01v8 and Circuit 2 cell sky130_fd_pr__nfet_01v8 are black boxes.
+Equate elements:  no current cell.
+Device classes sky130_fd_pr__nfet_01v8 and sky130_fd_pr__nfet_01v8 are equivalent.
+
+Circuit 1 cell sky130_fd_pr__pfet_01v8 and Circuit 2 cell sky130_fd_pr__pfet_01v8 are black boxes.
+Equate elements:  no current cell.
+Device classes sky130_fd_pr__pfet_01v8 and sky130_fd_pr__pfet_01v8 are equivalent.
+
+Subcircuit summary:
+Circuit 1: inverter_manual.spice           |Circuit 2: inverter_ngspice_pre.spice      
+-------------------------------------------|-------------------------------------------
+sky130_fd_pr__nfet_01v8 (1)                |sky130_fd_pr__nfet_01v8 (1)                
+sky130_fd_pr__pfet_01v8 (1)                |sky130_fd_pr__pfet_01v8 (1)                
+vsrc (2)                                   |vsrc (2)                                   
+Number of devices: 4                       |Number of devices: 4                       
+Number of nets: 4                          |Number of nets: 4                          
+---------------------------------------------------------------------------------------
+Netlists match uniquely with property errors.
+sky130_fd_pr__pfet_01v8:1 vs. sky130_fd_pr__pfet_01v8:M2:
+ l circuit1: 1   circuit2: 0.15   (delta=148%, cutoff=0%)
+ w circuit1: 0.84   circuit2: 1   (delta=17.4%, cutoff=0%)
+sky130_fd_pr__pfet_01v8:1 vs. sky130_fd_pr__pfet_01v8:M2:
+Property ps in circuit1 has no matching property in circuit2
+sky130_fd_pr__pfet_01v8:1 vs. sky130_fd_pr__pfet_01v8:M2:
+Property as in circuit1 has no matching property in circuit2
+sky130_fd_pr__pfet_01v8:1 vs. sky130_fd_pr__pfet_01v8:M2:
+Property pd in circuit1 has no matching property in circuit2
+sky130_fd_pr__pfet_01v8:1 vs. sky130_fd_pr__pfet_01v8:M2:
+Property ad in circuit1 has no matching property in circuit2
+sky130_fd_pr__nfet_01v8:0 vs. sky130_fd_pr__nfet_01v8:M1:
+ l circuit1: 1   circuit2: 0.15   (delta=148%, cutoff=0%)
+ w circuit1: 0.42   circuit2: 1   (delta=81.7%, cutoff=0%)
+sky130_fd_pr__nfet_01v8:0 vs. sky130_fd_pr__nfet_01v8:M1:
+Property ps in circuit1 has no matching property in circuit2
+sky130_fd_pr__nfet_01v8:0 vs. sky130_fd_pr__nfet_01v8:M1:
+Property as in circuit1 has no matching property in circuit2
+sky130_fd_pr__nfet_01v8:0 vs. sky130_fd_pr__nfet_01v8:M1:
+Property pd in circuit1 has no matching property in circuit2
+sky130_fd_pr__nfet_01v8:0 vs. sky130_fd_pr__nfet_01v8:M1:
+Property ad in circuit1 has no matching property in circuit2
+Cells have no pins;  pin matching not needed.
+Device classes inverter_manual.spice and inverter_ngspice_pre.spice are equivalent.
+
+Final result: Circuits match uniquely.
+Property errors were found.
+
+The following cells had property errors:
+ inverter_manual.spice
