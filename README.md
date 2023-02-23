@@ -469,8 +469,10 @@ To generate the layout run the following command
 ```
 schematic2layout.py ~/inverter/ -p ../pdks/SKY130_PDK/
 ```
+# 5a. Generated Inverter Layout using ALIGN
 The following layout is generated as a .gds file.
 ![image](week2/inverter/inverter_align.png)
+# 5b. Extracted netlist from magic
 After extracting the netlist from magic and adding library files and run commands to the spice netlist we have
 ```
 * SPICE3 file created from INVERTER_0.ext - technology: sky130A
@@ -500,13 +502,19 @@ plot v(in) v(out)
 .endc
 
 ```
-running simulation using ngspice
+# 5c. Simulation of the netlist using NGSPICE
+Running simulation using ngspice
 ``` 
 ngspice INVERTER_0.spice
 ```
 ![image](week2/inverter/ngspice_align_screen.png)
 ![image](week2/inverter/inverter_ngspice_align_output.png)
+
 The figure above shows the output waveform for the netlist generated using ALIGN of the inverter.
+# 6 Prelayout and Postlayout simulation of a function Fn = [(B+D).(A+C)+E.F]'
+For prelayout simulation of the function Fn we use Xschem and Ngspice and SKY130A pdk.
+Drawing the schematic in Xschem
+![image](images/)
 
 ## References
 http://opencircuitdesign.com/magic/   
