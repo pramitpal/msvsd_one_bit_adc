@@ -26,7 +26,7 @@
     * [Comparison of results]()
     * [LVS Report]()
 
-- [WEEK 2]()
+- [WEEK 2](#week-2)
   
 # 1. Installation of Oracle Virtual Box with Ubuntu 22.04
 
@@ -456,6 +456,8 @@ The following cells had property errors:
 ```
 It can be seen that there are some property errors present in `inverter_manual.spice` file, which is postlayout, extracted netlist.
 Next step can be to prevent the property error arising in the post layout netlist.
+# WEEK 2
+# 5. Simulation of Inverter using Xschem and Ngspice
 
 ## References
 http://opencircuitdesign.com/magic/   
