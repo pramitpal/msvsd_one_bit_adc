@@ -621,6 +621,23 @@ ngspice function_new.sp
 ```
 ![image](week2/function/prelayout_sim_ngspice.png)
 
+# 6c. Postlayout simulation of Fn using Magic (Manual Layout)
+The image below shows the layout of the Function done manually using Magic and sky130 pdk.
+![image]()
+
+Simulating the extracted netlist using ngspice after extracting from magic using the commands.
+```
+extract all
+ext2spice hierarchy off
+ext2spice scale off
+ext2spice cthresh 0 rthresh 0
+ext2spice
+```
+The extracted netlist after adding all run commands and .lib files.
+```
+```
+Post layout simulation waveform using ngspice.
+![image]()
 ## References
 http://opencircuitdesign.com/magic/   
 http://opencircuitdesign.com/open_pdks/   
