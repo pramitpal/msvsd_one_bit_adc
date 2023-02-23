@@ -1,0 +1,51 @@
+* SPICE3 file created from FUNCTION_0.ext - technology: sky130A
+
+.option scale=5000u
+
+.subckt FUNCTION_0 A B VP D VN F Y E C
+X0 Y li_3157_907# li_1093_67# VP sky130_fd_pr__pfet_01v8 ad=9408 pd=560 as=27216 ps=1656 w=84 l=30
+X1 li_1093_67# li_3157_907# Y VP sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X2 Y E li_1093_67# VP sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X3 li_1093_67# E Y VP sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X4 Y m1_946_896# VN VN sky130_fd_pr__nfet_01v8 ad=14112 pd=840 as=53928 ps=3300 w=84 l=30
+X5 VN m1_946_896# Y VN sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X6 Y E m1_1376_140# VN sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=13608 ps=828 w=84 l=30
+X7 m1_1376_140# E Y VN sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X8 VN li_2727_823# VN VN sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X9 VN li_2727_823# VN VN sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X10 Y A VN VN sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X11 VN A Y VN sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X12 m1_1376_140# li_3157_907# VN VN sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X13 VN li_3157_907# m1_1376_140# VN sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X14 VN D VN VN sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X15 VN D VN VN sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X16 li_1093_67# D li_2727_n17# VP sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=13608 ps=828 w=84 l=30
+X17 li_2727_n17# D li_1093_67# VP sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X18 VP li_2727_823# li_2727_n17# VP sky130_fd_pr__pfet_01v8 ad=13608 pd=828 as=0 ps=0 w=84 l=30
+X19 li_1007_n17# A VP VP sky130_fd_pr__pfet_01v8 ad=13608 pd=828 as=0 ps=0 w=84 l=30
+X20 VP A li_1007_n17# VP sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X21 li_2727_n17# li_2727_823# VP VP sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X22 li_1093_67# m1_946_896# li_1007_n17# VP sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X23 li_1007_n17# m1_946_896# li_1093_67# VP sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+C0 VP li_1093_67# 2.09fF
+C1 Y li_1093_67# 2.48fF
+C2 Y VN 2.15fF
+C3 m1_946_896# VN 2.08fF **FLOATING
+C4 VP VN 13.16fF
+C5 D VN 2.26fF
+C6 m1_1376_140# VN 2.62fF **FLOATING
+.ends
+
+X1 Va Vb VDD Vd GND Vf Fn Ve Vc FUNCTION_0
+Va Va GND pulse 0 1.8 10ns 1ns 1ns 5ns 10ns
+Vb Vb GND pulse 0 1.8 10ns 2ns 2ns 10ns 20ns
+Vc Vc GND pulse 0 1.8 10ns 4ns 4ns 20ns 40ns
+Vd Vd GND pulse 0 1.8 10ns 8ns 8ns 40ns 80ns
+Ve Ve GND pulse 0 1.8 10ns 16ns 16ns 80ns 160ns
+Vf Vf GND pulse 0 1.8 10ns 32ns 32ns 160ns 320ns
+VDD VDD GND 1.8
+**** begin user architecture code
+.lib /home/pramit/work/open_pdks/sky130/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+.tran 0.5n 1u
+.save all
