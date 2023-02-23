@@ -848,9 +848,9 @@ VDD VDD GND 1.8
 .save all
 ```
 The postlayout simulation after running ALIGN is given in the figure below.
-![image]()
+![image](week2/function/postlayout_align_incorrect.png)
 
-The output waveform is similar to the waveform observed in pre layout stage.
+The output waveform after being simulated seems incorrect. Further investigation is required to sort as to what is causing this unexpected output waveform.(Suspecting incorrect placement or maybe some floating pins).
 
 ## References
 http://opencircuitdesign.com/magic/   
