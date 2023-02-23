@@ -20,13 +20,18 @@
   * [LVS Report](#4d-lvs-report)
   
 
-  - [Simulation of a function *Fn= [(B+D).(A+C)+E.F]'* using Magic and Ngspice](#simulation-of-a-function-using-magic-and-ngspice)
-    * [Pre-layout Simulation]()
-    * [Post-layout Simulation]()
-    * [Comparison of results]()
-    * [LVS Report]()
-
 - [WEEK 2](#week-2)
+    * [Inverter Layout generation using ALIGN](#5-generating-inverter-layout-using-align)
+        - [Generated Inverter Layout](#5a-generated-layout-using-align)
+        - [Netlist generation from magic(for ALIGN inverter)](#5b-extracted-netlist-from-magic)
+        - [Characterisation using NGSPICE(Post-Layout)](#5c-simulation-of-the-netlist-using-ngspice)
+
+    - [Simulation of a function *Fn= [(B+D).(A+C)+E.F]'* using Magic and Ngspice](#6-prelayout-and-postlayout-simulation-of-a-function-fn--bdacef)
+        * [Schematic drawing for Function using Xschem](#6a-drawing-the-schematic-for-fn-in-xschem)
+        * [Pre-layout simulation using NGSPICE](#6b-prelayout-simulation-using-ngspice-function_newsp)
+        * [Manual Layout using Magic and Post-layout simulation](#6c-postlayout-simulation-of-fn-using-magic-manual-layout)
+        * [Post-layout Simulation of Function using ALIGN generated Layout](#6d-postlayout-simulation-of-fn-using-align)
+        * [Common issues faced with ALIGN](#6e-issues-while-using-align)
   
 # 1. Installation of Oracle Virtual Box with Ubuntu 22.04
 
@@ -469,7 +474,7 @@ To generate the layout run the following command
 ```
 schematic2layout.py ~/inverter/ -p ../pdks/SKY130_PDK/
 ```
-# 5a. Generated Inverter Layout using ALIGN
+# 5a. Generated Layout using ALIGN
 The following layout is generated as a .gds file.
 ![image](week2/inverter/inverter_align.png)
 # 5b. Extracted netlist from magic
@@ -781,6 +786,24 @@ plot Fn
 Post layout simulation waveform using ngspice.
 ![image](week2/function_manual_layout/postlayout_manual_function.png)
 # 6d. Postlayout simulation of Fn using ALIGN
+To generate the layout of the Function We use the following netlist
+```
+.subckt function A B C D E F VN VP Y
+XM1 Y E net2 VP sky130_fd_pr__pfet_01v8 L=180n W=420n nf=2
+XM2 Y F net2 VP sky130_fd_pr__pfet_01v8 L=180n W=420n nf=2
+XM3 net2 C net1 VP sky130_fd_pr__pfet_01v8 L=180n W=420n nf=2
+XM4 net2 D net3 VP sky130_fd_pr__pfet_01v8 L=180n W=420n nf=2
+XM5 net1 A VP VP sky130_fd_pr__pfet_01v8 L=180n W=420n nf=2
+XM6 net3 B VP VP sky130_fd_pr__pfet_01v8 L=180n W=420n nf=2
+XM7 Y A net5 net5 sky130_fd_pr__nfet_01v8 L=180n W=420n nf=2
+XM8 net5 B VN VN sky130_fd_pr__nfet_01v8 L=180n W=420n nf=2
+XM9 Y C net5 VN sky130_fd_pr__nfet_01v8 L=180n W=420n nf=2
+XM10 net5 D VN VN sky130_fd_pr__nfet_01v8 L=180n W=420n nf=2
+XM11 Y E net4 VN sky130_fd_pr__nfet_01v8 L=180n W=420n nf=2
+XM12 net4 F VN VN sky130_fd_pr__nfet_01v8 L=180n W=420n nf=2
+.ends
+```
+
 Generating the layout of Fn using ALIGN using the following command
 ```
 schematic2layout.py ~/function/ -p ../pdks/SKY130_PDK/
@@ -851,6 +874,17 @@ The postlayout simulation after running ALIGN is given in the figure below.
 ![image](week2/function/postlayout_align_incorrect.png)
 
 The output waveform after being simulated seems incorrect. Further investigation is required to sort as to what is causing this unexpected output waveform.(Suspecting incorrect placement or maybe some floating pins).
+# 6e. Issues while using ALIGN
+One of the most common issue faced with align is that if in any line of the netlist given as input, there exists a space after a mosfet declaration then ALIGN considers it as an incorrect parameter and throws an error.
+
+This can be easily solved by checking for spaces at the end of each statement, if any, they must be removed before moving on with the flow.
+
+The ``w`` parameter of a mosfet must be a multiple of 210nm which is built into the algortihm of ALIGN. 
+
+Furthermore ``nf`` of number of fins must be greater than or equal to 2. 
+Despite carefully checking for all these errors manually before layout generation the algorithm still fails to generate the correct .gds files sometimes with large designs.
+
+This could be an investigation for future works, as to what json inputs affect the routing and placement of each cells in the final layout.
 
 ## References
 http://opencircuitdesign.com/magic/   
