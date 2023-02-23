@@ -623,7 +623,7 @@ ngspice function_new.sp
 
 # 6c. Postlayout simulation of Fn using Magic (Manual Layout)
 The image below shows the layout of the Function done manually using Magic and sky130 pdk.
-![image]()
+![image](week2/function_manual_layout/layout_manual_fn.png)
 
 Simulating the extracted netlist using ngspice after extracting from magic using the commands.
 ```
@@ -635,9 +635,151 @@ ext2spice
 ```
 The extracted netlist after adding all run commands and .lib files.
 ```
+* SPICE3 file created from function_manual.ext - technology: sky130A
+
+.subckt function_manual Fn VDD GND B D F E C A
+X0 m1_134_n340# A Fn VSUBS sky130_fd_pr__nfet_01v8 ad=6.6e+11p pd=5.32e+06u as=6.4e+11p ps=5.28e+06u w=1e+06u l=150000u
+X1 Fn C m1_134_n340# VSUBS sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=1e+06u l=150000u
+X2 GND F sky130_fd_pr__nfet_01v8_USBP4X_0/a_n33_n100# VSUBS sky130_fd_pr__nfet_01v8 ad=6.4e+11p pd=5.28e+06u as=3.3e+11p ps=2.66e+06u w=1e+06u l=150000u
+X3 sky130_fd_pr__nfet_01v8_USBP4X_0/a_n33_n100# E Fn VSUBS sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=1e+06u l=150000u
+X4 m1_134_n340# D GND VSUBS sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=1e+06u l=150000u
+X5 GND B m1_134_n340# VSUBS sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=1e+06u l=150000u
+X6 m1_226_230# F Fn w_0_10# sky130_fd_pr__pfet_01v8 ad=6.6e+11p pd=5.32e+06u as=3.3e+11p ps=2.66e+06u w=1e+06u l=150000u
+X7 Fn E m1_226_230# w_0_10# sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1e+06u l=150000u
+X8 VDD B sky130_fd_pr__pfet_01v8_2XYSGK_0/a_159_n100# w_0_10# sky130_fd_pr__pfet_01v8 ad=6.2e+11p pd=5.24e+06u as=3.3e+11p ps=2.66e+06u w=1e+06u l=150000u
+X9 sky130_fd_pr__pfet_01v8_2XYSGK_0/a_159_n100# D m1_226_230# w_0_10# sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1e+06u l=150000u
+X10 sky130_fd_pr__pfet_01v8_2XYSGK_0/a_n225_n100# A VDD w_0_10# sky130_fd_pr__pfet_01v8 ad=3.3e+11p pd=2.66e+06u as=0p ps=0u w=1e+06u l=150000u
+X11 m1_226_230# C sky130_fd_pr__pfet_01v8_2XYSGK_0/a_n225_n100# w_0_10# sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=1e+06u l=150000u
+C0 m1_134_n340# w_0_10# 0.01fF
+C1 w_0_10# sky130_fd_pr__pfet_01v8_2XYSGK_0/a_159_n100# 0.01fF
+C2 m1_226_230# sky130_fd_pr__nfet_01v8_USBP4X_0/a_n33_n100# 0.00fF
+C3 GND B 0.03fF
+C4 A w_0_10# 0.09fF
+C5 w_0_10# D 0.08fF
+C6 sky130_fd_pr__pfet_01v8_2XYSGK_0/a_n225_n100# C 0.02fF
+C7 GND VDD 0.00fF
+C8 F E 0.11fF
+C9 GND w_0_10# 0.00fF
+C10 m1_134_n340# Fn 0.44fF
+C11 B E 0.00fF
+C12 sky130_fd_pr__pfet_01v8_2XYSGK_0/a_159_n100# Fn 0.01fF
+C13 A Fn 0.11fF
+C14 D Fn 0.09fF
+C15 VDD E 0.01fF
+C16 m1_134_n340# sky130_fd_pr__nfet_01v8_USBP4X_0/a_n33_n100# 0.01fF
+C17 m1_226_230# C 0.02fF
+C18 w_0_10# E 0.08fF
+C19 F B 0.05fF
+C20 GND Fn 0.08fF
+C21 F VDD 0.06fF
+C22 GND sky130_fd_pr__nfet_01v8_USBP4X_0/a_n33_n100# 0.17fF
+C23 w_0_10# F 0.15fF
+C24 B VDD 0.10fF
+C25 Fn E 0.12fF
+C26 m1_134_n340# C 0.03fF
+C27 A C 0.10fF
+C28 D C 0.00fF
+C29 w_0_10# B 0.14fF
+C30 sky130_fd_pr__nfet_01v8_USBP4X_0/a_n33_n100# E 0.02fF
+C31 w_0_10# VDD 0.42fF
+C32 m1_226_230# sky130_fd_pr__pfet_01v8_2XYSGK_0/a_n225_n100# 0.15fF
+C33 F Fn 0.10fF
+C34 GND C 0.01fF
+C35 F sky130_fd_pr__nfet_01v8_USBP4X_0/a_n33_n100# 0.02fF
+C36 B Fn 0.08fF
+C37 VDD Fn 0.05fF
+C38 C E 0.09fF
+C39 w_0_10# Fn 0.08fF
+C40 m1_134_n340# sky130_fd_pr__pfet_01v8_2XYSGK_0/a_n225_n100# 0.01fF
+C41 A sky130_fd_pr__pfet_01v8_2XYSGK_0/a_n225_n100# 0.01fF
+C42 w_0_10# sky130_fd_pr__nfet_01v8_USBP4X_0/a_n33_n100# 0.00fF
+C43 F C 0.05fF
+C44 m1_134_n340# m1_226_230# 0.00fF
+C45 m1_226_230# sky130_fd_pr__pfet_01v8_2XYSGK_0/a_159_n100# 0.15fF
+C46 sky130_fd_pr__nfet_01v8_USBP4X_0/a_n33_n100# Fn 0.18fF
+C47 VDD C 0.08fF
+C48 A m1_226_230# 0.00fF
+C49 D m1_226_230# 0.02fF
+C50 w_0_10# C 0.15fF
+C51 GND m1_226_230# 0.01fF
+C52 m1_134_n340# sky130_fd_pr__pfet_01v8_2XYSGK_0/a_159_n100# 0.01fF
+C53 m1_134_n340# A 0.03fF
+C54 m1_134_n340# D 0.04fF
+C55 Fn C 0.14fF
+C56 D sky130_fd_pr__pfet_01v8_2XYSGK_0/a_159_n100# 0.01fF
+C57 A D 0.00fF
+C58 m1_226_230# E 0.03fF
+C59 m1_134_n340# GND 0.43fF
+C60 VDD sky130_fd_pr__pfet_01v8_2XYSGK_0/a_n225_n100# 0.16fF
+C61 GND A 0.04fF
+C62 GND D 0.10fF
+C63 F m1_226_230# 0.04fF
+C64 w_0_10# sky130_fd_pr__pfet_01v8_2XYSGK_0/a_n225_n100# 0.01fF
+C65 m1_134_n340# E 0.01fF
+C66 B m1_226_230# 0.00fF
+C67 A E 0.05fF
+C68 D E 0.05fF
+C69 m1_226_230# VDD 0.04fF
+C70 Fn sky130_fd_pr__pfet_01v8_2XYSGK_0/a_n225_n100# 0.01fF
+C71 w_0_10# m1_226_230# 0.04fF
+C72 m1_134_n340# F 0.01fF
+C73 GND E 0.05fF
+C74 A F 0.00fF
+C75 D F 0.09fF
+C76 m1_134_n340# B 0.03fF
+C77 B sky130_fd_pr__pfet_01v8_2XYSGK_0/a_159_n100# 0.02fF
+C78 A B 0.00fF
+C79 D B 0.11fF
+C80 m1_134_n340# VDD 0.00fF
+C81 GND F 0.04fF
+C82 VDD sky130_fd_pr__pfet_01v8_2XYSGK_0/a_159_n100# 0.16fF
+C83 m1_226_230# Fn 0.44fF
+C84 A VDD 0.02fF
+C85 D VDD 0.01fF
+C86 D VSUBS 0.10fF
+C87 E VSUBS 0.06fF
+C88 A VSUBS 0.19fF
+C89 B VSUBS 0.15fF
+C90 F VSUBS 0.01fF
+C91 C VSUBS 0.04fF
+C92 sky130_fd_pr__pfet_01v8_2XYSGK_0/a_159_n100# VSUBS 0.00fF  
+C93 sky130_fd_pr__pfet_01v8_2XYSGK_0/a_n225_n100# VSUBS 0.00fF  
+C94 w_0_10# VSUBS 1.02fF  
+C95 GND VSUBS 0.09fF
+C96 sky130_fd_pr__nfet_01v8_USBP4X_0/a_n33_n100# VSUBS 0.01fF  
+C97 m1_134_n340# VSUBS 0.20fF  
+.ends
+
+X1 Fn VDD GND Vb Vd Vf Ve Vc Va function_manual
+
+
+Vdd1 Va GND pulse(0 1.8 0.1n 10p 10p 1n 2n)
+
+Vdd2 Vb GND pulse(0 1.8 0.2n 10p 10p 1n 2n)
+
+Vdd3 Vc GND pulse(0 1.8 0.3n 10p 10p 1n 2n)
+
+Vdd4 Vd GND pulse(0 1.8 0.4n 10p 10p 1n 2n)
+
+Vdd5 Ve GND pulse(0 1.8 0.5n 10p 10p 1n 2n)
+
+Vdd6 Vf GND pulse(0 1.8 0.6n 10p 10p 1n 2n)
+
+VDD VDD GND 1.8
+**** begin user architecture code
+.lib /home/pramit/work/open_pdks/sky130/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+
+.save all
+.control
+save all
+tran 1n 5n
+plot Va Vb Vc Vd Ve Vf
+plot Fn
+.endc
+
 ```
 Post layout simulation waveform using ngspice.
-![image]()
+![image](week2/function_manual_layout/postlayout_manual_function.png)
 # 6d. Postlayout simulation of Fn using ALIGN
 Generating the layout of Fn using ALIGN using the following command
 ```
