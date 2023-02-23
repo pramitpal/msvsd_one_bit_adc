@@ -457,7 +457,56 @@ The following cells had property errors:
 It can be seen that there are some property errors present in `inverter_manual.spice` file, which is postlayout, extracted netlist.
 Next step can be to prevent the property error arising in the post layout netlist.
 # WEEK 2
-# 5. Simulation of Inverter using Xschem and Ngspice
+# 5. Generating Inverter Layout using ALIGN
+Generating Inverter Layout for the following netlist using ALIGN.
+```
+.subckt inverter vin vout vdd vss
+XM2 vout vin vss vss sky130_fd_pr__nfet_01v8 L=150n W=420n nf=2
+XM3 vout vin vdd vdd sky130_fd_pr__pfet_01v8 L=150n W=840n nf=2
+.ends
+```
+To generate the layout run the following command
+```
+schematic2layout.py ~/inverter/ -p ../pdks/SKY130_PDK/
+```
+The following layout is generated as a .gds file.
+![image](week2/inverter/inverter_align.png)
+After extracting the netlist from magic and adding library files and run commands to the spice netlist we have
+```
+* SPICE3 file created from INVERTER_0.ext - technology: sky130A
+
+.subckt INVERTER_0 VIN VSS VOUT VDD
+X0 VOUT VIN VDD VDD sky130_fd_pr__pfet_01v8 ad=2.352e+11p pd=2.24e+06u as=4.452e+11p ps=4.42e+06u w=840000u l=150000u
+X1 VDD VIN VOUT VDD sky130_fd_pr__pfet_01v8 ad=0p pd=0u as=0p ps=0u w=840000u l=150000u
+X2 VOUT VIN VSS VSS sky130_fd_pr__nfet_01v8 ad=1.176e+11p pd=1.4e+06u as=2.226e+11p ps=2.74e+06u w=420000u l=150000u
+X3 VSS VIN VOUT VSS sky130_fd_pr__nfet_01v8 ad=0p pd=0u as=0p ps=0u w=420000u l=150000u
+C0 VDD VSS 3.02fF
+.ends
+
+*=======Added manually========
+X1 in GND out VDD INVERTER_0
+V1 VDD GND 1.8
+.save i(net1)
+V2 in GND pulse(0 1.8 1n 1n 1n 4n 10n)
+.save i(in)
+**** begin user architecture code
+
+.lib /home/pramit/work/open_pdks/sources/sky130-pdk/libraries/sky130_fd_pr/latest/models/sky130.lib.spice tt
+
+.control
+save all
+tran 1n 20n
+plot v(in) v(out)
+.endc
+
+```
+running simulation using ngspice
+``` 
+ngspice INVERTER_0.spice
+```
+![image](week2/inverter/ngspice_align_screen.png)
+![image](week2/inverter/inverter_ngspice_align_output.png)
+The figure above shows the output waveform for the netlist generated using ALIGN of the inverter.
 
 ## References
 http://opencircuitdesign.com/magic/   
