@@ -885,7 +885,22 @@ Furthermore ``nf`` of number of fins must be greater than or equal to 2.
 Despite carefully checking for all these errors manually before layout generation the algorithm still fails to generate the correct .gds files sometimes with large designs.
 
 This could be an investigation for future works, as to what json inputs affect the routing and placement of each cells in the final layout.
+# WEEK 3
+# 7. Setting Up OpenFasoc
+Before installing OpenFasoc we need to setup few tools which are prerequisite for OpenFasoc.Some of the tools have already been installed and few are pending.
+The dependendencies that are required to install OpenFASoC are always changing, so it is best to follow the related sources. Use the corresponding source that the following table provides. These dependencies can also be installed using the dependency script provided with OpenFASoC repo.
 
+|  Dependencies | Version (21 Feb 2023) |             Note                    |        Status|
+|:-------------:|:----------------------:|:-----------------------------------:|:-----------:|
+| [Magic](https://github.com/RTimothyEdwards/magic)  |8.3.356| [opencircuitdesign.com](http://opencircuitdesign.com/magic/index.html)| &check; |
+| [Netgen](https://github.com/RTimothyEdwards/netgen)|1.5.244|[opencircuitdesign.com](http://opencircuitdesign.com/netgen/index.html)|&check;|
+| [Klayout](https://github.com/KLayout/klayout)|0.28.2-1|If error, install the **.deb** from [klayout.de](https://www.klayout.de/build.html)|&check;|
+| [Yosys](https://github.com/The-OpenROAD-Project/yosys)|0.23+3|After install, **cd** into **/usr/bin** and do: **sudo ln -s /home/user/yosys-dir/yosys yosys**|&cross;|
+| [OpenROAD](https://github.com/The-OpenROAD-Project/OpenROAD)|2.0_6760|After install, **cd** into **/usr/bin** and do: **sudo ln -s /home/user/OpenROAD-dir/build/src/openroad openroad**|&cross;|
+| [Open_pdks](https://github.com/RTimothyEdwards/open_pdks)|1.0.378|[opencircuitdesign.com](http://opencircuitdesign.com/open_pdks/)|&check;|
+
+I found it easier to install [Anaconda](https://www.anaconda.com/products/distribution) and then install all the dependencies that OpenFASoC requires. After installing [Anaconda](https://www.anaconda.com/products/distribution), create an environment for OpenFASoC using the following command. 
+```
 ## References
 http://opencircuitdesign.com/magic/   
 http://opencircuitdesign.com/open_pdks/   
