@@ -899,7 +899,44 @@ The dependendencies that are required to install OpenFASoC are always changing, 
 | [OpenROAD](https://github.com/The-OpenROAD-Project/OpenROAD)|2.0_6760|After install, **cd** into **/usr/bin** and do: **sudo ln -s /home/user/OpenROAD-dir/build/src/openroad openroad**|&cross;|
 | [Open_pdks](https://github.com/RTimothyEdwards/open_pdks)|1.0.378|[opencircuitdesign.com](http://opencircuitdesign.com/open_pdks/)|&check;|
 
-I found it easier to install [Anaconda](https://www.anaconda.com/products/distribution) and then install all the dependencies that OpenFASoC requires. After installing [Anaconda](https://www.anaconda.com/products/distribution), create an environment for OpenFASoC using the following command. 
+Installing Yosys from source using the following commands
+```
+sudo apt-get install build-essential clang bison flex \
+	libreadline-dev gawk tcl-dev libffi-dev git \
+	graphviz xdot pkg-config python3 libboost-system-dev \
+	libboost-python-dev libboost-filesystem-dev zlib1g-dev
+	
+echo "Installing yosys"
+echo "_________________________________________________"
+#install yosys it will also download and install ABC 
+git clone https://github.com/YosysHQ/yosys.git
+cd yosys
+./configure 
+make
+sudo make install
+cd ..
+#installing iverilog as a dependancy for yosys 
+git clone https://github.com/steveicarus/iverilog.git
+cd iverilog
+sh autoconf.sh
+./configure
+make 
+sudo make install 
+cd ~/eda_bundle/
+#make test
+echo "Yosys installed"
+echo "_________________________________________________"
+```
+Installing Lemon graph library from source, download the tar.gz file from the link http://lemon.cs.elte.hu/pub/sources/lemon-1.3.1.tar.gz and unzip.
+Install using the following commands.
+```
+sudo apt  install cmake -y
+cd lemon-1.3.1
+mkdir build
+cd build
+cmake ..
+make 
+sudo make install
 ```
 ## References
 http://opencircuitdesign.com/magic/   
