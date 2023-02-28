@@ -1,0 +1,3 @@
+Yosys 0.26+53 (git sha1 21e87f798, x86_64-conda-linux-gnu-cc 11.2.0 -fvisibility-inlines-hidden -fmessage-length=0 -march=nocona -mtune=haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -fdebug-prefix-map=/root/conda-eda/conda-eda/workdir/conda-env/conda-bld/yosys_1677539997374/work=/usr/local/src/conda/yosys-0.26_62_g21e87f798 -fdebug-prefix-map=/content/conda-env=/usr/local/src/conda-prefix -fPIC -Os -fno-merge-constants)
+openroad c9d8d888979c540450d07265a1500ed31782cbfe
+KLayout 0.28.5

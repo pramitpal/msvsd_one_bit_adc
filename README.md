@@ -938,6 +938,337 @@ cmake ..
 make 
 sudo make install
 ```
+After installing Lemon we need to install Openroad from source and do a local build
+```
+cd
+git clone --recursive https://github.com/The-OpenROAD-Project/OpenROAD.git
+cd OpenROAD
+./etc/DependencyInstaller.sh
+cd
+git clone --recursive https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts
+cd OpenROAD-flow-scripts
+./build_openroad.sh –local
+export OPENROAD=~/OpenROAD-flow-scripts/tools/OpenROAD
+export PATH=~/OpenROAD-flow-scripts/tools/install/OpenROAD/bin:~/OpenROAD-flow-scripts/tools/install/yosys/bin:~/OpenROAD-flow-scripts/tools/install/LSOracle/bin:$PATH
+```
+Then to install OpenFasoc locally execute
+```
+cd
+git clone https://github.com/idea-fasoc/openfasoc
+cd openfasoc
+./dependencies.sh
+```
+Sometimes the installation of OpenRoad crashes midway so I decided to go with the Google colab way.
+By doing the whole OpenFasoc flow in google colab and then downloading the results. This way we can save a lot of space and have a lot more processing power with faster execution than in personal vms.
+
+# 8. Running a sample in OpenFasoc- Temperature Sensor Generator
+## Temperature Sensor
+This generator produces a time domain temperature sensor. Fundamentally, the sensor is an oscillator — a ring of digital inverters oscillating between high and low continuously when enabled. At higher temperatures, the sensor oscillates faster; at lower temperatures, the sensor oscillates slower. The oscillation frequency increases exponentially when increasing temperature.
+
+![image](week3/temp_sense_example/n_stage.png)
+
+The output then goes to a split level converter[^2] (SLC). The sensing elements operates at a lower voltage relative to the rest of the components, so the oscillation is converted to a higher voltage before processing. SLC aux cell handle this low to high conversion while the leakage header using stacked native I/O devices serves as a voltage regulator to generate a lower voltage with high tolerance against supply variations.
+[^2]: Y. Kim, Y. Lee, D. Sylvester and D. Blaauw, "SLC: Split-control Level Converter for dense and stable wide-range voltage conversion," 2012 Proceedings of the ESSCIRC (ESSCIRC), 2012, pp. 478-481, doi: 10.1109/ESSCIRC.2012.6341359.
+
+![image](week3/temp_sense_example/slvc.png)
+
+To process the digital oscillation into a temperature reading, a comparison circuit is used consisting of two digital counters and logical components. These ripple counters compare the frequency difference between the sensor oscillator and a reference clock. Note that an invarient reference clock is required. This comparison circuit outputs a 24 bit number corresponding to the temperature. The figure below summarizes the function of the temperature sensor.
+
+![image](week3/temp_sense_example/circuit.png)
+
+The temperature sensor will output a 24 bit code, which can be converted to the temperature value based on a known calibration function of the following form
+$$T\propto\frac{b}{\ln{d_{out}}-a}$$ 
+$$\text{where }d_{out}\text{ is the 24 bit output,}$$
+$$\text{where }a\text{ and }b\text{ are calibration variables}$$
+
+Note that a and b should be experimentally set for a produced chip.
+
+## Generator Flow
+The temperature sensor applies the below described process to translate a specification into a circuit GDS. 
+
+Before beginning, we must set up our python environment with the necessary open-source tools. The generator uses a flexible set of tools and will support even more in the future. In the below flow walkthrough, we will use:
+*   Yosys for logic synthesis
+*   Openroad for placing and routing
+*   Klayout to produce the final GDS file
+*   Magic for DRC and LVS checks as well as PEX
+*   Ngspice for simulation
+
+There may be a restart runtime warning after this code block, but disregard.
+```
+# install all tools and dependencies
+import os
+import pathlib
+import sys
+
+!apt install -y time build-essential
+!curl -Ls https://micro.mamba.pm/api/micromamba/linux-64/latest | tar -xvj bin/micromamba
+conda_prefix_path = pathlib.Path('conda-env')
+CONDA_PREFIX = str(conda_prefix_path.resolve())
+%env CONDA_PREFIX={CONDA_PREFIX}
+!echo 'python ==3.7*' >> {CONDA_PREFIX}/conda-meta/pinned
+site_package_path = conda_prefix_path / 'lib/python3.7/site-packages'
+sys.path.append(str(site_package_path.resolve()))
+!bin/micromamba create --yes --prefix $CONDA_PREFIX
+!bin/micromamba install --yes --prefix $CONDA_PREFIX \
+                        --channel litex-hub \
+                        --channel main \
+                        open_pdks.sky130a \
+                        magic \
+                        netgen \
+                        openroad \
+                        yosys \
+                        klayout 
+!bin/micromamba install --yes --prefix $CONDA_PREFIX \
+                        --channel conda-forge \
+                        svgutils ngspice
+
+!python -m pip install pyyaml click gdstk --no-binary gdstk
+PATH = os.environ['PATH']
+# clone OpenFASOC repo
+!git clone https://github.com/idea-fasoc/OpenFASOC
+# setup env
+OPENFASOC_ROOT=str(pathlib.Path('OpenFASOC').resolve())
+TEMP_SENSE_ROOT=OPENFASOC_ROOT+"/openfasoc/generators/temp-sense-gen/"
+!cp OpenFASOC/openfasoc/generators/temp-sense-gen/blocks/sky130hd/gds/HEADER.gds OpenFASOC/docs/source/notebooks/aux_files
+!cp OpenFASOC/openfasoc/generators/temp-sense-gen/blocks/sky130hd/gds/SLC.gds OpenFASOC/docs/source/notebooks/aux_files
+!cp OpenFASOC/openfasoc/common/platforms/sky130hd/gds/sky130_fd_sc_hd.gds OpenFASOC/docs/source/notebooks/aux_files
+!cp OpenFASOC/openfasoc/common/platforms/sky130hd/fill.json OpenFASOC/docs/source/notebooks/aux_files
+
+%env PDK_ROOT={CONDA_PREFIX}/share/pdk
+%env OPENFASOC_ROOT={OPENFASOC_ROOT}
+PATH = os.environ['PATH']
+%env PATH={PATH}:{CONDA_PREFIX}/bin:{OPENFASOC_ROOT}:{OPENFASOC_ROOT}/openfasoc/generators/temp-sense-gen/tools
+LD_LIBRARY_PATH = os.environ.get('LD_LIBRARY_PATH', '')
+%env LD_LIBRARY_PATH={LD_LIBRARY_PATH}:{CONDA_PREFIX}/lib/python3.7
+
+```
+### Understanding User Input
+The generator must first parse the user’s requirements into a high-level circuit description or verilog. Note that verilog is a circuit description type that uses theoretical constructs (like mathematical operators, if-else blocks, always @ blocks,... etc) to concisely describe circuits. User input parsing is implemented by reading from a JSON spec file directly in the temp-sense-gen repository. The JSON allows for specifying power, area, maximum error (temperature result accuracy), an optimization option (to choose which option to prioritize), and an operating temperature range (minimum and maximum operating temperature values). The operating temperature range and optimization must be specified, but other items can be left blank. The example we are using here runs the sky130 node, and we already have a silicon model file for this node. The generator uses this model file to automatically determine the number of headers and inverters, among other necessary modifications that can be made to meet spec. The generator references the model file in an iterative process until either meeting spec or failing. A verilog description is then produced by substituting specifics into several template verilog files.
+
+You can see this solve and verilog generation by running the code below and exploring the temp-sense-gen/src folder in your python virtual environment:
+
+```
+!cd OpenFASOC/openfasoc/generators/temp-sense-gen && make sky130hd_temp_verilog
+```
+### Logic Synthesis
+At this phase, the implementation of fundamental components — such as transistors and resistors — is not considered. Logic synthesis takes the verilog description from the previous step and outputs a more detailed netlist by parsing theoretical verilog constructs like always, case, if-else, operator, etc… blocks. Note that a netlist is just a list of pins and component connections. Additionally the entire description is consolidated into one file (not considering the node specific library files we will need later) which means that the low and high voltage components are correctly connected. Specifics such as the shapes, placement, length, size of wires and components, along with power connections are still not considered. 
+
+You can see the synthesis step by running the code below and viewing the temp-sense-gen/flow/results/sky130hd/tempsense/1_synth.v file in your python virtual environment:
+```
+!cd OpenFASOC/openfasoc/generators/temp-sense-gen/flow && make synth
+```
+### Automatic Place and Route
+Now that we have a description of our circuit which includes specific connections and components to use, it is possible to consider drawing the wires, placing the components, and choosing materials. Below is a step-by-step visual breakdown of the openroad APR.
+#### Floorplan
+First, an outline of the circuit is created encompassing the area that the circuit will occupy and including all the input and output pins for the top level circuit. Inside the temperature sensor, power rails, tap, and decap cells are placed. The tap and decap cells serve to address manufacturing and real-world circuit performance concerns. Within the box, a grid is formed with rows of fixed height.
+
+Run floorplan and render a polygon graphic for this stage by executing the code below:
+
+```
+!cd OpenFASOC/openfasoc/generators/temp-sense-gen/flow && make floorplan
+```
+```
+import gdstk
+import os
+import IPython.display
+import svgutils.transform as sg
+# work dir setup
+!cp OpenFASOC/openfasoc/generators/temp-sense-gen/flow/results/sky130hd/tempsense/2_floorplan.odb OpenFASOC/docs/source/notebooks/aux_files
+os.environ['from_oprd_'] = '2_floorplan.odb'
+os.environ['to_oprd_'] = 'out2.def'
+# convert odb to def
+!cd OpenFASOC/docs/source/notebooks/aux_files && openroad -no_init -exit dbtodef.tcl
+# convert def to gds
+!cd OpenFASOC/docs/source/notebooks/aux_files && klayout -zz -rd design_name=tempsenseInst_error \
+	        -rd in_def="out2.def" \
+	        -rd in_gds="HEADER.gds SLC.gds sky130_fd_sc_hd.gds" \
+	        -rd config_file="fill.json" \
+	        -rd out_gds="out2.gds" \
+	        -rd tech_file="klayout.lyt" \
+	        -rm def2gds.py
+!cp OpenFASOC/docs/source/notebooks/aux_files/out2.gds /content
+flrpln = gdstk.read_gds("out2.gds".format(TEMP_SENSE_ROOT))
+flrpln_top_cell = flrpln.top_level()
+flrpln_top_cell[0].write_svg('out2.svg')
+fig = sg.fromfile('out2.svg')
+fig.set_size(('700','700'))
+fig.save('out2.svg')
+IPython.display.SVG('out2.svg')
+```
+### Place 
+Within the rows (visualized in the run above) the standard cells are placed. Cells are building block circuits that, when combined, implement the bulk of temperature sensor functionality. These standard components include: inverters or other logic gates, headers (used to convert from high to low voltage), SLC (used to convert from low to high voltage), etc. 
+
+Run place and render a polygon graphic for this stage by executing the code below:
+```
+!cd OpenFASOC/openfasoc/generators/temp-sense-gen/flow && make place
+```
+```
+import gdstk
+import IPython.display
+import svgutils.transform as sg
+# work dir setup
+!cp OpenFASOC/openfasoc/generators/temp-sense-gen/flow/results/sky130hd/tempsense/3_place.odb OpenFASOC/docs/source/notebooks/aux_files
+os.environ['from_oprd_'] = '3_place.odb'
+os.environ['to_oprd_'] = 'out3.def'
+# convert odb to def
+!cd OpenFASOC/docs/source/notebooks/aux_files && openroad -no_init -exit dbtodef.tcl
+# convert def to gds
+!cd OpenFASOC/docs/source/notebooks/aux_files && klayout -zz -rd design_name=tempsenseInst_error \
+	        -rd in_def="out3.def" \
+	        -rd in_gds="HEADER.gds SLC.gds sky130_fd_sc_hd.gds" \
+	        -rd config_file="fill.json" \
+	        -rd out_gds="out3.gds" \
+	        -rd tech_file="klayout.lyt" \
+	        -rm def2gds.py
+!cp OpenFASOC/docs/source/notebooks/aux_files/out3.gds /content
+flrpln = gdstk.read_gds("out3.gds".format(TEMP_SENSE_ROOT))
+flrpln_top_cell = flrpln.top_level()
+flrpln_top_cell[0].write_svg('out3.svg')
+fig = sg.fromfile('out3.svg')
+fig.set_size(('700','700'))
+fig.save('out3.svg')
+IPython.display.SVG('out3.svg')
+```
+#### CTS
+CTS stands for clock tree synthesis (balancing a clock delay to all parts of a circuit); We do not require this in the temperature sensor, but we do require the filler cells which are placed by openroad during CTS. Filler cells are exactly what they sound like. There are many large gaps (see the above run graphic) within each row, between components. These gaps must be filled such that there are continous silicon p and n wells — among other manufacturing and performance reasons. Fillers are placed to fill the gaps.
+
+Run CTS and render a polygon graphic for this stage by executing the code below:
+```
+!cd OpenFASOC/openfasoc/generators/temp-sense-gen/flow && make cts
+```
+```
+import gdstk
+import IPython.display
+import svgutils.transform as sg
+# work dir setup
+!cp OpenFASOC/openfasoc/generators/temp-sense-gen/flow/results/sky130hd/tempsense/4_cts.odb OpenFASOC/docs/source/notebooks/aux_files
+os.environ['from_oprd_'] = '4_cts.odb'
+os.environ['to_oprd_'] = 'out4.def'
+# convert odb to def
+!cd OpenFASOC/docs/source/notebooks/aux_files && openroad -no_init -exit dbtodef.tcl
+# convert def to gds
+!cd OpenFASOC/docs/source/notebooks/aux_files && klayout -zz -rd design_name=tempsenseInst_error \
+	        -rd in_def="out4.def" \
+	        -rd in_gds="HEADER.gds SLC.gds sky130_fd_sc_hd.gds" \
+	        -rd config_file="fill.json" \
+	        -rd out_gds="out4.gds" \
+	        -rd tech_file="klayout.lyt" \
+	        -rm def2gds.py
+!cp OpenFASOC/docs/source/notebooks/aux_files/out4.gds /content
+flrpln = gdstk.read_gds("out4.gds".format(TEMP_SENSE_ROOT))
+flrpln_top_cell = flrpln.top_level()
+flrpln_top_cell[0].write_svg('out4.svg')
+fig = sg.fromfile('out4.svg')
+fig.set_size(('700','700'))
+fig.save('out4.svg')
+IPython.display.SVG('out4.svg')
+```
+### Routing
+The last step is to connect the components. During routing, wire-like pathways known as traces are placed in the design.
+
+Run route and finish then render a polygon graphic by executing the code below:
+```
+!cd OpenFASOC/openfasoc/generators/temp-sense-gen/flow && make finish
+```
+```
+import gdstk
+import IPython.display
+import svgutils.transform as sg
+!cp OpenFASOC/openfasoc/generators/temp-sense-gen/flow/results/sky130hd/tempsense/6_final.gds /content
+flrpln = gdstk.read_gds("6_final.gds".format(TEMP_SENSE_ROOT))
+flrpln_top_cell = flrpln.top_level()
+flrpln_top_cell[0].write_svg('6_final.svg')
+fig = sg.fromfile('6_final.svg')
+fig.set_size(('700','700'))
+fig.save('6_final.svg')
+IPython.display.SVG('6_final.svg')
+```
+### DRC and LVS
+Now that the generator has completed the flow, an automatic checking process is initiated. DRC or design rule checking ensures that the final circuit obeys manufacturing rules. Rules are set by the foundry for each of their nodes. LVS or layout vs schematic will compare the final output from APR to the netlist that we gave the APR tool (in this case openroad). This ensures that APR ran correctly and our final circuit matches our netlist description from logic synthesis. Both of these steps will use magic (LVS will also run on magic).
+
+Run checks by executing the below code. Both checks will give command line output below with complete status:
+```
+!cd OpenFASOC/openfasoc/generators/temp-sense-gen/flow && make magic_drc
+!cd OpenFASOC/openfasoc/generators/temp-sense-gen/flow && make netgen_lvs
+```
+## Simulations
+To see how the final design functions, run simulations across a temperature range by executing the code block below.
+
+**_Note:_** This may take over 30 minutes.
+```
+%cd /content/OpenFASOC/openfasoc/generators/temp-sense-gen
+!mkdir -p work
+%cd tools
+from simulation import generate_runs
+import shutil
+import json
+import os
+shutil.copyfile(
+    "/content/OpenFASOC/openfasoc/generators/temp-sense-gen/flow/results/sky130hd/tempsense/6_final.gds",
+    "/content/OpenFASOC/openfasoc/generators/temp-sense-gen/work/tempsenseInst_error.gds",
+)
+shutil.copyfile(
+    "/content/OpenFASOC/openfasoc/generators/temp-sense-gen/flow/results/sky130hd/tempsense/6_final.def",
+    "/content/OpenFASOC/openfasoc/generators/temp-sense-gen/work/tempsenseInst_error.def",
+)
+shutil.copyfile(
+    "/content/OpenFASOC/openfasoc/generators/temp-sense-gen/flow/objects/sky130hd/tempsense/netgen_lvs/spice/tempsenseInst_error.spice",
+    "/content/OpenFASOC/openfasoc/generators/temp-sense-gen/work/tempsenseInst_error.spice",
+)
+shutil.copyfile(
+    "/content/OpenFASOC/openfasoc/generators/temp-sense-gen/flow/objects/sky130hd/tempsense/netgen_lvs/spice/tempsenseInst_error_pex.spice",
+    "/content/OpenFASOC/openfasoc/generators/temp-sense-gen/work/tempsenseInst_error_pex.spice",
+)
+%cd ..
+stage_var = [int(6) - 1]
+header_var = [int(3)]
+# make a temp list
+temp_start = -20
+temp_stop = 100
+temp_step = 20
+temp_points = int((temp_stop - temp_start) / temp_step)
+temp_list = []
+for i in range(0, temp_points + 1):
+    temp_list.append(temp_start + i * temp_step)
+with open("/content/OpenFASOC/openfasoc/common/platform_config.json") as file:
+    jsonConfig = json.load(file)
+pdkrt = os.environ.get('PDK_ROOT')
+prepexDir = generate_runs(
+    "/content/OpenFASOC/openfasoc/generators/temp-sense-gen/",
+    "tempsenseInst_error",
+    header_var,
+    stage_var,
+    temp_list,
+    jsonConfig,
+    "sky130hd",
+    "sim",
+    pdkrt+"/sky130A/",
+    spiceDir="work",
+    prePEX=True,
+)
+%cd /content
+```
+Run the below code block to view the sensor inaccuracy over the operating range -20 to 100C :
+```
+%cd /content/OpenFASOC/openfasoc/generators/temp-sense-gen
+with open("tools/readparamgen.py","r") as pltr:
+  pltr_str=pltr.read()
+  pltr_str=pltr_str.replace("myplot.", "myplt.")
+  pltr_str=pltr_str+"\nplot()\n"
+with open("tools/readparamgen.py","w") as pltr:
+  pltr.write(pltr_str)
+!python3 tools/readparamgen.py --specfile test.json --outputDir ./work --platform sky130hd --mode macro
+IPython.display.SVG('run_stats.svg')
+```
+
+
+
+
+
+
+
+
+
 ## References
 http://opencircuitdesign.com/magic/   
 http://opencircuitdesign.com/open_pdks/   

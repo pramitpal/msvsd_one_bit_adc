@@ -1,0 +1,403 @@
+.INCLUDE '/content/OpenFASOC/openfasoc/common/platforms/sky130hd/cdl/sky130_fd_sc_hd.spice'
+.SUBCKT tempsenseInst_error CLK_REF DONE DOUT[0] DOUT[10] DOUT[11]
++ DOUT[12] DOUT[13] DOUT[14] DOUT[15] DOUT[16] DOUT[17] DOUT[18]
++ DOUT[19] DOUT[1] DOUT[20] DOUT[21] DOUT[22] DOUT[23] DOUT[2]
++ DOUT[3] DOUT[4] DOUT[5] DOUT[6] DOUT[7] DOUT[8] DOUT[9] RESET_COUNTERn
++ SEL_CONV_TIME[0] SEL_CONV_TIME[1] SEL_CONV_TIME[2] SEL_CONV_TIME[3]
++ en lc_out out outb VDD VSS
+X_069_ temp_analog_1.async_counter_0.div_r\[5\] VSS VSS VDD VDD _068_ sky130_fd_sc_hd__inv_1
+X_070_ temp_analog_1.async_counter_0.div_r\[19\] VSS VSS VDD VDD _036_ sky130_fd_sc_hd__inv_1
+X_071_ temp_analog_1.async_counter_0.div_r\[18\] VSS VSS VDD VDD _037_ sky130_fd_sc_hd__inv_1
+X_072_ temp_analog_1.async_counter_0.div_r\[17\] VSS VSS VDD VDD _038_ sky130_fd_sc_hd__inv_1
+X_073_ temp_analog_1.async_counter_0.div_r\[16\] VSS VSS VDD VDD _039_ sky130_fd_sc_hd__inv_1
+X_074_ temp_analog_1.async_counter_0.div_r\[15\] VSS VSS VDD VDD _040_ sky130_fd_sc_hd__inv_1
+X_075_ temp_analog_1.async_counter_0.div_r\[14\] VSS VSS VDD VDD _041_ sky130_fd_sc_hd__inv_1
+X_076_ temp_analog_1.async_counter_0.div_r\[13\] VSS VSS VDD VDD _042_ sky130_fd_sc_hd__inv_1
+X_077_ temp_analog_1.async_counter_0.div_r\[12\] VSS VSS VDD VDD _043_ sky130_fd_sc_hd__inv_1
+X_078_ temp_analog_1.async_counter_0.div_r\[11\] VSS VSS VDD VDD _044_ sky130_fd_sc_hd__inv_1
+X_079_ temp_analog_1.async_counter_0.div_r\[10\] VSS VSS VDD VDD _031_ sky130_fd_sc_hd__inv_1
+X_080_ temp_analog_1.async_counter_0.div_r\[9\] VSS VSS VDD VDD _032_ sky130_fd_sc_hd__inv_1
+X_081_ temp_analog_1.async_counter_0.div_r\[8\] VSS VSS VDD VDD _033_ sky130_fd_sc_hd__inv_1
+X_082_ temp_analog_1.async_counter_0.div_r\[7\] VSS VSS VDD VDD _034_ sky130_fd_sc_hd__inv_1
+X_083_ temp_analog_1.async_counter_0.div_r\[6\] VSS VSS VDD VDD _035_ sky130_fd_sc_hd__inv_1
+*X_084_ SEL_CONV_TIME[3] VSS VSS VDD VDD _045_ sky130_fd_sc_hd__inv_1
+*XPHY_12 VSS VSS r_VIN r_VIN  sky130_fd_sc_hd__decap_4
+*XPHY_11 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*X_087_ SEL_CONV_TIME[1] SEL_CONV_TIME[0] temp_analog_1.async_counter_0.div_r\[17\] VSS VSS VDD VDD _048_ sky130_fd_sc_hd__nor3_1
+*X_088_ SEL_CONV_TIME[0] SEL_CONV_TIME[1] VSS VSS VDD VDD _049_ sky130_fd_sc_hd__or2b_1
+*X_089_ SEL_CONV_TIME[1] SEL_CONV_TIME[0] VSS VSS VDD VDD _050_ sky130_fd_sc_hd__nand2_1
+*X_090_ SEL_CONV_TIME[1] temp_analog_1.async_counter_0.div_r\[18\] SEL_CONV_TIME[0] VSS VSS VDD VDD _051_ sky130_fd_sc_hd__or3b_2
+*X_091_ temp_analog_1.async_counter_0.div_r\[19\] _049_ _050_ temp_analog_1.async_counter_0.div_r\[20\] _051_ VSS VSS VDD VDD _052_ sky130_fd_sc_hd__o221ai_1
+*X_092_ temp_analog_1.async_counter_0.div_r\[9\] temp_analog_1.async_counter_0.div_r\[10\] temp_analog_1.async_counter_0.div_r\[11\] temp_analog_1.async_counter_0.div_r\[12\] SEL_CONV_TIME[0] SEL_CONV_TIME[1] VSS VSS VDD VDD _053_ sky130_fd_sc_hd__mux4_1
+X_093_ _045_ _053_ VSS VSS VDD VDD _054_ sky130_fd_sc_hd__nand2_1
+*X_094_ _045_ _048_ _052_ _054_ SEL_CONV_TIME[2] VSS VSS VDD VDD _055_ sky130_fd_sc_hd__o311a_1
+*XPHY_10 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*X_096_ SEL_CONV_TIME[1] SEL_CONV_TIME[0] _041_ VSS VSS VDD VDD _057_ sky130_fd_sc_hd__nand3b_1
+*X_097_ SEL_CONV_TIME[1] SEL_CONV_TIME[0] temp_analog_1.async_counter_0.div_r\[13\] VSS VSS VDD VDD _058_ sky130_fd_sc_hd__or3_1
+*X_098_ temp_analog_1.async_counter_0.div_r\[16\] SEL_CONV_TIME[0] SEL_CONV_TIME[1] VSS VSS VDD VDD _059_ sky130_fd_sc_hd__nand3b_1
+*X_099_ temp_analog_1.async_counter_0.div_r\[15\] _049_ _058_ _059_ SEL_CONV_TIME[3] VSS VSS VDD VDD _060_ sky130_fd_sc_hd__o2111a_2
+*X_100_ temp_analog_1.async_counter_0.div_r\[5\] temp_analog_1.async_counter_0.div_r\[7\] temp_analog_1.async_counter_0.div_r\[6\] temp_analog_1.async_counter_0.div_r\[8\] SEL_CONV_TIME[1] SEL_CONV_TIME[0] VSS VSS VDD VDD _061_ sky130_fd_sc_hd__mux4_2
+*X_101_ _057_ _060_ _061_ _045_ SEL_CONV_TIME[2] VSS VSS VDD VDD _062_ sky130_fd_sc_hd__a221oi_4
+*X_102_ _055_ _062_ temp_analog_1.async_counter_0.WAKE CLK_REF VSS VSS VDD VDD temp_analog_1.async_counter_0.clk_ref_in sky130_fd_sc_hd__o211a_1
+*X_103_ _055_ _062_ temp_analog_1.async_counter_0.WAKE_pre lc_out VSS VSS VDD VDD temp_analog_1.async_counter_0.clk_sens_in sky130_fd_sc_hd__o211a_1
+X_104_ temp_analog_1.async_counter_0.div_s\[0\] VSS VSS VDD VDD _005_ sky130_fd_sc_hd__inv_1
+*XPHY_9 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_8 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*X_107_ _005_ _055_ _062_ VSS VSS VDD VDD DOUT[0] sky130_fd_sc_hd__nor3_2
+X_108_ temp_analog_1.async_counter_0.div_s\[1\] VSS VSS VDD VDD _016_ sky130_fd_sc_hd__inv_1
+*X_109_ _016_ _055_ _062_ VSS VSS VDD VDD DOUT[1] sky130_fd_sc_hd__nor3_2
+X_110_ temp_analog_1.async_counter_0.div_s\[2\] VSS VSS VDD VDD _021_ sky130_fd_sc_hd__inv_1
+*X_111_ _021_ _055_ _062_ VSS VSS VDD VDD DOUT[2] sky130_fd_sc_hd__nor3_2
+X_112_ temp_analog_1.async_counter_0.div_s\[3\] VSS VSS VDD VDD _022_ sky130_fd_sc_hd__inv_1
+*X_113_ _022_ _055_ _062_ VSS VSS VDD VDD DOUT[3] sky130_fd_sc_hd__nor3_1
+X_114_ temp_analog_1.async_counter_0.div_s\[4\] VSS VSS VDD VDD _023_ sky130_fd_sc_hd__inv_1
+*X_115_ _023_ _055_ _062_ VSS VSS VDD VDD DOUT[4] sky130_fd_sc_hd__nor3_2
+X_116_ temp_analog_1.async_counter_0.div_s\[5\] VSS VSS VDD VDD _024_ sky130_fd_sc_hd__inv_1
+*X_117_ _024_ _055_ _062_ VSS VSS VDD VDD DOUT[5] sky130_fd_sc_hd__nor3_1
+X_118_ temp_analog_1.async_counter_0.div_s\[6\] VSS VSS VDD VDD _025_ sky130_fd_sc_hd__inv_1
+*X_119_ _025_ _055_ _062_ VSS VSS VDD VDD DOUT[6] sky130_fd_sc_hd__nor3_1
+X_120_ temp_analog_1.async_counter_0.div_s\[7\] VSS VSS VDD VDD _026_ sky130_fd_sc_hd__inv_1
+*X_121_ _026_ _055_ _062_ VSS VSS VDD VDD DOUT[7] sky130_fd_sc_hd__nor3_1
+X_122_ temp_analog_1.async_counter_0.div_s\[8\] VSS VSS VDD VDD _027_ sky130_fd_sc_hd__inv_1
+*X_123_ _027_ _055_ _062_ VSS VSS VDD VDD DOUT[8] sky130_fd_sc_hd__nor3_1
+X_124_ temp_analog_1.async_counter_0.div_s\[9\] VSS VSS VDD VDD _028_ sky130_fd_sc_hd__inv_1
+*XPHY_7 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_6 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*X_127_ _028_ _055_ _062_ VSS VSS VDD VDD DOUT[9] sky130_fd_sc_hd__nor3_1
+X_128_ temp_analog_1.async_counter_0.div_s\[10\] VSS VSS VDD VDD _006_ sky130_fd_sc_hd__inv_1
+*X_129_ _006_ _055_ _062_ VSS VSS VDD VDD DOUT[10] sky130_fd_sc_hd__nor3_1
+X_130_ temp_analog_1.async_counter_0.div_s\[11\] VSS VSS VDD VDD _007_ sky130_fd_sc_hd__inv_1
+*X_131_ _007_ _055_ _062_ VSS VSS VDD VDD DOUT[11] sky130_fd_sc_hd__nor3_1
+X_132_ temp_analog_1.async_counter_0.div_s\[12\] VSS VSS VDD VDD _008_ sky130_fd_sc_hd__inv_1
+*X_133_ _008_ _055_ _062_ VSS VSS VDD VDD DOUT[12] sky130_fd_sc_hd__nor3_1
+X_134_ temp_analog_1.async_counter_0.div_s\[13\] VSS VSS VDD VDD _009_ sky130_fd_sc_hd__inv_1
+*X_135_ _009_ _055_ _062_ VSS VSS VDD VDD DOUT[13] sky130_fd_sc_hd__nor3_1
+X_136_ temp_analog_1.async_counter_0.div_s\[14\] VSS VSS VDD VDD _010_ sky130_fd_sc_hd__inv_1
+*X_137_ _010_ _055_ _062_ VSS VSS VDD VDD DOUT[14] sky130_fd_sc_hd__nor3_1
+X_138_ temp_analog_1.async_counter_0.div_s\[15\] VSS VSS VDD VDD _011_ sky130_fd_sc_hd__inv_1
+*X_139_ _011_ _055_ _062_ VSS VSS VDD VDD DOUT[15] sky130_fd_sc_hd__nor3_1
+X_140_ temp_analog_1.async_counter_0.div_s\[16\] VSS VSS VDD VDD _012_ sky130_fd_sc_hd__inv_1
+*X_141_ _012_ _055_ _062_ VSS VSS VDD VDD DOUT[16] sky130_fd_sc_hd__nor3_1
+X_142_ temp_analog_1.async_counter_0.div_s\[17\] VSS VSS VDD VDD _013_ sky130_fd_sc_hd__inv_1
+*X_143_ _013_ _055_ _062_ VSS VSS VDD VDD DOUT[17] sky130_fd_sc_hd__nor3_1
+X_144_ temp_analog_1.async_counter_0.div_s\[18\] VSS VSS VDD VDD _014_ sky130_fd_sc_hd__inv_1
+*X_145_ _014_ _055_ _062_ VSS VSS VDD VDD DOUT[18] sky130_fd_sc_hd__nor3_1
+X_146_ temp_analog_1.async_counter_0.div_s\[19\] VSS VSS VDD VDD _015_ sky130_fd_sc_hd__inv_1
+*X_147_ _015_ _055_ _062_ VSS VSS VDD VDD DOUT[19] sky130_fd_sc_hd__nor3_1
+X_148_ temp_analog_1.async_counter_0.div_s\[20\] VSS VSS VDD VDD _017_ sky130_fd_sc_hd__inv_1
+*X_149_ _017_ _055_ _062_ VSS VSS VDD VDD DOUT[20] sky130_fd_sc_hd__nor3_1
+X_150_ temp_analog_1.async_counter_0.div_s\[21\] VSS VSS VDD VDD _018_ sky130_fd_sc_hd__inv_1
+*X_151_ _018_ _055_ _062_ VSS VSS VDD VDD DOUT[21] sky130_fd_sc_hd__nor3_1
+X_152_ temp_analog_1.async_counter_0.div_s\[22\] VSS VSS VDD VDD _019_ sky130_fd_sc_hd__inv_1
+*X_153_ _019_ _055_ _062_ VSS VSS VDD VDD DOUT[22] sky130_fd_sc_hd__nor3_1
+X_154_ temp_analog_1.async_counter_0.div_s\[23\] VSS VSS VDD VDD _020_ sky130_fd_sc_hd__inv_1
+*X_155_ _020_ _055_ _062_ VSS VSS VDD VDD DOUT[23] sky130_fd_sc_hd__nor3_1
+*X_156_ _055_ _062_ VSS VSS VDD VDD DONE sky130_fd_sc_hd__nor2_1
+X_157_ temp_analog_1.async_counter_0.div_r\[20\] VSS VSS VDD VDD _030_ sky130_fd_sc_hd__inv_1
+X_158_ temp_analog_1.async_counter_0.div_r\[0\] VSS VSS VDD VDD _000_ sky130_fd_sc_hd__inv_1
+X_159_ temp_analog_1.async_counter_0.div_r\[1\] VSS VSS VDD VDD _001_ sky130_fd_sc_hd__inv_1
+X_160_ temp_analog_1.async_counter_0.div_r\[2\] VSS VSS VDD VDD _002_ sky130_fd_sc_hd__inv_1
+X_161_ temp_analog_1.async_counter_0.div_r\[3\] VSS VSS VDD VDD _003_ sky130_fd_sc_hd__inv_1
+X_162_ temp_analog_1.async_counter_0.div_r\[4\] VSS VSS VDD VDD _004_ sky130_fd_sc_hd__inv_1
+*X_163_ temp_analog_1.async_counter_0.WAKE temp_analog_1.async_counter_0.WAKE_pre VSS VSS VDD VDD _029_ sky130_fd_sc_hd__or2_2
+*X_164_ CLK_REF _029_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.WAKE sky130_fd_sc_hd__dfrtp_1
+*X_165_ CLK_REF _067_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.WAKE_pre sky130_fd_sc_hd__dfrtp_1
+*X_166_ temp_analog_1.async_counter_0.div_r\[19\] _030_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_r\[20\] sky130_fd_sc_hd__dfrtn_1
+*X_167_ temp_analog_1.async_counter_0.div_r\[18\] _036_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_r\[19\] sky130_fd_sc_hd__dfrtn_1
+*X_168_ temp_analog_1.async_counter_0.div_r\[17\] _037_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_r\[18\] sky130_fd_sc_hd__dfrtn_1
+*X_169_ temp_analog_1.async_counter_0.div_r\[16\] _038_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_r\[17\] sky130_fd_sc_hd__dfrtn_1
+*X_170_ temp_analog_1.async_counter_0.div_r\[15\] _039_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_r\[16\] sky130_fd_sc_hd__dfrtn_1
+*X_171_ temp_analog_1.async_counter_0.div_r\[14\] _040_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_r\[15\] sky130_fd_sc_hd__dfrtn_1
+*X_172_ temp_analog_1.async_counter_0.div_r\[13\] _041_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_r\[14\] sky130_fd_sc_hd__dfrtn_1
+*X_173_ temp_analog_1.async_counter_0.div_r\[12\] _042_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_r\[13\] sky130_fd_sc_hd__dfrtn_1
+*X_174_ temp_analog_1.async_counter_0.div_r\[11\] _043_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_r\[12\] sky130_fd_sc_hd__dfrtn_1
+*X_175_ temp_analog_1.async_counter_0.div_r\[10\] _044_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_r\[11\] sky130_fd_sc_hd__dfrtn_1
+*X_176_ temp_analog_1.async_counter_0.div_r\[9\] _031_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_r\[10\] sky130_fd_sc_hd__dfrtn_1
+*X_177_ temp_analog_1.async_counter_0.div_r\[8\] _032_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_r\[9\] sky130_fd_sc_hd__dfrtn_1
+*X_178_ temp_analog_1.async_counter_0.div_r\[7\] _033_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_r\[8\] sky130_fd_sc_hd__dfrtn_1
+*X_179_ temp_analog_1.async_counter_0.div_r\[6\] _034_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_r\[7\] sky130_fd_sc_hd__dfrtn_1
+*X_180_ temp_analog_1.async_counter_0.div_r\[5\] _035_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_r\[6\] sky130_fd_sc_hd__dfrtn_1
+*X_181_ temp_analog_1.async_counter_0.div_r\[4\] _068_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_r\[5\] sky130_fd_sc_hd__dfrtn_1
+*X_182_ temp_analog_1.async_counter_0.div_r\[3\] _004_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_r\[4\] sky130_fd_sc_hd__dfrtn_1
+*X_183_ temp_analog_1.async_counter_0.div_r\[2\] _003_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_r\[3\] sky130_fd_sc_hd__dfrtn_1
+*X_184_ temp_analog_1.async_counter_0.div_r\[1\] _002_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_r\[2\] sky130_fd_sc_hd__dfrtn_1
+*X_185_ temp_analog_1.async_counter_0.div_r\[0\] _001_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_r\[1\] sky130_fd_sc_hd__dfrtn_1
+*X_186_ temp_analog_1.async_counter_0.div_s\[22\] _020_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_s\[23\] sky130_fd_sc_hd__dfrtn_1
+*X_187_ temp_analog_1.async_counter_0.div_s\[21\] _019_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_s\[22\] sky130_fd_sc_hd__dfrtn_1
+*X_188_ temp_analog_1.async_counter_0.div_s\[20\] _018_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_s\[21\] sky130_fd_sc_hd__dfrtn_1
+*X_189_ temp_analog_1.async_counter_0.div_s\[19\] _017_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_s\[20\] sky130_fd_sc_hd__dfrtn_1
+*X_190_ temp_analog_1.async_counter_0.div_s\[18\] _015_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_s\[19\] sky130_fd_sc_hd__dfrtn_1
+*X_191_ temp_analog_1.async_counter_0.div_s\[17\] _014_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_s\[18\] sky130_fd_sc_hd__dfrtn_1
+*X_192_ temp_analog_1.async_counter_0.div_s\[16\] _013_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_s\[17\] sky130_fd_sc_hd__dfrtn_1
+*X_193_ temp_analog_1.async_counter_0.div_s\[15\] _012_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_s\[16\] sky130_fd_sc_hd__dfrtn_1
+*X_194_ temp_analog_1.async_counter_0.div_s\[14\] _011_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_s\[15\] sky130_fd_sc_hd__dfrtn_1
+*X_195_ temp_analog_1.async_counter_0.div_s\[13\] _010_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_s\[14\] sky130_fd_sc_hd__dfrtn_1
+*X_196_ temp_analog_1.async_counter_0.div_s\[12\] _009_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_s\[13\] sky130_fd_sc_hd__dfrtn_1
+*X_197_ temp_analog_1.async_counter_0.div_s\[11\] _008_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_s\[12\] sky130_fd_sc_hd__dfrtn_1
+*X_198_ temp_analog_1.async_counter_0.div_s\[10\] _007_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_s\[11\] sky130_fd_sc_hd__dfrtn_1
+*X_199_ temp_analog_1.async_counter_0.div_s\[9\] _006_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_s\[10\] sky130_fd_sc_hd__dfrtn_1
+*X_200_ temp_analog_1.async_counter_0.div_s\[8\] _028_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_s\[9\] sky130_fd_sc_hd__dfrtn_1
+*X_201_ temp_analog_1.async_counter_0.div_s\[7\] _027_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_s\[8\] sky130_fd_sc_hd__dfrtn_1
+*X_202_ temp_analog_1.async_counter_0.div_s\[6\] _026_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_s\[7\] sky130_fd_sc_hd__dfrtn_1
+*X_203_ temp_analog_1.async_counter_0.div_s\[5\] _025_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_s\[6\] sky130_fd_sc_hd__dfrtn_1
+*X_204_ temp_analog_1.async_counter_0.div_s\[4\] _024_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_s\[5\] sky130_fd_sc_hd__dfrtn_1
+*X_205_ temp_analog_1.async_counter_0.div_s\[3\] _023_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_s\[4\] sky130_fd_sc_hd__dfrtn_1
+*X_206_ temp_analog_1.async_counter_0.div_s\[2\] _022_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_s\[3\] sky130_fd_sc_hd__dfrtn_1
+*X_207_ temp_analog_1.async_counter_0.div_s\[1\] _021_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_s\[2\] sky130_fd_sc_hd__dfrtn_1
+*X_208_ temp_analog_1.async_counter_0.div_s\[0\] _016_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_s\[1\] sky130_fd_sc_hd__dfrtn_1
+*X_209_ temp_analog_1.async_counter_0.clk_ref_in _000_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_r\[0\] sky130_fd_sc_hd__dfrtp_1
+*X_210_ temp_analog_1.async_counter_0.clk_sens_in _005_ RESET_COUNTERn VSS VSS VDD VDD temp_analog_1.async_counter_0.div_s\[0\] sky130_fd_sc_hd__dfrtp_1
+*X_211_ VSS VSS VDD VDD _067_ _unconnected_0 sky130_fd_sc_hd__conb_1
+*XPHY_5 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_4 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_3 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_2 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+Xtemp_analog_0.a_inv_0 temp_analog_0.n1 VSS VSS r_VIN r_VIN  temp_analog_0.n2 sky130_fd_sc_hd__inv_1
+Xtemp_analog_0.a_inv_1 temp_analog_0.n2 VSS VSS r_VIN r_VIN  temp_analog_0.n3 sky130_fd_sc_hd__inv_1
+Xtemp_analog_0.a_inv_2 temp_analog_0.n3 VSS VSS r_VIN r_VIN  temp_analog_0.n4 sky130_fd_sc_hd__inv_1
+Xtemp_analog_0.a_inv_3 temp_analog_0.n4 VSS VSS r_VIN r_VIN  temp_analog_0.n5 sky130_fd_sc_hd__inv_1
+Xtemp_analog_0.a_inv_4 temp_analog_0.n5 VSS VSS r_VIN r_VIN  temp_analog_0.n6 sky130_fd_sc_hd__inv_1
+Xtemp_analog_0.a_inv_5 temp_analog_0.n6 VSS VSS r_VIN r_VIN  temp_analog_0.n7 sky130_fd_sc_hd__inv_1
+Xtemp_analog_0.a_inv_m1 temp_analog_0.n7 VSS VSS r_VIN r_VIN  out sky130_fd_sc_hd__inv_1
+Xtemp_analog_0.a_inv_m2 temp_analog_0.n7 VSS VSS r_VIN r_VIN  temp_analog_0.nx2 sky130_fd_sc_hd__inv_1
+Xtemp_analog_0.a_inv_m3 temp_analog_0.nx2 VSS VSS r_VIN r_VIN  outb sky130_fd_sc_hd__inv_1
+Xtemp_analog_0.a_nand_0 en temp_analog_0.n7 VSS VSS r_VIN r_VIN  temp_analog_0.n1 sky130_fd_sc_hd__nand2_1
+*XPHY_1 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+Xtemp_analog_1.a_header_0 VSS r_VIN VSS VDD HEADER
+Xtemp_analog_1.a_header_1 VSS r_VIN VSS VDD HEADER
+Xtemp_analog_1.a_header_2 VSS r_VIN VSS VDD HEADER
+Xtemp_analog_1.a_lc_0 out outb lc_out VSS VSS VDD VDD SLC
+*XPHY_0 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_13 VSS VSS r_VIN r_VIN  sky130_fd_sc_hd__decap_4
+*XPHY_14 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_15 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_16 VSS VSS r_VIN r_VIN  sky130_fd_sc_hd__decap_4
+*XPHY_17 VSS VSS r_VIN r_VIN  sky130_fd_sc_hd__decap_4
+*XPHY_18 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_19 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_20 VSS VSS r_VIN r_VIN  sky130_fd_sc_hd__decap_4
+*XPHY_21 VSS VSS r_VIN r_VIN  sky130_fd_sc_hd__decap_4
+*XPHY_22 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_23 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_24 VSS VSS r_VIN r_VIN  sky130_fd_sc_hd__decap_4
+*XPHY_25 VSS VSS r_VIN r_VIN  sky130_fd_sc_hd__decap_4
+*XPHY_26 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_27 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_28 VSS VSS r_VIN r_VIN  sky130_fd_sc_hd__decap_4
+*XPHY_29 VSS VSS r_VIN r_VIN  sky130_fd_sc_hd__decap_4
+*XPHY_30 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_31 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_32 VSS VSS r_VIN r_VIN  sky130_fd_sc_hd__decap_4
+*XPHY_33 VSS VSS r_VIN r_VIN  sky130_fd_sc_hd__decap_4
+*XPHY_34 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_35 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_36 VSS VSS r_VIN r_VIN  sky130_fd_sc_hd__decap_4
+*XPHY_37 VSS VSS r_VIN r_VIN  sky130_fd_sc_hd__decap_4
+*XPHY_38 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_39 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_40 VSS VSS r_VIN r_VIN  sky130_fd_sc_hd__decap_4
+*XPHY_41 VSS VSS r_VIN r_VIN  sky130_fd_sc_hd__decap_4
+*XPHY_42 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_43 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_44 VSS VSS r_VIN r_VIN  sky130_fd_sc_hd__decap_4
+*XPHY_45 VSS VSS r_VIN r_VIN  sky130_fd_sc_hd__decap_4
+*XPHY_46 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_47 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_48 VSS VSS r_VIN r_VIN  sky130_fd_sc_hd__decap_4
+*XPHY_49 VSS VSS r_VIN r_VIN  sky130_fd_sc_hd__decap_4
+*XPHY_50 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_51 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_52 VSS VSS r_VIN r_VIN  sky130_fd_sc_hd__decap_4
+*XPHY_53 VSS VSS r_VIN r_VIN  sky130_fd_sc_hd__decap_4
+*XPHY_54 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_55 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_56 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_57 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_58 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_59 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_60 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_61 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_62 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_63 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_64 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_65 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_66 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_67 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_68 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_69 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_70 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_71 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_72 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_73 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_74 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_75 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_76 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_77 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_78 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_79 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_80 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_81 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_82 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_83 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_84 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_85 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_86 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_87 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_88 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_89 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_90 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_91 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_92 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_93 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_94 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_95 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_96 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_97 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_98 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_99 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_100 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_101 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_102 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_103 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_104 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XPHY_105 VSS VSS VDD VDD sky130_fd_sc_hd__decap_4
+*XTAP_106 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_107 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_108 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_109 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_110 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_111 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_112 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_113 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_114 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_115 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_116 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_117 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_118 VSS r_VIN sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_119 VSS r_VIN sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_120 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_121 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_122 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_123 VSS r_VIN sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_124 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_125 VSS r_VIN sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_126 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_127 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_128 VSS r_VIN sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_129 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_130 VSS r_VIN sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_131 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_132 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_133 VSS r_VIN sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_134 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_135 VSS r_VIN sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_136 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_137 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_138 VSS r_VIN sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_139 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_140 VSS r_VIN sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_141 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_142 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_143 VSS r_VIN sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_144 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_145 VSS r_VIN sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_146 VSS r_VIN sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_147 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_148 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_149 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_150 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_151 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_152 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_153 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_154 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_155 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_156 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_157 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_158 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_159 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_160 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_161 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_162 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_163 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_164 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_165 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_166 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_167 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_168 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_169 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_170 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_171 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_172 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_173 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_174 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_175 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_176 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_177 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_178 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_179 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_180 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_181 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_182 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_183 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_184 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_185 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_186 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_187 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_188 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_189 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_190 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_191 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_192 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_193 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_194 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_195 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_196 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_197 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_198 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_199 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_200 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_201 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_202 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_203 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_204 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_205 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_206 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_207 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_208 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_209 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_210 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_211 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_212 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_213 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_214 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_215 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_216 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_217 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_218 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_219 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_220 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_221 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_222 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_223 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_224 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_225 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_226 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_227 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_228 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_229 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_230 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_231 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_232 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_233 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_234 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_235 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_236 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_237 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_238 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_239 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_240 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_241 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_242 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_243 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+*XTAP_244 VSS VDD sky130_fd_sc_hd__tapvpwrvgnd_1
+.ENDS tempsenseInst_error
