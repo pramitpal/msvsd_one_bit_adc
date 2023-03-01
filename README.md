@@ -1062,6 +1062,14 @@ Now that we have a description of our circuit which includes specific connection
 #### Floorplan
 First, an outline of the circuit is created encompassing the area that the circuit will occupy and including all the input and output pins for the top level circuit. Inside the temperature sensor, power rails, tap, and decap cells are placed. The tap and decap cells serve to address manufacturing and real-world circuit performance concerns. Within the box, a grid is formed with rows of fixed height.
 
+Input header.gds and slc.gds files are provided before doing the floorplanning stage.
+The header.gds is pre generated and is shown in the figure below.
+
+![image](week3/temp_sense_example/OpenFASOC/openfasoc/generators/temp-sense-gen/blocks/sky130hd/gds/header.svg)
+
+and the SLC.gds file 
+![image](week3/temp_sense_example/OpenFASOC/openfasoc/generators/temp-sense-gen/blocks/sky130hd/gds/slc.svg)
+
 Run floorplan and render a polygon graphic for this stage by executing the code below:
 
 ```
@@ -1095,6 +1103,103 @@ fig.set_size(('700','700'))
 fig.save('out2.svg')
 IPython.display.SVG('out2.svg')
 ```
+The floorplan log files shows
+```
+number instances in verilog is 163
+[INFO IFP-0001] Added 42 rows of 258 sites.
+[INFO RSZ-0026] Removed 13 buffers.
+Default units for flow
+ time 1ns
+ capacitance 1pF
+ resistance 1kohm
+ voltage 1v
+ current 1mA
+ power 1nW
+ distance 1um
+
+==========================================================================
+floorplan final report_tns
+--------------------------------------------------------------------------
+tns 0.00
+
+==========================================================================
+floorplan final report_wns
+--------------------------------------------------------------------------
+wns 0.00
+
+==========================================================================
+floorplan final report_worst_slack
+--------------------------------------------------------------------------
+worst slack INF
+
+==========================================================================
+floorplan final report_clock_skew
+--------------------------------------------------------------------------
+
+==========================================================================
+floorplan final report_checks -path_delay min
+--------------------------------------------------------------------------
+No paths found.
+
+==========================================================================
+floorplan final report_checks -path_delay max
+--------------------------------------------------------------------------
+No paths found.
+
+==========================================================================
+floorplan final report_checks -unconstrained
+--------------------------------------------------------------------------
+Startpoint: _176_ (falling edge-triggered flip-flop)
+Endpoint: DOUT[10] (output port)
+Path Group: (none)
+Path Type: max
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                  0.05    0.00    0.00 v _176_/CLK_N (sky130_fd_sc_hd__dfrtn_1)
+                  0.05    0.34    0.34 v _176_/Q (sky130_fd_sc_hd__dfrtn_1)
+     3    0.01                           temp_analog_1.async_counter_0.div_r[10] (net)
+                  0.05    0.00    0.34 v _092_/A1 (sky130_fd_sc_hd__mux4_1)
+                  0.08    0.49    0.83 v _092_/X (sky130_fd_sc_hd__mux4_1)
+     1    0.00                           _053_ (net)
+                  0.08    0.00    0.83 v _093_/B (sky130_fd_sc_hd__nand2_1)
+                  0.05    0.08    0.90 ^ _093_/Y (sky130_fd_sc_hd__nand2_1)
+     1    0.00                           _054_ (net)
+                  0.05    0.00    0.90 ^ _094_/B1 (sky130_fd_sc_hd__o311a_1)
+                  0.75    0.66    1.56 ^ _094_/X (sky130_fd_sc_hd__o311a_1)
+    27    0.08                           _055_ (net)
+                  0.75    0.00    1.56 ^ _129_/B (sky130_fd_sc_hd__nor3_1)
+                  0.10    0.07    1.63 v _129_/Y (sky130_fd_sc_hd__nor3_1)
+     1    0.00                           DOUT[10] (net)
+                  0.10    0.00    1.63 v DOUT[10] (out)
+                                  1.63   data arrival time
+-----------------------------------------------------------------------------
+(Path is unconstrained)
+
+
+
+==========================================================================
+floorplan final report_power
+--------------------------------------------------------------------------
+Group                  Internal  Switching    Leakage      Total
+                          Power      Power      Power      Power (Watts)
+----------------------------------------------------------------
+Sequential             1.68e-13   3.57e-14   5.48e-10   5.48e-10  58.0%
+Combinational          9.63e-14   1.04e-13   3.96e-10   3.96e-10  42.0%
+Macro                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Pad                    0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+----------------------------------------------------------------
+Total                  2.65e-13   1.39e-13   9.44e-10   9.44e-10 100.0%
+                           0.0%       0.0%     100.0%
+
+==========================================================================
+floorplan final report_design_area
+--------------------------------------------------------------------------
+Design area 1854 u^2 14% utilization.
+
+Elapsed time: 0:00.64[h:]min:sec. CPU time: user 0.57 sys 0.05 (97%). Peak memory: 96384KB.
+```
+
 ### Place 
 Within the rows (visualized in the run above) the standard cells are placed. Cells are building block circuits that, when combined, implement the bulk of temperature sensor functionality. These standard components include: inverters or other logic gates, headers (used to convert from high to low voltage), SLC (used to convert from low to high voltage), etc. 
 
@@ -1129,6 +1234,7 @@ fig.set_size(('700','700'))
 fig.save('out3.svg')
 IPython.display.SVG('out3.svg')
 ```
+T
 #### CTS
 CTS stands for clock tree synthesis (balancing a clock delay to all parts of a circuit); We do not require this in the temperature sensor, but we do require the filler cells which are placed by openroad during CTS. Filler cells are exactly what they sound like. There are many large gaps (see the above run graphic) within each row, between components. These gaps must be filled such that there are continous silicon p and n wells — among other manufacturing and performance reasons. Fillers are placed to fill the gaps.
 
@@ -1191,6 +1297,11 @@ Run checks by executing the below code. Both checks will give command line outpu
 !cd OpenFASOC/openfasoc/generators/temp-sense-gen/flow && make magic_drc
 !cd OpenFASOC/openfasoc/generators/temp-sense-gen/flow && make netgen_lvs
 ```
+The final gds file generated after LVS and DRC checks is final.gds file which is shown in below figure.
+![image](week3/temp_sense_example/OpenFASOC/openfasoc/generators/temp-sense-gen/readme_imgs/temp-sense-gen-final-gds.PNG)
+
+The resultant files generated after all the stages is shown below
+![image](week3/temp_sense_example/OpenFASOC/openfasoc/generators/temp-sense-gen/readme_imgs/all_result_files.png)
 ## Simulations
 To see how the final design functions, run simulations across a temperature range by executing the code block below.
 
@@ -1260,8 +1371,24 @@ with open("tools/readparamgen.py","w") as pltr:
 !python3 tools/readparamgen.py --specfile test.json --outputDir ./work --platform sky130hd --mode macro
 IPython.display.SVG('run_stats.svg')
 ```
+To test the design we are using an input test.json file to see how much error we are getting after simulation.
 
-
+```
+{
+    "module_name": "tempsenseInst_error",
+    "generator": "temp-sense-gen",
+    "specifications": {
+    	"temperature": { "min": -20, "max": 100 },
+    	"power": "",
+    	"error": "",
+    	"area": "",
+    	"optimization":"error",
+    	"model" :"modelfile.csv"
+	}
+}
+```
+Simulations takes some time about 15 minutes to run and we get this plot.
+![image](week3/temp_sense_example/OpenFASOC/openfasoc/generators/temp-sense-gen/run_stats.svg)
 
 
 
