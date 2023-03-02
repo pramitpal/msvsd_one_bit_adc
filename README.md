@@ -1645,7 +1645,7 @@ The oscillation frequency is ``4/0.5ns=8Ghz``
 Pre-Layout             |  Post Layout(without Parasitics) | Post-Layout(with Parasitics) | 
 :-------------------------:|:-------------------------:|:-------------------------:|
 
-<img src=week4/schematic/ring_osc_xschem_plot.png width="180" height="150">|  ![image](week4/Manual_layout_ring_osc/no_parasitics.png) | ![image](week4/Manual_layout_ring_osc/parasitics.png)
+<img src=week4/schematic/ring_osc_xschem_plot.png width="180" height="150">|<img src=week4/Manual_layout_ring_osc/no_parasitics.png width="180" height="150"> |<img src=week4/Manual_layout_ring_osc/parasitics.png width="180" height="150">
 
 
 ## References
