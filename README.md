@@ -962,7 +962,7 @@ Sometimes the installation of OpenRoad crashes midway so I decided to go with th
 By doing the whole OpenFasoc flow in google colab and then downloading the results. This way we can save a lot of space and have a lot more processing power with faster execution than in personal vms.
 
 # 8. Running a sample in OpenFasoc- Temperature Sensor Generator
-## Temperature Sensor
+## 8a. Temperature Sensor
 This generator produces a time domain temperature sensor. Fundamentally, the sensor is an oscillator — a ring of digital inverters oscillating between high and low continuously when enabled. At higher temperatures, the sensor oscillates faster; at lower temperatures, the sensor oscillates slower. The oscillation frequency increases exponentially when increasing temperature.
 
 ![image](week3/temp_sense_example/n_stage.png)
@@ -983,7 +983,7 @@ $$\text{where }a\text{ and }b\text{ are calibration variables}$$
 
 Note that a and b should be experimentally set for a produced chip.
 
-## Generator Flow
+## 8b. Generator Flow
 The temperature sensor applies the below described process to translate a specification into a circuit GDS. 
 
 Before beginning, we must set up our python environment with the necessary open-source tools. The generator uses a flexible set of tools and will support even more in the future. In the below flow walkthrough, we will use:
@@ -1042,7 +1042,7 @@ LD_LIBRARY_PATH = os.environ.get('LD_LIBRARY_PATH', '')
 %env LD_LIBRARY_PATH={LD_LIBRARY_PATH}:{CONDA_PREFIX}/lib/python3.7
 
 ```
-### Understanding User Input
+## 8c. Understanding User Input
 The generator must first parse the user’s requirements into a high-level circuit description or verilog. Note that verilog is a circuit description type that uses theoretical constructs (like mathematical operators, if-else blocks, always @ blocks,... etc) to concisely describe circuits. User input parsing is implemented by reading from a JSON spec file directly in the temp-sense-gen repository. The JSON allows for specifying power, area, maximum error (temperature result accuracy), an optimization option (to choose which option to prioritize), and an operating temperature range (minimum and maximum operating temperature values). The operating temperature range and optimization must be specified, but other items can be left blank. The example we are using here runs the sky130 node, and we already have a silicon model file for this node. The generator uses this model file to automatically determine the number of headers and inverters, among other necessary modifications that can be made to meet spec. The generator references the model file in an iterative process until either meeting spec or failing. A verilog description is then produced by substituting specifics into several template verilog files.
 
 You can see this solve and verilog generation by running the code below and exploring the temp-sense-gen/src folder in your python virtual environment:
@@ -1050,16 +1050,16 @@ You can see this solve and verilog generation by running the code below and expl
 ```
 !cd OpenFASOC/openfasoc/generators/temp-sense-gen && make sky130hd_temp_verilog
 ```
-### Logic Synthesis
+## 8d. Logic Synthesis
 At this phase, the implementation of fundamental components — such as transistors and resistors — is not considered. Logic synthesis takes the verilog description from the previous step and outputs a more detailed netlist by parsing theoretical verilog constructs like always, case, if-else, operator, etc… blocks. Note that a netlist is just a list of pins and component connections. Additionally the entire description is consolidated into one file (not considering the node specific library files we will need later) which means that the low and high voltage components are correctly connected. Specifics such as the shapes, placement, length, size of wires and components, along with power connections are still not considered. 
 
 You can see the synthesis step by running the code below and viewing the temp-sense-gen/flow/results/sky130hd/tempsense/1_synth.v file in your python virtual environment:
 ```
 !cd OpenFASOC/openfasoc/generators/temp-sense-gen/flow && make synth
 ```
-### Automatic Place and Route
+## 8e. Automatic Place and Route
 Now that we have a description of our circuit which includes specific connections and components to use, it is possible to consider drawing the wires, placing the components, and choosing materials. Below is a step-by-step visual breakdown of the openroad APR.
-#### Floorplan
+## 8f. Floorplan
 First, an outline of the circuit is created encompassing the area that the circuit will occupy and including all the input and output pins for the top level circuit. Inside the temperature sensor, power rails, tap, and decap cells are placed. The tap and decap cells serve to address manufacturing and real-world circuit performance concerns. Within the box, a grid is formed with rows of fixed height.
 
 Input header.gds and slc.gds files are provided before doing the floorplanning stage.
@@ -1200,7 +1200,7 @@ Design area 1854 u^2 14% utilization.
 Elapsed time: 0:00.64[h:]min:sec. CPU time: user 0.57 sys 0.05 (97%). Peak memory: 96384KB.
 ```
 
-### Place 
+## 8g. Place 
 Within the rows (visualized in the run above) the standard cells are placed. Cells are building block circuits that, when combined, implement the bulk of temperature sensor functionality. These standard components include: inverters or other logic gates, headers (used to convert from high to low voltage), SLC (used to convert from low to high voltage), etc. 
 
 Run place and render a polygon graphic for this stage by executing the code below:
@@ -1235,7 +1235,7 @@ fig.save('out3.svg')
 IPython.display.SVG('out3.svg')
 ```
 T
-#### CTS
+## 8h. CTS
 CTS stands for clock tree synthesis (balancing a clock delay to all parts of a circuit); We do not require this in the temperature sensor, but we do require the filler cells which are placed by openroad during CTS. Filler cells are exactly what they sound like. There are many large gaps (see the above run graphic) within each row, between components. These gaps must be filled such that there are continous silicon p and n wells — among other manufacturing and performance reasons. Fillers are placed to fill the gaps.
 
 Run CTS and render a polygon graphic for this stage by executing the code below:
@@ -1269,7 +1269,7 @@ fig.set_size(('700','700'))
 fig.save('out4.svg')
 IPython.display.SVG('out4.svg')
 ```
-### Routing
+## 8i. Routing
 The last step is to connect the components. During routing, wire-like pathways known as traces are placed in the design.
 
 Run route and finish then render a polygon graphic by executing the code below:
@@ -1289,7 +1289,7 @@ fig.set_size(('700','700'))
 fig.save('6_final.svg')
 IPython.display.SVG('6_final.svg')
 ```
-### DRC and LVS
+## 8j. DRC and LVS
 Now that the generator has completed the flow, an automatic checking process is initiated. DRC or design rule checking ensures that the final circuit obeys manufacturing rules. Rules are set by the foundry for each of their nodes. LVS or layout vs schematic will compare the final output from APR to the netlist that we gave the APR tool (in this case openroad). This ensures that APR ran correctly and our final circuit matches our netlist description from logic synthesis. Both of these steps will use magic (LVS will also run on magic).
 
 Run checks by executing the below code. Both checks will give command line output below with complete status:
@@ -1302,7 +1302,7 @@ The final gds file generated after LVS and DRC checks is final.gds file which is
 
 The resultant files generated after all the stages is shown below
 ![image](week3/temp_sense_example/OpenFASOC/openfasoc/generators/temp-sense-gen/readme_imgs/all_result_files.png)
-## Simulations
+## 8k. Simulations
 To see how the final design functions, run simulations across a temperature range by executing the code block below.
 
 **_Note:_** This may take over 30 minutes.
@@ -1391,9 +1391,260 @@ Simulations takes some time about 15 minutes to run and we get this plot.
 ![image](week3/temp_sense_example/OpenFASOC/openfasoc/generators/temp-sense-gen/run_stats.svg)
 
 
+# WEEK 4
+# 9. Generating and analysing an analog block(Ring Oscillator)
+For generating the analog block for the ring oscillator we are using Xschem to generate the schematic and ALIGN tool and Magic to design the layout.
+## 9a. Three stage ring oscillator schematic ( Xschem )
+A self-toggling circuit known as a ring oscillator produces clock-like pulses without any external input other than the power it requires.
+This is made by stacking odd-numbered inverters back to back (so that the next output is different than the previous).
+The design of a 3-stage ring oscillator made in Xschem is depicted in the following figure. 
+![image](week4/schematic/ring_osc_xschem.png)
+
+The extracted netlist from Xschem:
+```
+** sch_path: /home/pramit/EDA_TOOLS/work/week4/ring_osc.sch
+**.subckt ring_osc VDD Y VDD
+*.iopin VDD
+*.iopin Y
+*.iopin VDD
+XM1 net1 Y VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM2 net1 Y GND GND sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM3 net2 net1 VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM4 net2 net1 GND GND sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM5 Y net2 VDD VDD sky130_fd_pr__pfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+XM6 Y net2 GND GND sky130_fd_pr__nfet_01v8 L=0.15 W=1 nf=1 ad='int((nf+1)/2) * W/nf * 0.29' as='int((nf+2)/2) * W/nf * 0.29'
++ pd='2*int((nf+1)/2) * (W/nf + 0.29)' ps='2*int((nf+2)/2) * (W/nf + 0.29)' nrd='0.29 / W' nrs='0.29 / W'
++ sa=0 sb=0 sd=0 mult=1 m=1
+V1 VDD GND 1.8
+.save i(v1)
+**** begin user architecture code
+
+
+.lib /home/pramit/EDA_TOOLS/skywater-pdk/libraries/sky130_fd_pr/latest/models/sky130.lib.spice tt
 
 
 
+
+.tran 10p 2n
+.save all
+
+
+**** end user architecture code
+**.ends
+.GLOBAL GND
+.end
+```
+To simulate this netlist we invoke ngspice using
+```
+ngspice ring_osc_xshcem.spice
+```
+The simulation is run for 2 nanosecond, which gives us an output as shown below.
+![image](week4/schematic/ring_osc_xschem_plot.png)
+
+Without any parasitic capacitances the frequency of oscillation can be calculated as
+
+``No of Oscillations/ Time interval= 4/0/5ns= 8 GHz``
+## 9b. Automatic Layout generation using ALIGN Tool
+The netlist generated by Xschem is modified to suit the input requirements for ALIGN.
+The input netlist is given below
+```
+.subckt ring_osc Y vdd gnd
+XM1 net1 Y vdd vdd sky130_fd_pr__pfet_01v8 L=150e-9 W=420e-9 nf=2
+XM2 net1 Y gnd gnd sky130_fd_pr__nfet_01v8 L=150e-9 W=420e-9 nf=2
+XM3 net2 net1 vdd vdd sky130_fd_pr__pfet_01v8 L=150e-9 W=420e-9 nf=2
+XM4 net2 net1 gnd gnd sky130_fd_pr__nfet_01v8 L=150e-9 W=420e-9 nf=2
+XM5 Y net2 vdd vdd sky130_fd_pr__pfet_01v8 L=150e-9 W=420e-9 nf=2
+XM6 Y net2 gnd gnd sky130_fd_pr__nfet_01v8 L=150e-9 W=420e-9 nf=2
+.ends
+```
+Along with the .sp file we also need a .json file specifying the power VDD and GND ports.
+The contents of which are given 
+```
+[
+    {"constraint": "PowerPorts", "ports": ["vdd"]},
+    {"constraint": "GroundPorts", "ports": ["gnd"]}
+
+]
+```
+Then, we can run the ALIGN layout generator using the following command.
+
+[Note: My netlists are in the week4/ALIGN_LAYOUT_OSC/ring_osc/ directory and running ALIGN from ALIGN_Public/work/ directory and my sky130 pdk root is: ~/work/ALIGN_Public/pdks/ALIGN-pdk-sky130/SKY130_PDK]
+
+```
+schematic2layout.py ../ring_osc -p ../../pdks/ALIGN-pdk-sky130/SKY130_PDK 
+```
+The Layout generated(.gds) file generated
+![Image](week4/ALIGN_LAYOUT_OSC/ring_osc_align.png)
+
+In order to extract the netlist from the Layout we open the gds file in magic and run
+```
+extract all
+ext2spice scale off
+ext2spice cthresh 0 rthresh 0
+ext2spice hierarchy off
+ext2spice
+```
+The netlist after adding the ngspice commands and the .lib files
+```
+* SPICE3 file created from RING_OSC_0.ext - technology: sky130A
+.lib /home/pramit/EDA_TOOLS/skywater-pdk/libraries/sky130_fd_pr/latest/models/sky130.lib.spice tt
+
+.option scale=0.005
+.subckt align_ring_osc VDD Y GND
+X0 m1_688_4424# li_405_1579# m1_398_2912# m1_398_2912# sky130_fd_pr__pfet_01v8 ad=2.352n pd=140u as=4.452n ps=274u w=84 l=30
+X1 m1_398_2912# li_405_1579# m1_688_4424# m1_398_2912# sky130_fd_pr__pfet_01v8 ad=4.452n pd=274u as=2.352n ps=140u w=84 l=30
+X2 m1_688_4424# li_405_1579# SUB SUB sky130_fd_pr__nfet_01v8 ad=2.352n pd=140u as=4.452n ps=274u w=84 l=30
+X3 SUB li_405_1579# m1_688_4424# SUB sky130_fd_pr__nfet_01v8 ad=4.452n pd=274u as=2.352n ps=140u w=84 l=30
+X4 li_405_1579# STAGE2_INV_5734008_0_0_1677771077_0/li_491_571# SUB SUB sky130_fd_pr__nfet_01v8 ad=2.352n pd=140u as=4.452n ps=274u w=84 l=30
+X5 SUB STAGE2_INV_5734008_0_0_1677771077_0/li_491_571# li_405_1579# SUB sky130_fd_pr__nfet_01v8 ad=4.452n pd=274u as=2.352n ps=140u w=84 l=30
+X6 STAGE2_INV_5734008_0_0_1677771077_0/li_491_571# m1_688_4424# SUB SUB sky130_fd_pr__nfet_01v8 ad=4.704n pd=280u as=26.712n ps=0.001644 w=84 l=30
+X7 SUB m1_688_4424# STAGE2_INV_5734008_0_0_1677771077_0/li_491_571# SUB sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X8 li_405_1579# STAGE2_INV_5734008_0_0_1677771077_0/li_491_571# m1_398_2912# m1_398_2912# sky130_fd_pr__pfet_01v8 ad=2.352n pd=140u as=4.452n ps=274u w=84 l=30
+X9 m1_398_2912# STAGE2_INV_5734008_0_0_1677771077_0/li_491_571# li_405_1579# m1_398_2912# sky130_fd_pr__pfet_01v8 ad=4.452n pd=274u as=2.352n ps=140u w=84 l=30
+X10 STAGE2_INV_5734008_0_0_1677771077_0/li_491_571# m1_688_4424# m1_398_2912# m1_398_2912# sky130_fd_pr__pfet_01v8 ad=4.704n pd=280u as=26.712n ps=0.001644 w=84 l=30
+X11 m1_398_2912# m1_688_4424# STAGE2_INV_5734008_0_0_1677771077_0/li_491_571# m1_398_2912# sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+C0 li_405_1579# m1_688_4424# 0.46fF
+C1 m1_688_4424# STAGE2_INV_5734008_0_0_1677771077_0/li_491_571# 0.62fF
+C2 li_405_1579# m1_398_2912# 2.12fF
+C3 STAGE2_INV_5734008_0_0_1677771077_0/li_491_571# m1_398_2912# 2.97fF
+C4 li_405_1579# STAGE2_INV_5734008_0_0_1677771077_0/li_491_571# 0.59fF
+C5 VDD Y 0.24fF
+C6 GND Y 0.02fF
+C7 GND VDD 0.24fF
+C8 li_405_1579# Y 0.01fF
+C9 STAGE2_INV_5734008_0_0_1677771077_0/li_491_571# Y 0.00fF
+C10 m1_688_4424# VDD 0.32fF
+C11 m1_688_4424# m1_398_2912# 2.28fF
+C12 li_405_1579# VDD 1.31fF
+C13 li_405_1579# GND 0.14fF
+C14 STAGE2_INV_5734008_0_0_1677771077_0/li_491_571# VDD 0.03fF
+C15 GND STAGE2_INV_5734008_0_0_1677771077_0/li_491_571# 0.15fF
+C16 VDD SUB 0.16fF
+C17 m1_688_4424# SUB 2.58fF 
+C18 li_405_1579# SUB 1.88fF 
+C19 STAGE2_INV_5734008_0_0_1677771077_0/li_491_571# SUB 1.16fF 
+C20 m1_398_2912# SUB 8.15fF 
+.ends
+
+
+
+V1 VDD GND 1.8
+
+x1 VDD Y GND align_ring_osc
+
+**** begin user architecture code
+
+
+
+* .dc V2 0 1.8 0.01
+.tran 10p 4n 0
+
+.control
+  run
+  print allv > plot_data_v.txt
+  print alli > plot_data_i.txt
+  plot v(Y)
+.endc
+```
+Invoking ngspice with
+```
+ngspice RING_OSC_0_sim.spice
+```
+The postlayout simulation is incorrect as can be seen from the following figure and taking the output of the pre-layout simulation stage as a reference.
+![image](week4/ALIGN_LAYOUT_OSC/ring_osc_align_sim.png)
+
+## 9c. Manual layout using Magic
+As we are not getting the correct results from ALIGN, it is better to do a manual layout using Magic to proceed further to later stages.
+ 
+( Note: In order to easily create and customize nmos and pmos by the help of inbuilt console in magic run it using an .magicrc file found in the sky130A libs.tech folder
+`` magic -rcfile sky130A.magicrc`` )
+
+The figure below shows the manual layout done with all the added labels and ports.
+![image](week4/Manual_layout_ring_osc/manual_layout.png)
+
+To extract the netlist use
+```
+extract all
+ext2spice scale off
+ext2spice cthresh 0 rthresh 0
+ext2spice hierarchy off
+ext2spice
+```
+The extracted netlist after adding the ngspice control commands and .lib files
+```
+* SPICE3 file created from /home/pramit/EDA_TOOLS/work/week4/Manual_layout_ring_osc/ring_osc.ext - technology: sky130A
+
+.subckt ring_osc VDD Y GND
+X0 a_173_115# Y GND VSUBS sky130_fd_pr__nfet_01v8 ad=0.1218 pd=1.42 as=0.1218 ps=1.42 w=0.42 l=0.15
+X1 a_173_115# Y VDD w_188_178# sky130_fd_pr__pfet_01v8 ad=0.1218 pd=1.42 as=0.1218 ps=1.42 w=0.42 l=0.15
+X2 a_312_n12# a_173_115# VDD w_188_178# sky130_fd_pr__pfet_01v8 ad=0.1218 pd=1.42 as=0.1218 ps=1.42 w=0.42 l=0.15
+X3 a_312_n12# a_173_115# GND VSUBS sky130_fd_pr__nfet_01v8 ad=0.1218 pd=1.42 as=0.1218 ps=1.42 w=0.42 l=0.15
+X4 Y a_312_n12# VDD w_188_178# sky130_fd_pr__pfet_01v8 ad=0.1218 pd=1.42 as=0.1218 ps=1.42 w=0.42 l=0.15
+X5 Y a_312_n12# GND VSUBS sky130_fd_pr__nfet_01v8 ad=0.1218 pd=1.42 as=0.1218 ps=1.42 w=0.42 l=0.15
+C0 a_312_n12# w_188_178# 0.09fF
+C1 GND a_173_115# 0.19fF
+C2 VDD w_188_178# 0.15fF
+C3 GND Y 0.13fF
+C4 GND a_312_n12# 0.18fF
+C5 a_173_115# Y 0.12fF
+C6 a_312_n12# a_173_115# 0.08fF
+C7 GND VDD 0.05fF
+C8 GND w_188_178# 0.02fF
+C9 a_312_n12# Y 0.10fF
+C10 VDD a_173_115# 0.18fF
+C11 a_173_115# w_188_178# 0.10fF
+C12 VDD Y 0.12fF
+C13 a_312_n12# VDD 0.17fF
+C14 Y w_188_178# 0.10fF
+C15 a_312_n12# VSUBS 0.23fF
+C16 w_188_178# VSUBS 0.40fF 
+C17 a_173_115# VSUBS 0.21fF 
+C18 GND VSUBS 0.01fF
+C19 Y VSUBS 0.60fF
+.ends
+
+.lib /home/pramit/EDA_TOOLS/skywater-pdk/libraries/sky130_fd_pr/latest/models/sky130.lib.spice tt
+X1 VDD Y GND ring_osc
+V1 VDD GND 1.8
+
+.tran 10p 2n
+.save all
+
+.control
+  run
+  plot y
+.endc
+```
+The output waveform for the netlist with extracted parasitics is shown below.
+![image](week4/Manual_layout_ring_osc/parasitics.png)
+
+The oscillation frequency is ``4/0.8ns=5Ghz``
+However, if we extract the netlist without parasitics by running
+```
+extract all
+ext2spice scale off
+ext2spice cthresh infinite rthresh infinite
+ext2spice hierarchy off
+ext2spice
+```
+We get this waveform after simulation.
+![image](week4/Manual_layout_ring_osc/no_parasitics.png)
+The oscillation frequency is ``4/0.5ns=8Ghz``
+
+## 9d. Comparison between Pre-layout and Post-Layout Simulation
+Pre-Layout             |  Post Layout(without Parasitics) | Post-Layout(with Parasitics) | 
+:-------------------------:|:-------------------------:|:-------------------------:|
+![image](week4/schematic/ring_osc_xschem_plot.png)  |  ![image](week4/Manual_layout_ring_osc/no_parasitics.png) | ![image](week4/Manual_layout_ring_osc/parasitics.png)
 
 
 ## References
