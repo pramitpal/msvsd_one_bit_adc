@@ -1484,6 +1484,7 @@ Then, we can run the ALIGN layout generator using the following command.
 schematic2layout.py ../ring_osc -p ../../pdks/ALIGN-pdk-sky130/SKY130_PDK 
 ```
 The Layout generated(.gds) file generated
+
 ![Image](week4/ALIGN_LAYOUT_OSC/ring_osc_align.png)
 
 In order to extract the netlist from the Layout we open the gds file in magic and run
