@@ -1,0 +1,23 @@
+* SPICE3 file created from /home/pramit/EDA_TOOLS/work/week4/Manual_layout_ring_osc/ring_osc.ext - technology: sky130A
+
+X0 a_173_115# Y GND VSUBS sky130_fd_pr__nfet_01v8 ad=0.1218 pd=1.42 as=0.1218 ps=1.42 w=0.42 l=0.15
+X1 a_173_115# Y VDD w_188_178# sky130_fd_pr__pfet_01v8 ad=0.1218 pd=1.42 as=0.1218 ps=1.42 w=0.42 l=0.15
+X2 a_312_n12# a_173_115# VDD w_188_178# sky130_fd_pr__pfet_01v8 ad=0.1218 pd=1.42 as=0.1218 ps=1.42 w=0.42 l=0.15
+X3 a_312_n12# a_173_115# GND VSUBS sky130_fd_pr__nfet_01v8 ad=0.1218 pd=1.42 as=0.1218 ps=1.42 w=0.42 l=0.15
+X4 Y a_312_n12# VDD w_188_178# sky130_fd_pr__pfet_01v8 ad=0.1218 pd=1.42 as=0.1218 ps=1.42 w=0.42 l=0.15
+X5 Y a_312_n12# GND VSUBS sky130_fd_pr__nfet_01v8 ad=0.1218 pd=1.42 as=0.1218 ps=1.42 w=0.42 l=0.15
+
+
+.lib /home/pramit/EDA_TOOLS/skywater-pdk/libraries/sky130_fd_pr/latest/models/sky130.lib.spice tt
+
+
+V1 VDD GND 1.8
+
+.tran 10p 2n
+.save all
+
+.control
+  run
+  plot y
+.endc
+

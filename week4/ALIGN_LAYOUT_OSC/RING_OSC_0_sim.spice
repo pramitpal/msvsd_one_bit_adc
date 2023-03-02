@@ -1,0 +1,59 @@
+* SPICE3 file created from RING_OSC_0.ext - technology: sky130A
+.lib /home/pramit/EDA_TOOLS/skywater-pdk/libraries/sky130_fd_pr/latest/models/sky130.lib.spice tt
+
+.option scale=0.005
+.subckt align_ring_osc VDD Y GND
+X0 m1_688_4424# li_405_1579# m1_398_2912# m1_398_2912# sky130_fd_pr__pfet_01v8 ad=2.352n pd=140u as=4.452n ps=274u w=84 l=30
+X1 m1_398_2912# li_405_1579# m1_688_4424# m1_398_2912# sky130_fd_pr__pfet_01v8 ad=4.452n pd=274u as=2.352n ps=140u w=84 l=30
+X2 m1_688_4424# li_405_1579# SUB SUB sky130_fd_pr__nfet_01v8 ad=2.352n pd=140u as=4.452n ps=274u w=84 l=30
+X3 SUB li_405_1579# m1_688_4424# SUB sky130_fd_pr__nfet_01v8 ad=4.452n pd=274u as=2.352n ps=140u w=84 l=30
+X4 li_405_1579# STAGE2_INV_5734008_0_0_1677771077_0/li_491_571# SUB SUB sky130_fd_pr__nfet_01v8 ad=2.352n pd=140u as=4.452n ps=274u w=84 l=30
+X5 SUB STAGE2_INV_5734008_0_0_1677771077_0/li_491_571# li_405_1579# SUB sky130_fd_pr__nfet_01v8 ad=4.452n pd=274u as=2.352n ps=140u w=84 l=30
+X6 STAGE2_INV_5734008_0_0_1677771077_0/li_491_571# m1_688_4424# SUB SUB sky130_fd_pr__nfet_01v8 ad=4.704n pd=280u as=26.712n ps=0.001644 w=84 l=30
+X7 SUB m1_688_4424# STAGE2_INV_5734008_0_0_1677771077_0/li_491_571# SUB sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+X8 li_405_1579# STAGE2_INV_5734008_0_0_1677771077_0/li_491_571# m1_398_2912# m1_398_2912# sky130_fd_pr__pfet_01v8 ad=2.352n pd=140u as=4.452n ps=274u w=84 l=30
+X9 m1_398_2912# STAGE2_INV_5734008_0_0_1677771077_0/li_491_571# li_405_1579# m1_398_2912# sky130_fd_pr__pfet_01v8 ad=4.452n pd=274u as=2.352n ps=140u w=84 l=30
+X10 STAGE2_INV_5734008_0_0_1677771077_0/li_491_571# m1_688_4424# m1_398_2912# m1_398_2912# sky130_fd_pr__pfet_01v8 ad=4.704n pd=280u as=26.712n ps=0.001644 w=84 l=30
+X11 m1_398_2912# m1_688_4424# STAGE2_INV_5734008_0_0_1677771077_0/li_491_571# m1_398_2912# sky130_fd_pr__pfet_01v8 ad=0 pd=0 as=0 ps=0 w=84 l=30
+C0 li_405_1579# m1_688_4424# 0.46fF
+C1 m1_688_4424# STAGE2_INV_5734008_0_0_1677771077_0/li_491_571# 0.62fF
+C2 li_405_1579# m1_398_2912# 2.12fF
+C3 STAGE2_INV_5734008_0_0_1677771077_0/li_491_571# m1_398_2912# 2.97fF
+C4 li_405_1579# STAGE2_INV_5734008_0_0_1677771077_0/li_491_571# 0.59fF
+C5 VDD Y 0.24fF
+C6 GND Y 0.02fF
+C7 GND VDD 0.24fF
+C8 li_405_1579# Y 0.01fF
+C9 STAGE2_INV_5734008_0_0_1677771077_0/li_491_571# Y 0.00fF
+C10 m1_688_4424# VDD 0.32fF
+C11 m1_688_4424# m1_398_2912# 2.28fF
+C12 li_405_1579# VDD 1.31fF
+C13 li_405_1579# GND 0.14fF
+C14 STAGE2_INV_5734008_0_0_1677771077_0/li_491_571# VDD 0.03fF
+C15 GND STAGE2_INV_5734008_0_0_1677771077_0/li_491_571# 0.15fF
+C16 VDD SUB 0.16fF
+C17 m1_688_4424# SUB 2.58fF 
+C18 li_405_1579# SUB 1.88fF 
+C19 STAGE2_INV_5734008_0_0_1677771077_0/li_491_571# SUB 1.16fF 
+C20 m1_398_2912# SUB 8.15fF 
+.ends
+
+
+
+V1 VDD GND 1.8
+
+x1 VDD Y GND align_ring_osc
+
+**** begin user architecture code
+
+
+
+* .dc V2 0 1.8 0.01
+.tran 10p 4n 0
+
+.control
+  run
+  print allv > plot_data_v.txt
+  print alli > plot_data_i.txt
+  plot v(Y)
+.endc
