@@ -1675,7 +1675,7 @@ The oscillation frequency is ``4/0.5ns=8Ghz``
 
 ## 9d. Comparison between Pre-layout and Post-Layout Simulation
 Pre-Layout|Post Layout with Magic(Manual Layout) | Post-Layout with ALIGN(Automatic) | 
-:--------------------------:|:-------------------------:|:-------------------------:|
+|--------------------------|-------------------------|-------------------------|
 
 <img src=week4/schematic/ring_osc_xschem_plot.png width="400" height="300"><img src=week4/Manual_layout_ring_osc/parasitics.png width="400" height="300"> <img src=week4/ALIGN_LAYOUT_OSC/ring_osc/output.png width="400" height="300">
 
