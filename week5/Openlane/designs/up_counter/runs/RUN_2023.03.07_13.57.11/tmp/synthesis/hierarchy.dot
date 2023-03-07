@@ -1,0 +1,30 @@
+digraph "up_counter" {
+label="up_counter";
+rankdir="LR";
+remincross=true;
+n4 [ shape=diamond, label="counter_up", color="black", fontcolor="black" ];
+n5 [ shape=octagon, label="countern", color="black", fontcolor="black" ];
+n6 [ shape=octagon, label="counter", color="black", fontcolor="black" ];
+n7 [ shape=octagon, label="en", color="black", fontcolor="black" ];
+n8 [ shape=octagon, label="reset", color="black", fontcolor="black" ];
+n9 [ shape=octagon, label="clk", color="black", fontcolor="black" ];
+c12 [ shape=record, label="{{<p10> A}|$3\n$not|{<p11> Y}}" ];
+v0 [ label="4'0001" ];
+c14 [ shape=record, label="{{<p10> A|<p13> B}|$2\n$add|{<p11> Y}}" ];
+p1 [shape=box, style=rounded, label="PROC $1\n/openlane/designs/up_counter/src/up_counter.v:6.3-11.5"];
+x2 [shape=box, style=rounded, label="BUF"];
+x3 [shape=box, style=rounded, label="BUF"];
+c12:p11:e -> x3:w:w [color="black", style="setlinewidth(3)", label=""];
+c14:p11:e -> p1:w [color="black", style="setlinewidth(3)", label=""];
+p1:e -> n4:w [color="black", style="setlinewidth(3)", label=""];
+n4:e -> c12:p10:w [color="black", style="setlinewidth(3)", label=""];
+n4:e -> c14:p10:w [color="black", style="setlinewidth(3)", label=""];
+n4:e -> p1:w [color="black", style="setlinewidth(3)", label=""];
+n4:e -> x2:w:w [color="black", style="setlinewidth(3)", label=""];
+x3:e:e -> n5:w [color="black", style="setlinewidth(3)", label=""];
+x2:e:e -> n6:w [color="black", style="setlinewidth(3)", label=""];
+n7:e -> p1:w [color="black", label=""];
+n8:e -> p1:w [color="black", label=""];
+n9:e -> p1:w [color="black", label=""];
+v0:e -> c14:p13:w [color="black", style="setlinewidth(3)", label=""];
+}
