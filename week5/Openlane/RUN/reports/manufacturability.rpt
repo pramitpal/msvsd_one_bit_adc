@@ -1,0 +1,17 @@
+Design Name: up_counter
+Run Directory: /openlane/designs/up_counter/runs/RUN_2023.03.07_13.57.11
+----------------------------------------
+
+Magic DRC Summary:
+Source: /openlane/designs/up_counter/runs/RUN_2023.03.07_13.57.11/reports/signoff/drc.rpt
+Total Magic DRC violations is 0
+----------------------------------------
+
+LVS Summary:
+Source: /openlane/designs/up_counter/runs/RUN_2023.03.07_13.57.11/logs/signoff/34-up_counter.lef.lvs.log
+Number of nets: 37                         |Number of nets: 37                         
+Design is LVS clean.
+----------------------------------------
+
+Antenna Summary:
+No antenna report found.
