@@ -1,0 +1,80 @@
+magic
+tech sky130A
+magscale 1 2
+timestamp 1678197493
+<< obsli1 >>
+rect 1104 2159 5796 9265
+<< obsm1 >>
+rect 14 2128 6518 9296
+<< metal2 >>
+rect 1950 10624 2006 11424
+rect 5170 10624 5226 11424
+rect 18 0 74 800
+rect 3238 0 3294 800
+rect 6458 0 6514 800
+<< obsm2 >>
+rect 20 10568 1894 10624
+rect 2062 10568 5114 10624
+rect 5282 10568 6512 10624
+rect 20 856 6512 10568
+rect 130 800 3182 856
+rect 3350 800 6402 856
+<< metal3 >>
+rect 0 10208 800 10328
+rect 6100 9528 6900 9648
+rect 0 6808 800 6928
+rect 6100 6128 6900 6248
+rect 0 3408 800 3528
+rect 6100 2728 6900 2848
+<< obsm3 >>
+rect 880 10128 6100 10301
+rect 800 9728 6100 10128
+rect 800 9448 6020 9728
+rect 800 7008 6100 9448
+rect 880 6728 6100 7008
+rect 800 6328 6100 6728
+rect 800 6048 6020 6328
+rect 800 3608 6100 6048
+rect 880 3328 6100 3608
+rect 800 2928 6100 3328
+rect 800 2648 6020 2928
+rect 800 2143 6100 2648
+<< metal4 >>
+rect 1944 2128 2264 9296
+rect 2604 2128 2924 9296
+<< labels >>
+rlabel metal4 s 2604 2128 2924 9296 6 VGND
+port 1 nsew ground bidirectional
+rlabel metal4 s 1944 2128 2264 9296 6 VPWR
+port 2 nsew power bidirectional
+rlabel metal3 s 0 6808 800 6928 6 clk
+port 3 nsew signal input
+rlabel metal3 s 6100 2728 6900 2848 6 counter[0]
+port 4 nsew signal output
+rlabel metal2 s 18 0 74 800 6 counter[1]
+port 5 nsew signal output
+rlabel metal2 s 5170 10624 5226 11424 6 counter[2]
+port 6 nsew signal output
+rlabel metal2 s 6458 0 6514 800 6 counter[3]
+port 7 nsew signal output
+rlabel metal3 s 0 3408 800 3528 6 countern[0]
+port 8 nsew signal output
+rlabel metal3 s 6100 9528 6900 9648 6 countern[1]
+port 9 nsew signal output
+rlabel metal2 s 3238 0 3294 800 6 countern[2]
+port 10 nsew signal output
+rlabel metal3 s 0 10208 800 10328 6 countern[3]
+port 11 nsew signal output
+rlabel metal2 s 1950 10624 2006 11424 6 en
+port 12 nsew signal input
+rlabel metal3 s 6100 6128 6900 6248 6 reset
+port 13 nsew signal input
+<< properties >>
+string FIXED_BBOX 0 0 6900 11424
+string LEFclass BLOCK
+string LEFview TRUE
+string GDS_END 203544
+string GDS_FILE /openlane/designs/up_counter/runs/RUN_2023.03.07_13.57.11/results/signoff/up_counter.magic.gds
+string GDS_START 124176
+<< end >>
+
