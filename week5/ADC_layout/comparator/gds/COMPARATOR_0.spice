@@ -1,0 +1,39 @@
+* SPICE3 file created from COMPARATOR_0.ext - technology: sky130A
+
+.subckt COMPARATOR_0 INN GND VDD OUT INP
+X0 li_663_571# li_663_571# VDD VDD sky130_fd_pr__pfet_01v8 ad=0.1176 pd=1.12 as=0.2226 ps=2.21 w=0.84 l=0.15
+X1 VDD li_663_571# li_663_571# VDD sky130_fd_pr__pfet_01v8 ad=0.1176 pd=1.12 as=0.1176 ps=1.12 w=0.84 l=0.15
+X2 m1_312_1316# li_663_571# VDD VDD sky130_fd_pr__pfet_01v8 ad=0.1176 pd=1.12 as=0.1176 ps=1.12 w=0.84 l=0.15
+X3 VDD li_663_571# m1_312_1316# VDD sky130_fd_pr__pfet_01v8 ad=0.2226 pd=2.21 as=0.1176 ps=1.12 w=0.84 l=0.15
+X4 m1_430_1652# li_663_571# GND GND sky130_fd_pr__nfet_01v8 ad=0.1176 pd=1.12 as=0.2226 ps=2.21 w=0.84 l=0.15
+X5 GND li_663_571# m1_430_1652# GND sky130_fd_pr__nfet_01v8 ad=0.2226 pd=2.21 as=0.1176 ps=1.12 w=0.84 l=0.15
+X6 OUT m1_312_1316# GND GND sky130_fd_pr__nfet_01v8 ad=0.1176 pd=1.12 as=0.2226 ps=2.21 w=0.84 l=0.15
+X7 GND m1_312_1316# OUT GND sky130_fd_pr__nfet_01v8 ad=0.2226 pd=2.21 as=0.1176 ps=1.12 w=0.84 l=0.15
+X8 OUT m1_312_1316# VDD VDD sky130_fd_pr__pfet_01v8 ad=0.1176 pd=1.12 as=0.2226 ps=2.21 w=0.84 l=0.15
+X9 VDD m1_312_1316# OUT VDD sky130_fd_pr__pfet_01v8 ad=0.2226 pd=2.21 as=0.1176 ps=1.12 w=0.84 l=0.15
+X10 li_663_571# INN m1_430_1652# GND sky130_fd_pr__nfet_01v8 ad=0.1176 pd=1.12 as=0.2226 ps=2.21 w=0.84 l=0.15
+X11 m1_430_1652# INN li_663_571# GND sky130_fd_pr__nfet_01v8 ad=0.2226 pd=2.21 as=0.1176 ps=1.12 w=0.84 l=0.15
+X12 m1_312_1316# INP m1_430_1652# GND sky130_fd_pr__nfet_01v8 ad=0.2352 pd=2.24 as=1.1256 ps=11.08 w=0.84 l=0.15
+X13 m1_430_1652# INP m1_312_1316# GND sky130_fd_pr__nfet_01v8 ad=0 pd=0 as=0 ps=0 w=0.84 l=0.15
+C0 m1_312_1316# VDD 2.42fF
+C1 VDD li_663_571# 2.83fF
+C2 VDD GND 9.82fF
+.ends
+
+
+.lib /home/pramit/EDA_TOOLS/skywater-pdk/libraries/sky130_fd_pr/latest/models/sky130.lib.spice tt
+
+x1 INN GND VDD OUT INP COMPARATOR_0
+V1 INP GND sine(0.9 0.9 1.5Gig)
+.save i(v1)
+V2 VDD GND 1.8
+.save i(v2)
+V3 INN GND 1.2
+.save i(v3)
+
+.tran 0.05n 4n
+.save all
+.control
+run
+plot INP INN OUT
+.endc
