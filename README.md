@@ -1983,6 +1983,8 @@ We simulate using ngspice and achieve the following postlayout simulation.
 
 From the above shown figure it is evident that both the prelayout and postlayout simulations match and is working as intended. So proceeding to the next stage.
 
+<video src="week5/test.mp4"></video>
+
 ## References
 http://opencircuitdesign.com/magic/   
 http://opencircuitdesign.com/open_pdks/   
