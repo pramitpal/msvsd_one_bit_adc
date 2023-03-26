@@ -2174,6 +2174,250 @@ export CUSTOM_CONNECTION 	= ../blocks/$(PLATFORM)/async_up_down_custom_net.txt
 export VIN_ROUTE_CONNECTION_POINTS = 3
 
 ```
+Next comes ``test.json`` file for defining the actual design generator name and defining specifications for frequency and other parameters as needed.
+```
+{
+    "module_name": "async-up-down",
+    "generator": "async_up_down-gen",
+    "specifications": {
+    	"frequency": { "min": 5, "max": 1200 }
+    }
+}
+
+```
+Setting up source ``tools/*.py`` files. Edit as required and be sure to define the gds and lef files along with the verilog files in ``async-up-down-gen.py`` file as
+```
+#!/usr/bin/python3
+
+import json
+import os
+import re
+import shutil
+import subprocess as sp
+import sys
+import time
+
+
+from parameter import args, check_search_done, designName
+#from simulation import generate_runs
+
+genDir = os.path.join(os.path.dirname(os.path.relpath(__file__)), "../")
+srcDir = genDir + "src/"
+flowDir = genDir + "flow/"
+designDir = genDir + "designs/src/async_up_down/"
+simDir = genDir + "simulations/"
+commonDir = genDir + "../../common/"
+platformDir = genDir + "../../common/platforms/" + args.platform + "/"
+objDir = flowDir + "objects/" + args.platform + "/async_up_down/"
+
+# ------------------------------------------------------------------------------
+# Clean the workspace
+# ------------------------------------------------------------------------------
+print("#----------------------------------------------------------------------")
+print("# Cleaning the workspace...")
+print("#----------------------------------------------------------------------")
+if args.clean:
+    p = sp.Popen(["make", "clean_all"], cwd=genDir)
+    p.wait()
+
+p = sp.Popen(["git", "checkout", platformDir + "cdl/sky130_fd_sc_hd.spice"])
+p.wait()
+
+print("Loading platform_config file...")
+print()
+try:
+    with open(genDir + "../../common/platform_config.json") as file:
+        jsonConfig = json.load(file)
+except ValueError as e:
+    print("Error occurred opening or loading json file.")
+    print >> sys.stderr, "Exception: %s" % str(e)
+    sys.exit(1)
+
+print("PDK_ROOT value: {}".format(os.getenv("PDK_ROOT")))
+
+
+pdk = None
+if os.getenv("PDK_ROOT") is not None:
+    pdk = os.path.join(os.environ["PDK_ROOT"], "sky130A")
+else:
+    open_pdks_key = "open_pdks"
+    pdk = jsonConfig[open_pdks_key]
+
+if not os.path.isdir(os.path.join(pdk, "libs.ref")):
+    print("Cannot find libs.ref folder from open_pdks in " + pdk)
+    sys.exit(1)
+elif not os.path.isdir(os.path.join(pdk, "libs.tech")):
+    print("Cannot find libs.tech folder from open_pdks in " + pdk)
+    sys.exit(1)
+else:
+    sky130A_path = commonDir + "drc-lvs-check/sky130A/"
+    if not os.path.isdir(sky130A_path):
+        os.mkdir(sky130A_path)
+    try:
+        sp.Popen(
+            [
+                "sed -i 's/set PDKPATH \".*/set PDKPATH $env(PDK_ROOT)\/sky130A/' $PDK_ROOT/sky130A/libs.tech/magic/sky130A.magicrc"
+            ],
+            shell=True,
+        ).wait()
+    except:
+        pass
+    shutil.copy2(os.path.join(pdk, "libs.tech/magic/sky130A.magicrc"), sky130A_path)
+    shutil.copy2(os.path.join(pdk, "libs.tech/netgen/sky130A_setup.tcl"), sky130A_path)
+
+print("#----------------------------------------------------------------------")
+print("# Verilog Generation")
+print("#----------------------------------------------------------------------")
+
+
+if args.platform == "sky130hd":
+    aux1 = "COMPARATOR"
+    aux2 = "RING_OSCILLATOR"
+elif args.platform == "sky130hs":
+    aux1 = "COMPARATOR_hs"
+    aux2 = "RING_OSCILLATOR_hs"
+
+shutil.copyfile(srcDir + "async_up_down.v", flowDir + "design/src/async_up_down/async_up_down" + ".v")
+shutil.copyfile(srcDir + "COMPARATOR.v", flowDir + "design/src/async_up_down/COMPARATOR" + ".v")
+shutil.copyfile(srcDir + "RING_OSCILLATOR.v", flowDir + "design/src/async_up_down/RING_OSCILLATOR" + ".v")
+
+print("#----------------------------------------------------------------------")
+print("# Verilog Generated")
+print("#----------------------------------------------------------------------")
+print()
+if args.mode == "verilog":
+    print("Exiting tool....")
+    exit()
+
+print("#----------------------------------------------------------------------")
+print("# Run Synthesis and APR")
+print("#----------------------------------------------------------------------")
+
+p = sp.Popen(["make", "finish"], cwd=flowDir)
+p.wait()
+if p.returncode:
+    print("[Error] Place and Route failed. Refer to the log file")
+    exit(1)
+
+print("#----------------------------------------------------------------------")
+print("# Place and Route finished")
+print("#----------------------------------------------------------------------")
+
+p = sp.Popen(["make", "magic_drc"], cwd=flowDir)
+p.wait()
+if p.returncode:
+    print("[Error] DRC failed. Refer to the report")
+    exit(1)
+
+print("#----------------------------------------------------------------------")
+print("# DRC finished")
+print("#----------------------------------------------------------------------")
+
+if os.path.isdir(args.outputDir):
+    # shutil.rmtree(genDir + args.outputDir)
+    pass
+if not args.outputDir.startswith("/"):
+    os.mkdir(genDir + args.outputDir)
+    outputDir = genDir + args.outputDir
+else:
+    os.mkdir(args.outputDir)
+    outputDir = args.outputDir
+
+shutil.copyfile(
+    flowDir + "results/" + args.platform + "/async_up_down/6_final.gds",
+    outputDir + "/" + designName + ".gds",
+)
+shutil.copyfile(
+    flowDir + "results/" + args.platform + "/async_up_down/6_final.def",
+    outputDir + "/" + designName + ".def",
+)
+shutil.copyfile(
+    flowDir + "results/" + args.platform + "/async_up_down/6_final.v",
+    outputDir + "/" + designName + ".v",
+)
+shutil.copyfile(
+    flowDir + "results/" + args.platform + "/async_up_down/6_1_fill.sdc",
+    outputDir + "/" + designName + ".sdc",
+)
+
+shutil.copyfile(
+    flowDir + "reports/" + args.platform + "/async_up_down/6_final_drc.rpt",
+    outputDir + "/6_final_drc.rpt",
+)
+
+print("Exiting tool....")
+exit()
+```
+along with ``parameter.py``, ``parse_rpt.py`` and ``verify_op.sh``. 
+To make and compile the design prepare the ``async_up_down-gen/Makefile`` as follows
+```
+
+
+
+sky130hd_verilog:
+	@@echo "=============================================================="
+	@@echo " __ 	   __ ____ ____   _____ _     ___   ___ "
+	@@echo " \ \      / /|  __|  _  \|_   _| |   / _ \ / __\ "
+	@@echo "  \ \    / / | |_|| |_) |  | | | |  | | | | |  _ " 
+	@@echo "   \ \__/ /  | |__|  __/  _| |_| |__| |_| | |_| | "
+	@@echo "    \____/   |____|_|\_\ |_____|____|\___/ \___/ "
+	@@echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+	@@echo "OpenFASoC For Verilog Generation"
+	@@echo "==============================================================="
+	@python3 tools/async-up-down-gen.py --specfile test.json --outputDir ./work --platform sky130hd --mode verilog
+	
+sky130hd_build:
+	@python3 tools/async-up-down-gen.py --specfile test.json --outputDir ./work --platform sky130hd --mode full 
+	@python3 tools/parse_rpt.py
+	@@echo "==============================================================="
+	@@echo "Thank you for using OpenFASOC"
+	@@echo "=============================================================="
+	@@echo "   ___  _____ ______ _   _ _____  _     ____   ___   ____"
+	@@echo "  / _ \|  _  \| ____| \ | |  ___|/ \   / ___| / _ \ / ___|"
+	@@echo " | | | | |_) ||  _| |  \| | |_  / _ \  \___ \| | | | |    "
+	@@echo " | |_| |  __/ | |___| |\  |  _|/ ___ \  ___) | |_| | |___ "
+	@@echo "  \___/|_|    |_____|_| \_|_| /_/   \_\|____/ \___/ \____|"
+	@@echo ""
+	@@echo "==============================================================="
+
+
+verilog:
+	@@echo "=============================================================="
+	@@echo " __ 	   __ ____ ____   _____ _     ___   ___ "
+	@@echo " \ \      / /|  __|  _  \|_   _| |   / _ \ / __\ "
+	@@echo "  \ \    / / | |_|| |_) |  | | | |  | | | | |  _ " 
+	@@echo "   \ \__/ /  | |__|  __/  _| |_| |__| |_| | |_| | "
+	@@echo "    \____/   |____|_|\_\ |_____|____|\___/ \___/ "
+	@@echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+	@@echo "OpenFASoC For Verilog Generation"
+	@@echo "==============================================================="
+
+banner:
+	@@echo "=============================================================="
+	@@echo "   ___  _____ ______ _   _ _____  _     ____   ___   ____"
+	@@echo "  / _ \|  _  \| ____| \ | |  ___|/ \   / ___| / _ \ / ___|"
+	@@echo " | | | | |_) ||  _| |  \| | |_  / _ \  \___ \| | | | |    "
+	@@echo " | |_| |  __/ | |___| |\  |  _|/ ___ \  ___) | |_| | |___ "
+	@@echo "  \___/|_|    |_____|_| \_|_| /_/   \_\|____/ \___/ \____|"
+	@@echo ""
+	@@echo "==============================================================="
+
+```
+## Running the flow
+To run the flow correctly do a ``make clean_all`` first by going to the ``./flow`` dir.
+```
+!cd async_up_down-gen/flow && make clean_all
+```
+To synthesize the Verilog cd to the main ``async_up_down-gen`` dir and do ``make sky130hd_verilog``
+```
+!cd async_up_down-gen/ && make sky130hd_verilog
+```
+To run the whole flow
+```
+!cd async_up_down-gen/ && make sky130hd_build
+```
+## Result of the flow
+
 
 ## References
 http://opencircuitdesign.com/magic/   
