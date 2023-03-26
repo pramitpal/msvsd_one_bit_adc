@@ -1988,7 +1988,9 @@ Then the gds is saved and lef is extracted from that gds file. To make correct l
 Convert all labels to Ports by doing ``port makeall`` and then extract lef by `` lef writeall``.
 The whole process is shown below.
 
-![image](week5/test.gif)
+
+https://user-images.githubusercontent.com/41202066/227779352-3fa465ea-1032-447c-af98-7da3b0d3bf26.mp4
+
 
 ## 10c. OpenFASOC verilog Source files 
 To correctly link the gds and lef files to the OpenFASOC flow the verilog files plays a very important role.
