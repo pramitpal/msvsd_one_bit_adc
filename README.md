@@ -1983,7 +1983,61 @@ We simulate using ngspice and achieve the following postlayout simulation.
 
 From the above shown figure it is evident that both the prelayout and postlayout simulations match and is working as intended. So proceeding to the next stage.
 
-<video src="week5/test.mp4"></video>
+For proceeding further with OpenFASOC flow the gds files need to be processed to remove hierarchy and rename the top cells as shown in the video demo below.
+Then the gds is saved and lef is extracted from that gds file. To make correct lef file we need to place the whole layout to the (0,0) position so that after final placement in OpenFASOC the macros are placed in the correct place without any undesirable offset.
+Convert all labels to Ports by doing ``port makeall`` and then extract lef by `` lef writeall``.
+The whole process is shown below.
+
+![image](week5/test.gif)
+
+## 10c. OpenFASOC verilog Source files 
+To correctly link the gds and lef files to the OpenFASOC flow the verilog files plays a very important role.
+The top level verilog is named as ``async_up_down.v`` and the other two macros as the same cell name given in the gds like ``COMPARATOR.v`` and ``RING_OSCILLATOR.v``.
+The source files are shown below:
+
+async_up_down.v    ---
+```
+module async_up_down(
+    input wire in_bias,
+    input wire in_inn,
+    output wire  out_adc
+);
+
+wire ring_adc;
+
+RING_OSCILLATOR ring_osc(
+    .INP(ring_adc)
+);
+
+COMPARATOR one_bit_adc(
+    .INP(ring_adc),
+    .INN(in_inn),
+    .BIAS(in_bias),
+    .OUT(out_adc)
+);
+
+endmodule
+
+
+```
+COMPARATOR.v    ---
+```
+module COMPARATOR(
+    input BIAS,
+    input INN,
+    input INP,
+    output OUT
+);
+endmodule
+
+```
+RING_OSCILLATOR.v    ---
+```
+module RING_OSCILLATOR(
+    output INP
+);
+endmodule
+```
 
 ## References
 http://opencircuitdesign.com/magic/   
