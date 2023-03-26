@@ -1,0 +1,25 @@
+OpenROAD 0264023b6c2a8ae803b8d440478d657387277d93 
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO GPL-0002] DBU: 1000
+[INFO GPL-0003] SiteSize: 460 2720
+[INFO GPL-0004] CoreAreaLxLy: 15180 16320
+[INFO GPL-0005] CoreAreaUxUy: 99820 68000
+[INFO GPL-0006] NumInstances: 175
+[INFO GPL-0007] NumPlaceInstances: 0
+[INFO GPL-0008] NumFixedInstances: 101
+[INFO GPL-0009] NumDummyInstances: 74
+[INFO GPL-0010] NumNets: 4
+[INFO GPL-0011] NumPins: 5
+[INFO GPL-0012] DieAreaLxLy: 0 0
+[INFO GPL-0013] DieAreaUxUy: 120000 90000
+[INFO GPL-0014] CoreAreaLxLy: 15180 16320
+[INFO GPL-0015] CoreAreaUxUy: 99820 68000
+[INFO GPL-0016] CoreArea: 4374195200
+[INFO GPL-0017] NonPlaceInstsArea: 3224342400
+[INFO GPL-0018] PlaceInstsArea: 0
+[INFO GPL-0019] Util(%): 0.00
+[INFO GPL-0020] StdInstsArea: 0
+[INFO GPL-0021] MacroInstsArea: 0
+[WARNING GPL-0136] No placeable instances - skipping placement.
+Elapsed time: 0:01.72[h:]min:sec. CPU time: user 0.63 sys 0.42 (61%). Peak memory: 89168KB.

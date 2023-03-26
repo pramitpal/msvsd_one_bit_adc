@@ -1,0 +1,19 @@
+
+22. Printing statistics.
+
+=== async_up_down ===
+
+   Number of wires:                  4
+   Number of wire bits:              4
+   Number of public wires:           4
+   Number of public wire bits:       4
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                  2
+     COMPARATOR                      1
+     RING_OSCILLATOR                 1
+
+   Area for cell type \RING_OSCILLATOR is unknown!
+   Area for cell type \COMPARATOR is unknown!
+
