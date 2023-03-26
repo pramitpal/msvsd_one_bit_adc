@@ -2403,6 +2403,12 @@ banner:
 	@@echo "==============================================================="
 
 ```
+## Setting Up a Python Notebook For Quick n Easy OpenFASOC flow
+===================
+* **Week5 OPENFASOC Notebook**
+
+    [<img src="https://colab.research.google.com/assets/colab-badge.svg">](https://colab.research.google.com/github/pramitpal/msvsd32bitsram/blob/main/week5/OPENFASOC_NOTEBOOK.ipynb)
+
 ## Running the flow
 To run the flow correctly do a ``make clean_all`` first by going to the ``./flow`` dir.
 ```
@@ -2456,13 +2462,7 @@ One reference can be found at
 
 In order to Set this up properly knowledge of Power delivery network, voltage region setting and power grid pitch adjustment is necessary. This is still pending.
 
-## Setting Up a Python Notebook For Quick n Easy OpenFASOC flow
-OpenFASoC
-===================
-* **Week5 OPENFASOC -**
-    .. image:: https://colab.research.google.com/assets/colab-badge.svg
-        :target: https://colab.research.google.com/github/pramitpal/msvsd32bitsram/blob/main/week5/Untitled.ipynb
-                
+
 
 ## References
 http://opencircuitdesign.com/magic/   
