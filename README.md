@@ -2416,7 +2416,16 @@ To run the whole flow
 ```
 !cd async_up_down-gen/ && make sky130hd_build
 ```
-## Result of the flow
+## Logs of the flow
++ ## Clean and make Verilog
++ ## Synthesis and APR
++ ## Floorplan
++ ## Global Place
++ ## Detailed Place
++ ## Gobal Route
++ ## Antennae Check
++ ## Report Check
++ ## DRC Check
 
 
 ## References
