@@ -2456,6 +2456,8 @@ One reference can be found at
 
 In order to Set this up properly knowledge of Power delivery network, voltage region setting and power grid pitch adjustment is necessary. This is still pending.
 
+## Setting Up a Python Notebook For Quick n Easy OpenFASOC flow
+
 ## References
 http://opencircuitdesign.com/magic/   
 http://opencircuitdesign.com/open_pdks/   
