@@ -2418,15 +2418,43 @@ To run the whole flow
 ```
 ## Logs of the flow
 + ## Clean and make Verilog
+    ![img](week5/async_up_down-gen/flow/flow_imgs/verilog_gen.png)
 + ## Synthesis and APR
+    ![img](week5/async_up_down-gen/flow/flow_imgs/run_synth_apr1.png)
+    ![img](week5/async_up_down-gen/flow/flow_imgs/run_synth_apr2.png)
 + ## Floorplan
+    ![img](week5/async_up_down-gen/flow/flow_imgs/floorplan.png)
 + ## Global Place
+    ![img](week5/async_up_down-gen/flow/flow_imgs/global_place.png)
 + ## Detailed Place
+    ![img](week5/async_up_down-gen/flow/flow_imgs/global_place.png)
 + ## Gobal Route
+    ![img](week5/async_up_down-gen/flow/flow_imgs/global_route.png)
 + ## Antennae Check
+    ![img](week5/async_up_down-gen/flow/flow_imgs/antennae_check.png)
 + ## Report Check
+    ![img](week5/async_up_down-gen/flow/flow_imgs/finish_power_report.png)
 + ## DRC Check
+    ![img](week5/async_up_down-gen/flow/flow_imgs/drc_check.png)
 
+## Final Layout(DRC Clean)
+![img](week5/async_up_down-gen/flow/results/sky130hd/async_up_down/final_1.svg)
++ ## COMPARATOR Macro Placement
+    ![img](week5/async_up_down-gen/flow/results/sky130hd/async_up_down/COMPARATOR_zoomed.svg)
++ ## RING_OSCILLATOR Macro Placement
+    ![img](week5/async_up_down-gen/flow/results/sky130hd/async_up_down/RING_OSC_zoomed.svg)
+## Layout Dimensions
+![img](week5/async_up_down-gen/flow/results/sky130hd/async_up_down/layout_dimensions.png)
+The layout dimension seems correct according to the set Core and DIE area in the config.mk file.
+The DIE Area was set to ``120 micron X 90 micron`` which is correct and the macros are placed in the positions, COMPARATOR at (35,30) and RING_OSCILLATOR at (50,30).
+
+## Power Delivery Network and VDD and GND connection
+For setting up the correct region and area for making the power pin connections to the macro, the ``pdn.tcl`` and ``floorplan.tcl`` must be set correctly. 
+One reference can be found at 
+
+[FLOW_LDO_README](https://github.com/idea-fasoc/OpenFASOC/blob/b9784507aac426970b56492f8327033e1a4feb15/docs/source/flow-ldo.rst)
+
+In order to Set this up properly knowledge of Power delivery network, voltage region setting and power grid pitch adjustment is necessary. This is still pending.
 
 ## References
 http://opencircuitdesign.com/magic/   
