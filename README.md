@@ -2455,8 +2455,186 @@ The layout dimension seems correct according to the set Core and DIE area in the
 The DIE Area was set to ``120 micron X 90 micron`` which is correct and the macros are placed in the positions, COMPARATOR at (35,30) and RING_OSCILLATOR at (50,30).
 
 ## Power Delivery Network and VDD and GND connection
-For setting up the correct region and area for making the power pin connections to the macro, the ``pdn.tcl`` and ``floorplan.tcl`` must be set correctly. 
-One reference can be found at 
+![img]()
+![img]()
+The above images show that the VDD and VSS are actually connected to the macros.
+For setting up the routable nets for making the power pin connections to the macro, many files need to be edited manually, ``pdn.tcl, config.mk, pre_global_route.tcl``, adding 2 new files for adding custom connections to the macro power and ground lines--``async_up_down_VSS_connection.tcl`` and ``async_up_down_VDD_connection.tcl``. Further ``manual_macro.tcl`` is necessary to set the macro positions and to fine tune if unwanted drc errors pop up. Also ``add_ndr_rules.txt`` must be edited to add VDD and VSS custom routings correctly. 
+For future reference I am explaining the files a bit.
+``pdn.tcl``
+```
+####################################
+
+# global connections
+
+####################################
+
+add_global_connection -net VDD -inst_pattern {.*} -pin_pattern {VPWR|VPB} -power ;# default: VDD as power
+
+add_global_connection -net VSS -inst_pattern {.*} -pin_pattern {VGND|VNB} -ground
+
+global_connect
+
+####################################
+
+# voltage domains
+
+####################################
+
+set_voltage_domain -name {CORE} -power {VDD} -ground {VSS}
+
+
+
+####################################
+
+# standard cell grid
+
+####################################
+
+define_pdn_grid -name stdcell -pins met5 -starts_with POWER -voltage_domains CORE
+
+
+
+## horizontal lines-----
+
+add_pdn_stripe -grid {stdcell} -layer {met1} -width {0.48} -pitch {5} -offset {2.0} -extend_to_core_ring -followpins
+
+
+
+add_pdn_ring -grid stdcell -layer {met4 met5} -widths {5.0 5.0} -spacings {2.0 2.0} -core_offsets {1.0 1.0}
+
+##----vertical lines
+
+
+
+add_pdn_stripe -grid {stdcell} -layer {met4} -width {0.48} -pitch {30} -offset {0.5} -extend_to_core_ring
+
+
+
+add_pdn_connect -grid {stdcell} -layers {met1 met4}
+
+add_pdn_connect -grid {stdcell} -layers {met4 met5}
+
+
+```
+``add_pdn_ring`` is used to define a ring for delivering power an gnd to the core which is also used by the macros, so extra power domains is not necessary in this case.
+For adding horizontal connections between filler and tapcells, the following stripe definitions is needed and horizontal is actually differentiated by ``-followpins``.
+
+```
+add_pdn_stripe -grid {stdcell} -layer {met1} -width {0.48} -pitch {5} -offset {2.0} -extend_to_core_ring -followpins
+```
+For adding vertical connections between filler and tapcells, the following stripe definitions is needed. Here the vertical layers is using metal4 so is defined, here ``-pitch {30}`` defines the distance between consecutive power and gnd lines.(Note: if facing drc errors manually adjust the pitch and offset values).
+```
+##----vertical lines
+add_pdn_stripe -grid {stdcell} -layer {met4} -width {0.48} -pitch {30} -offset {0.5} -extend_to_core_ring
+```
+As mentioned earlier, the macros dont require a separate voltage domain so only the CORE domain will suffice.
+
+Next in ``config.mk`` these need to be edited as needed. for macro placement--
+```
+# configuration for placement
+
+export MACRO_PLACE_HALO         = 1 1
+
+export MACRO_PLACE_CHANNEL      = 30 30
+
+export MACRO_PLACEMENT          = ../blocks/$(PLATFORM)/manual_macro.tcl
+
+```
+
+For addinf custom connections to macro power and gnd. Here I found that we can only define one net like VDD or VSS in one file.
+
+```
+# configuration for routing
+export PRE_GLOBAL_ROUTE = $(SCRIPTS_DIR)/openfasoc/pre_global_route.tcl
+# informs any short circuits that should be forced during routing
+export GND_VSS_CONNECTION 	= ../blocks/$(PLATFORM)/async_up_down_VSS_connection.txt
+export VDD_VDD_CONNECTION 	= ../blocks/$(PLATFORM)/async_up_down_VDD_connection.txt
+```
+Next is ``pre_global_route.tcl`` file
+```
+# Create r_VIN net
+
+source $::env(SCRIPTS_DIR)/openfasoc/create_routable_power_net.tcl
+
+create_routable_power_net "VSS" $::env(VIN_ROUTE_CONNECTION_POINTS)
+
+create_routable_power_net "VDD" $::env(VIN_ROUTE_CONNECTION_POINTS)
+
+
+
+# NDR rules
+
+source $::env(SCRIPTS_DIR)/openfasoc/add_ndr_rules.tcl
+
+
+
+# Custom connections
+
+source $::env(SCRIPTS_DIR)/openfasoc/create_custom_connections.tcl
+
+if {[info exist ::env(GND_VSS_CONNECTION)]} {
+
+  create_custom_connections $::env(GND_VSS_CONNECTION)
+
+}
+
+if {[info exist ::env(VDD_VDD_CONNECTION)]} {
+
+  create_custom_connections $::env(VDD_VDD_CONNECTION)
+
+}
+```
+Here create_custom_connections is used to define the vdd and vss connections we defined earlier.
+
+Next ``add_ndr_rules.tcl`` this file needs editing and although not that critical, it ensures that the certain routing rules are followed for routing the power and vss.
+```
+set block [ord::get_db_block]
+
+
+
+# Add 2W, 2S rule to ring oscillator input
+
+create_ndr -name NDR_5W_5S \
+
+           -spacing { *5 } \
+
+           -width { *5 }
+
+
+
+set ndr [$block findNonDefaultRule NDR_5W_5S]
+
+$ndr setHardSpacing 1
+
+
+
+assign_ndr -ndr NDR_5W_5S -net VSS
+
+assign_ndr -ndr NDR_5W_5S -net VDD
+```
+The files async_up_down_VDD_connection.txt has the definitions for the macro power nets
+```
+r_VDD
+
+ring_osc VCC
+
+one_bit_adc VDD
+```
+similarly, the file async_up_down_VSS_connection.txt has the definitions for the macro ground nets
+```
+r_VSS
+
+ring_osc GND
+
+one_bit_adc GND
+```
+One more important bit is to set the correct name of the name of the instance used while defining in the dummy verilog files, like if RING_OSCILLATOR was defined as ``RING_OSCILLATOR ring_osc(....) `` the async_up_down_domain_insts.txt also need to have the same name- ``ring_osc``.
+the file contents are below.
+```
+ring_osc
+
+one_bit_adc
+```
 
 [FLOW_LDO_README](https://github.com/idea-fasoc/OpenFASOC/blob/b9784507aac426970b56492f8327033e1a4feb15/docs/source/flow-ldo.rst)
 
