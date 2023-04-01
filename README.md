@@ -2446,17 +2446,20 @@ To run the whole flow
 ## Final Layout(DRC Clean)
 ![img](week5/mine/async_up_down-gen/flow/results/sky130hd/async_up_down/final_gds.svg)
 + ## COMPARATOR Macro Placement
-    ![img](week5/async_up_down-gen/flow/results/sky130hd/async_up_down/COMPARATOR_zoomed.svg)
+    ![img](week5/mine/async_up_down-gen/flow/results/sky130hd/async_up_down/one_bit_adc.svg)
 + ## RING_OSCILLATOR Macro Placement
-    ![img](week5/async_up_down-gen/flow/results/sky130hd/async_up_down/RING_OSC_zoomed.svg)
+    ![img](week5/mine/async_up_down-gen/flow/results/sky130hd/async_up_down/ring_osc.svg)
 ## Layout Dimensions
 ![img](week5/async_up_down-gen/flow/results/sky130hd/async_up_down/layout_dimensions.png)
 The layout dimension seems correct according to the set Core and DIE area in the config.mk file.
 The DIE Area was set to ``120 micron X 90 micron`` which is correct and the macros are placed in the positions, COMPARATOR at (35,30) and RING_OSCILLATOR at (50,30).
 
 ## Power Delivery Network and VDD and GND connection
-![img]()
-![img]()
+![img](week5/mine/async_up_down-gen/flow/results/sky130hd/async_up_down/VDD_ok.svg)
+If you look closely, you can see that the higlited routes shows that the core and macro VDD are actually connected.
+![img](week5/mine/async_up_down-gen/flow/results/sky130hd/async_up_down/VSS_ok.svg)
+If you look closely, you can see that the higlited routes shows that the core and macro VSS are actually connected.
+
 The above images show that the VDD and VSS are actually connected to the macros.
 For setting up the routable nets for making the power pin connections to the macro, many files need to be edited manually, ``pdn.tcl, config.mk, pre_global_route.tcl``, adding 2 new files for adding custom connections to the macro power and ground lines--``async_up_down_VSS_connection.tcl`` and ``async_up_down_VDD_connection.tcl``. Further ``manual_macro.tcl`` is necessary to set the macro positions and to fine tune if unwanted drc errors pop up. Also ``add_ndr_rules.txt`` must be edited to add VDD and VSS custom routings correctly. 
 For future reference I am explaining the files a bit.
