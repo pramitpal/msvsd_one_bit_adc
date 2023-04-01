@@ -1,4 +1,0 @@
-usage: genMetrics.py [-h] [--flowPath FLOWPATH] [--design DESIGN]
-                     [--flowVariant FLOWVARIANT] [--platform PLATFORM]
-                     [--comment COMMENT] [--output OUTPUT] [--hier]
-genMetrics.py: error: argument --flowVariant/-v: expected one argument

@@ -1,3 +1,0 @@
-Yosys 0.13+15 (git sha1 bc027b2ca, gcc 9.4.0-1ubuntu1~20.04.1 -fPIC -Os)
-openroad v2.0-6895-g5c85b36f8
-KLayout 0.27.10

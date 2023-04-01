@@ -1,8 +1,0 @@
-{
-    "module_name": "async-up-down",
-    "generator": "async_up_down-gen",
-    "specifications": {
-    	"frequency": { "min": 5, "max": 1200 }
-    }
-}
-
