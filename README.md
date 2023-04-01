@@ -2444,7 +2444,7 @@ To run the whole flow
     ![img](week5/async_up_down-gen/flow/flow_imgs/drc_check.png)
 
 ## Final Layout(DRC Clean)
-![img](week5/async_up_down-gen/flow/results/sky130hd/async_up_down/final_1.svg)
+![img](week5/mine/async_up_down-gen/flow/results/sky130hd/async_up_down/final_gds.svg)
 + ## COMPARATOR Macro Placement
     ![img](week5/async_up_down-gen/flow/results/sky130hd/async_up_down/COMPARATOR_zoomed.svg)
 + ## RING_OSCILLATOR Macro Placement
