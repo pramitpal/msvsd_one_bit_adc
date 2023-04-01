@@ -1,0 +1,42 @@
+OpenROAD 0264023b6c2a8ae803b8d440478d657387277d93 
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO GPL-0002] DBU: 1000
+[INFO GPL-0003] SiteSize: 460 2720
+[INFO GPL-0004] CoreAreaLxLy: 15180 16320
+[INFO GPL-0005] CoreAreaUxUy: 279680 277440
+[INFO GPL-0006] NumInstances: 2
+[INFO GPL-0007] NumPlaceInstances: 2
+[INFO GPL-0008] NumFixedInstances: 0
+[INFO GPL-0009] NumDummyInstances: 0
+[INFO GPL-0010] NumNets: 4
+[INFO GPL-0011] NumPins: 8
+[INFO GPL-0012] DieAreaLxLy: 0 0
+[INFO GPL-0013] DieAreaUxUy: 300000 300000
+[INFO GPL-0014] CoreAreaLxLy: 15180 16320
+[INFO GPL-0015] CoreAreaUxUy: 279680 277440
+[INFO GPL-0016] CoreArea: 69066240000
+[INFO GPL-0017] NonPlaceInstsArea: 0
+[INFO GPL-0018] PlaceInstsArea: 539952700
+[INFO GPL-0019] Util(%): 0.78
+[INFO GPL-0020] StdInstsArea: 539952700
+[INFO GPL-0021] MacroInstsArea: 0
+[InitialPlace]  Iter: 1 CG residual: 0.00000002 HPWL: 855830
+[InitialPlace]  Iter: 2 CG residual: 0.00000000 HPWL: 754679
+[InitialPlace]  Iter: 3 CG residual: 0.00000000 HPWL: 725322
+[InitialPlace]  Iter: 4 CG residual: 0.00000011 HPWL: 709790
+[InitialPlace]  Iter: 5 CG residual: 0.00000011 HPWL: 709790
+[INFO GPL-0031] FillerInit: NumGCells: 188
+[INFO GPL-0032] FillerInit: NumGNets: 4
+[INFO GPL-0033] FillerInit: NumGPins: 8
+[INFO GPL-0023] TargetDensity: 0.60
+[INFO GPL-0024] AveragePlaceInstArea: 269976350
+[INFO GPL-0025] IdealBinArea: 449960576
+[INFO GPL-0026] IdealBinCnt: 153
+[INFO GPL-0027] TotalBinArea: 69066240000
+[INFO GPL-0028] BinCnt: 8 8
+[INFO GPL-0029] BinSize: 33063 32640
+[INFO GPL-0030] NumBins: 64
+[NesterovSolve] Iter: 1 overflow: 0 HPWL: 574681
+[NesterovSolve] Finished with Overflow: 0.000000
+Elapsed time: 0:00.74[h:]min:sec. CPU time: user 0.15 sys 0.40 (75%). Peak memory: 89048KB.

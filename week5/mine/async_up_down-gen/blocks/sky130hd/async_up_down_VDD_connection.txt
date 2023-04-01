@@ -1,0 +1,3 @@
+r_VDD
+ring_osc VCC
+one_bit_adc VDD

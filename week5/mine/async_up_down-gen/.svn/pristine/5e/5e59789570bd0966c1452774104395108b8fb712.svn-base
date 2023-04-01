@@ -1,0 +1,19 @@
+{
+	"globalplace__timing__setup__tns": 0,
+	"globalplace__timing__setup__ws": 1e+39,
+	"globalplace__power__internal__total": 0,
+	"globalplace__power__switching__total": 0,
+	"globalplace__power__leakage__total": 1.74962e-10,
+	"globalplace__power__total": 1.74962e-10,
+	"globalplace__design__io": 3,
+	"globalplace__design__die__area": 10800,
+	"globalplace__design__core__area": 4374.2,
+	"globalplace__design__instance__count": 101,
+	"globalplace__design__instance__area": 837.61,
+	"globalplace__design__instance__count__stdcell": 99,
+	"globalplace__design__instance__area__stdcell": 326.563,
+	"globalplace__design__instance__count__macros": 2,
+	"globalplace__design__instance__area__macros": 511.046,
+	"globalplace__design__instance__utilization": 0.191489,
+	"globalplace__design__instance__utilization__stdcell": 0.0845329
+}

@@ -1,0 +1,10 @@
+OpenROAD 0264023b6c2a8ae803b8d440478d657387277d93 
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[WARNING PPL-0015] Macro one_bit_adc is not placed.
+[WARNING PPL-0015] Macro ring_osc is not placed.
+Found 0 macro blocks.
+Using 1u default distance from corners.
+Using 2 tracks default min distance between IO pins.
+[INFO PPL-0007] Random pin placement.
+Elapsed time: 0:01.53[h:]min:sec. CPU time: user 0.42 sys 0.23 (42%). Peak memory: 88892KB.

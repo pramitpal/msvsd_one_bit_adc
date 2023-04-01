@@ -1,0 +1,3 @@
+r_VSS
+ring_osc GND
+one_bit_adc GND

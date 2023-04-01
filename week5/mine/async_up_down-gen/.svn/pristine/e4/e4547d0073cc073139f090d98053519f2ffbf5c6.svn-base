@@ -1,0 +1,1922 @@
+#----------------------------------------------------------------------
+# Parsing command line arguments...
+#----------------------------------------------------------------------
+['tools/async-up-down-gen.py', '--specfile', 'test.json', '--outputDir', './work', '--platform', 'sky130hd', '--mode', 'full']
+Loading specfile...
+search_param----
+---number of inverters---: 0    3
+Name: inv, dtype: int64
+Inv :  0    3
+Name: inv, dtype: int64
+#----------------------------------------------------------------------
+# Cleaning the workspace...
+#----------------------------------------------------------------------
+Updated 0 paths from the index
+Loading platform_config file...
+
+PDK_ROOT value: /home/pramit/EDA_TOOLS/OpenFASOC/conda-env/share/pdk
+#----------------------------------------------------------------------
+# Verilog Generation
+#----------------------------------------------------------------------
+#----------------------------------------------------------------------
+# Verilog Generated
+#----------------------------------------------------------------------
+
+#----------------------------------------------------------------------
+# Run Synthesis and APR
+#----------------------------------------------------------------------
+make[1]: Entering directory '/home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow'
+[INFO][FLOW] Using platform directory /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/../../../common/platforms/sky130hd
+Makefile:423: target '(/usr/bin/time' doesn't match the target pattern
+Makefile:423: target '-f' doesn't match the target pattern
+Makefile:423: target ''Elapsed' doesn't match the target pattern
+Makefile:423: target 'time' doesn't match the target pattern
+Makefile:464: target '(/usr/bin/time' doesn't match the target pattern
+Makefile:464: target '-f' doesn't match the target pattern
+Makefile:464: target ''Elapsed' doesn't match the target pattern
+Makefile:464: target 'time' doesn't match the target pattern
+mkdir -p /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/results/sky130hd/async_up_down/ /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/logs/sky130hd/async_up_down/ /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/reports/sky130hd/async_up_down/
+(/usr/bin/time -f 'Elapsed time: %E[h:]min:sec. CPU time: user %U sys %S (%P). Peak memory: %MKB.' /usr/local/bin/yosys -v 3 -c /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/scripts/synth.tcl) 2>&1 | tee /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/logs/sky130hd/async_up_down//1_1_yosys.log
+1. Executing Verilog-2005 frontend: ./design/src/async_up_down/COMPARATOR.v
+2. Executing Verilog-2005 frontend: ./design/src/async_up_down/RING_OSCILLATOR.v
+3. Executing Verilog-2005 frontend: ./design/src/async_up_down/async_up_down.v
+4. Executing Liberty frontend: /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/objects/sky130hd/async_up_down//lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+5. Executing Verilog-2005 frontend: /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/../../../common/platforms/sky130hd/cells_clkgate_hd.v
+6. Executing SYNTH pass.
+6.1. Executing HIERARCHY pass (managing design hierarchy).
+6.2. Executing AST frontend in derive mode using pre-parsed AST for module `\async_up_down'.
+6.2.1. Analyzing design hierarchy..
+6.2.2. Executing AST frontend in derive mode using pre-parsed AST for module `\COMPARATOR'.
+6.2.3. Executing AST frontend in derive mode using pre-parsed AST for module `\RING_OSCILLATOR'.
+6.2.4. Analyzing design hierarchy..
+6.2.5. Analyzing design hierarchy..
+6.3. Executing PROC pass (convert processes to netlists).
+6.3.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+6.3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+6.3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+6.3.4. Executing PROC_INIT pass (extract init attributes).
+6.3.5. Executing PROC_ARST pass (detect async resets in processes).
+6.3.6. Executing PROC_ROM pass (convert switches to ROMs).
+6.3.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+6.3.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+6.3.9. Executing PROC_DFF pass (convert process syncs to FFs).
+6.3.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+6.3.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+6.3.12. Executing OPT_EXPR pass (perform const folding).
+6.4. Executing FLATTEN pass (flatten design).
+6.5. Executing OPT_EXPR pass (perform const folding).
+6.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+6.7. Executing CHECK pass (checking for obvious problems).
+6.8. Executing OPT pass (performing simple optimizations).
+6.8.1. Executing OPT_EXPR pass (perform const folding).
+6.8.2. Executing OPT_MERGE pass (detect identical cells).
+6.8.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+6.8.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+6.8.5. Executing OPT_MERGE pass (detect identical cells).
+6.8.6. Executing OPT_DFF pass (perform DFF optimizations).
+6.8.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+6.8.8. Executing OPT_EXPR pass (perform const folding).
+6.8.9. Finished OPT passes. (There is nothing left to do.)
+6.9. Executing FSM pass (extract and optimize FSM).
+6.9.1. Executing FSM_DETECT pass (finding FSMs in design).
+6.9.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+6.9.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+6.9.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+6.9.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+6.9.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+6.9.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+6.9.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+6.10. Executing OPT pass (performing simple optimizations).
+6.10.1. Executing OPT_EXPR pass (perform const folding).
+6.10.2. Executing OPT_MERGE pass (detect identical cells).
+6.10.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+6.10.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+6.10.5. Executing OPT_MERGE pass (detect identical cells).
+6.10.6. Executing OPT_DFF pass (perform DFF optimizations).
+6.10.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+6.10.8. Executing OPT_EXPR pass (perform const folding).
+6.10.9. Finished OPT passes. (There is nothing left to do.)
+6.11. Executing WREDUCE pass (reducing word size of cells).
+6.12. Executing PEEPOPT pass (run peephole optimizers).
+6.13. Executing OPT_CLEAN pass (remove unused cells and wires).
+6.14. Executing ALUMACC pass (create $alu and $macc cells).
+6.15. Executing SHARE pass (SAT-based resource sharing).
+6.16. Executing OPT pass (performing simple optimizations).
+6.16.1. Executing OPT_EXPR pass (perform const folding).
+6.16.2. Executing OPT_MERGE pass (detect identical cells).
+6.16.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+6.16.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+6.16.5. Executing OPT_MERGE pass (detect identical cells).
+6.16.6. Executing OPT_DFF pass (perform DFF optimizations).
+6.16.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+6.16.8. Executing OPT_EXPR pass (perform const folding).
+6.16.9. Finished OPT passes. (There is nothing left to do.)
+6.17. Executing MEMORY pass.
+6.17.1. Executing OPT_MEM pass (optimize memories).
+6.17.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+6.17.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+6.17.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+6.17.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+6.17.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+6.17.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+6.17.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+6.17.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+6.17.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+6.18. Executing OPT_CLEAN pass (remove unused cells and wires).
+6.19. Executing OPT pass (performing simple optimizations).
+6.19.1. Executing OPT_EXPR pass (perform const folding).
+6.19.2. Executing OPT_MERGE pass (detect identical cells).
+6.19.3. Executing OPT_DFF pass (perform DFF optimizations).
+6.19.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+6.19.5. Finished fast OPT passes.
+6.20. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+6.21. Executing OPT pass (performing simple optimizations).
+6.21.1. Executing OPT_EXPR pass (perform const folding).
+6.21.2. Executing OPT_MERGE pass (detect identical cells).
+6.21.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+6.21.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+6.21.5. Executing OPT_MERGE pass (detect identical cells).
+6.21.6. Executing OPT_SHARE pass.
+6.21.7. Executing OPT_DFF pass (perform DFF optimizations).
+6.21.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+
+6.21.9. Executing OPT_EXPR pass (perform const folding).
+6.21.10. Finished OPT passes. (There is nothing left to do.)
+6.22. Executing TECHMAP pass (map to technology primitives).
+6.22.1. Executing Verilog-2005 frontend: /usr/local/bin/../share/yosys/techmap.v
+6.22.2. Continuing TECHMAP pass.
+6.23. Executing OPT pass (performing simple optimizations).
+6.23.1. Executing OPT_EXPR pass (perform const folding).
+6.23.2. Executing OPT_MERGE pass (detect identical cells).
+6.23.3. Executing OPT_DFF pass (perform DFF optimizations).
+6.23.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+6.23.5. Finished fast OPT passes.
+6.24. Executing ABC pass (technology mapping using ABC).
+6.24.1. Extracting gate netlist of module `\async_up_down' to `<abc-temp-dir>/input.blif'..
+6.25. Executing OPT pass (performing simple optimizations).
+6.25.1. Executing OPT_EXPR pass (perform const folding).
+6.25.2. Executing OPT_MERGE pass (detect identical cells).
+6.25.3. Executing OPT_DFF pass (perform DFF optimizations).
+6.25.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+6.25.5. Finished fast OPT passes.
+6.26. Executing HIERARCHY pass (managing design hierarchy).
+6.26.1. Analyzing design hierarchy..
+6.26.2. Analyzing design hierarchy..
+6.27. Printing statistics.
+6.28. Executing CHECK pass (checking for obvious problems).
+7. Executing OPT pass (performing simple optimizations).
+7.1. Executing OPT_EXPR pass (perform const folding).
+7.2. Executing OPT_MERGE pass (detect identical cells).
+7.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+7.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+7.5. Executing OPT_MERGE pass (detect identical cells).
+7.6. Executing OPT_DFF pass (perform DFF optimizations).
+7.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+7.8. Executing OPT_EXPR pass (perform const folding).
+7.9. Finished OPT passes. (There is nothing left to do.)
+8. Executing EXTRACT_FA pass (find and extract full/half adders).
+9. Executing TECHMAP pass (map to technology primitives).
+9.1. Executing Verilog-2005 frontend: /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/../../../common/platforms/sky130hd/cells_adders_hd.v
+9.2. Continuing TECHMAP pass.
+10. Executing TECHMAP pass (map to technology primitives).
+10.1. Executing Verilog-2005 frontend: /usr/local/bin/../share/yosys/techmap.v
+10.2. Continuing TECHMAP pass.
+11. Executing OPT pass (performing simple optimizations).
+11.1. Executing OPT_EXPR pass (perform const folding).
+11.2. Executing OPT_MERGE pass (detect identical cells).
+11.3. Executing OPT_DFF pass (perform DFF optimizations).
+11.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+11.5. Finished fast OPT passes.
+12. Executing TECHMAP pass (map to technology primitives).
+12.1. Executing Verilog-2005 frontend: /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/../../../common/platforms/sky130hd/cells_latch_hd.v
+12.2. Continuing TECHMAP pass.
+13. Executing DFFLIBMAP pass (mapping DFF cells to sequential cells from liberty file).
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbn_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbn_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtn_1' - skipping.
+Warning: Found unsupported expression 'D&DE|IQ&!DE' in pin attribute of cell 'sky130_fd_sc_hd__edfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&DE|IQ&!DE' in pin attribute of cell 'sky130_fd_sc_hd__edfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_4' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfsbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfsbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_4' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_4' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxbp_2' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_2' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_4' - skipping.
+13.1. Executing DFFLEGALIZE pass (convert FFs to types supported by the target).
+14. Executing OPT pass (performing simple optimizations).
+14.1. Executing OPT_EXPR pass (perform const folding).
+14.2. Executing OPT_MERGE pass (detect identical cells).
+14.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+14.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+14.5. Executing OPT_MERGE pass (detect identical cells).
+14.6. Executing OPT_DFF pass (perform DFF optimizations).
+14.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+14.8. Executing OPT_EXPR pass (perform const folding).
+14.9. Finished OPT passes. (There is nothing left to do.)
+Using ABC speed script.
+[WARN][FLOW] No clock period constraints detected in design
+15. Executing ABC pass (technology mapping using ABC).
+15.1. Extracting gate netlist of module `\async_up_down' to `<abc-temp-dir>/input.blif'..
+16. Executing SETUNDEF pass (replace undef values with defined constants).
+17. Executing SPLITNETS pass (splitting up multi-bit signals).
+18. Executing OPT_CLEAN pass (remove unused cells and wires).
+19. Executing HILOMAP pass (mapping to constant drivers).
+20. Executing INSBUF pass (insert buffer cells for connected wires).
+21. Executing CHECK pass (checking for obvious problems).
+22. Printing statistics.
+23. Executing Verilog backend.
+Warnings: 26 unique messages, 234 total
+End of script. Logfile hash: 2c63cd24a6, CPU: user 0.61s system 0.45s, MEM: 41.25 MB peak
+Yosys 0.26+53 (git sha1 8216b23fb, clang 14.0.0-1ubuntu1 -fPIC -Os)
+Time spent: 25% 2x read_liberty (0 sec), 18% 1x dfflibmap (0 sec), ...
+Elapsed time: 0:01.64[h:]min:sec. CPU time: user 0.61 sys 0.45 (65%). Peak memory: 42872KB.
+mkdir -p /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/results/sky130hd/async_up_down/ /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/logs/sky130hd/async_up_down/ /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/reports/sky130hd/async_up_down/
+
+cp /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/results/sky130hd/async_up_down//1_1_yosys.v /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/results/sky130hd/async_up_down//1_synth.v
+(/usr/bin/time -f 'Elapsed time: %E[h:]min:sec. CPU time: user %U sys %S (%P). Peak memory: %MKB.' /home/pramit/EDA_TOOLS/OpenFASOC/conda-env/bin/openroad -exit -no_init  /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/scripts/floorplan.tcl -metrics /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/logs/sky130hd/async_up_down//2_1_floorplan.json) 2>&1 | tee /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/logs/sky130hd/async_up_down//2_1_floorplan.log
+OpenROAD 0264023b6c2a8ae803b8d440478d657387277d93 
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ODB-0222] Reading LEF file: /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/../../../common/platforms/sky130hd/lef/sky130_fd_sc_hd.tlef
+[INFO ODB-0223]     Created 13 technology layers
+[INFO ODB-0224]     Created 25 technology vias
+[INFO ODB-0226] Finished LEF file:  /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/../../../common/platforms/sky130hd/lef/sky130_fd_sc_hd.tlef
+[INFO ODB-0222] Reading LEF file: /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/../../../common/platforms/sky130hd/lef/sky130_fd_sc_hd_merged.lef
+[INFO ODB-0225]     Created 441 library cells
+[INFO ODB-0226] Finished LEF file:  /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/../../../common/platforms/sky130hd/lef/sky130_fd_sc_hd_merged.lef
+[INFO ODB-0222] Reading LEF file: ../blocks/sky130hd/lef/COMPARATOR.lef
+[WARNING ODB-0220] WARNING (LEFPARS-2008): NOWIREEXTENSIONATPIN statement is obsolete in version 5.6 or later.
+The NOWIREEXTENSIONATPIN statement will be ignored. See file ../blocks/sky130hd/lef/COMPARATOR.lef at line 2.
+
+[INFO ODB-0225]     Created 1 library cells
+[INFO ODB-0226] Finished LEF file:  ../blocks/sky130hd/lef/COMPARATOR.lef
+[INFO ODB-0222] Reading LEF file: ../blocks/sky130hd/lef/RING_OSCILLATOR.lef
+[INFO ODB-0225]     Created 1 library cells
+[INFO ODB-0226] Finished LEF file:  ../blocks/sky130hd/lef/RING_OSCILLATOR.lef
+[WARNING ORD-1011] LEF master COMPARATOR has no liberty cell.
+[WARNING ORD-1011] LEF master RING_OSCILLATOR has no liberty cell.
+
+==========================================================================
+Floorplan check_setup
+--------------------------------------------------------------------------
+Warning: There are 2 input ports missing set_input_delay.
+Warning: There is 1 output port missing set_output_delay.
+Warning: There is 1 unconstrained endpoint.
+number instances in verilog is 2
+[WARNING IFP-0028] Core area lower left (15.000, 15.000) snapped to (15.180, 16.320).
+[INFO IFP-0001] Added 19 rows of 184 sites.
+[INFO RSZ-0026] Removed 0 buffers.
+Default units for flow
+ time 1ns
+ capacitance 1pF
+ resistance 1kohm
+ voltage 1v
+ current 1mA
+ power 1nW
+ distance 1um
+
+==========================================================================
+floorplan final check_setup
+--------------------------------------------------------------------------
+Warning: There are 2 input ports missing set_input_delay.
+Warning: There is 1 output port missing set_output_delay.
+Warning: There is 1 unconstrained endpoint.
+
+==========================================================================
+floorplan final report_tns
+--------------------------------------------------------------------------
+tns 0.00
+
+==========================================================================
+floorplan final report_wns
+--------------------------------------------------------------------------
+wns 0.00
+
+==========================================================================
+floorplan final report_worst_slack
+--------------------------------------------------------------------------
+worst slack INF
+
+==========================================================================
+floorplan final report_checks -path_delay min
+--------------------------------------------------------------------------
+No paths found.
+
+==========================================================================
+floorplan final report_checks -path_delay max
+--------------------------------------------------------------------------
+No paths found.
+
+==========================================================================
+floorplan final report_checks -unconstrained
+--------------------------------------------------------------------------
+Startpoint: in_bias (input port)
+Endpoint: one_bit_adc/BIAS (internal pin)
+Path Group: (none)
+Path Type: max
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                          0.00    0.00 ^ input external delay
+                  0.00    0.00    0.00 ^ in_bias (in)
+     1    0.00                           in_bias (net)
+                  0.00    0.00    0.00 ^ one_bit_adc/BIAS (COMPARATOR)
+                                  0.00   data arrival time
+-----------------------------------------------------------------------------
+(Path is unconstrained)
+
+
+
+==========================================================================
+floorplan final report_power
+--------------------------------------------------------------------------
+Group                  Internal  Switching    Leakage      Total
+                          Power      Power      Power      Power (Watts)
+----------------------------------------------------------------
+Sequential             0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Combinational          0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Macro                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Pad                    0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+----------------------------------------------------------------
+Total                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+                           0.0%       0.0%       0.0%
+
+==========================================================================
+floorplan final report_design_area
+--------------------------------------------------------------------------
+Design area 511 u^2 12% utilization.
+
+Elapsed time: 0:01.91[h:]min:sec. CPU time: user 0.39 sys 0.51 (47%). Peak memory: 94208KB.
+(/usr/bin/time -f 'Elapsed time: %E[h:]min:sec. CPU time: user %U sys %S (%P). Peak memory: %MKB.' /home/pramit/EDA_TOOLS/OpenFASOC/conda-env/bin/openroad -exit -no_init  /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/scripts/io_placement_random.tcl -metrics /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/logs/sky130hd/async_up_down//2_2_floorplan_io.json) 2>&1 | tee /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/logs/sky130hd/async_up_down//2_2_floorplan_io.log
+OpenROAD 0264023b6c2a8ae803b8d440478d657387277d93 
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[WARNING PPL-0015] Macro one_bit_adc is not placed.
+[WARNING PPL-0015] Macro ring_osc is not placed.
+Found 0 macro blocks.
+Using 1u default distance from corners.
+Using 2 tracks default min distance between IO pins.
+[INFO PPL-0007] Random pin placement.
+Elapsed time: 0:00.46[h:]min:sec. CPU time: user 0.35 sys 0.05 (86%). Peak memory: 88972KB.
+[INFO][FLOW] Using manual macro placement file ../blocks/sky130hd/manual_macro.tcl
+cp /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/results/sky130hd/async_up_down//2_2_floorplan_io.odb /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/results/sky130hd/async_up_down//2_3_floorplan_tdms.odb
+
+(/usr/bin/time -f 'Elapsed time: %E[h:]min:sec. CPU time: user %U sys %S (%P). Peak memory: %MKB.' /home/pramit/EDA_TOOLS/OpenFASOC/conda-env/bin/openroad -exit -no_init  /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/scripts/macro_place.tcl -metrics /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/logs/sky130hd/async_up_down//2_4_mplace.json) 2>&1 | tee /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/logs/sky130hd/async_up_down//2_4_mplace.log
+OpenROAD 0264023b6c2a8ae803b8d440478d657387277d93 
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO][FLOW-xxxx] Using manual macro placement file ../blocks/sky130hd/manual_macro.tcl
+Elapsed time: 0:00.46[h:]min:sec. CPU time: user 0.32 sys 0.05 (83%). Peak memory: 89772KB.
+(/usr/bin/time -f 'Elapsed time: %E[h:]min:sec. CPU time: user %U sys %S (%P). Peak memory: %MKB.' /home/pramit/EDA_TOOLS/OpenFASOC/conda-env/bin/openroad -exit -no_init  /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/scripts/tapcell.tcl -metrics /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/logs/sky130hd/async_up_down//2_5_tapcell.json) 2>&1 | tee /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/logs/sky130hd/async_up_down//2_5_tapcell.log
+OpenROAD 0264023b6c2a8ae803b8d440478d657387277d93 
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[WARNING TAP-0014] endcap_cpp option is deprecated.
+[INFO ODB-0303] The initial 19 rows (3496 sites) were cut with 2 shapes for a total of 27 rows (2808 sites).
+[INFO TAP-0004] Inserted 54 endcaps.
+[INFO TAP-0005] Inserted 45 tapcells.
+Elapsed time: 0:00.50[h:]min:sec. CPU time: user 0.22 sys 0.17 (78%). Peak memory: 88884KB.
+(/usr/bin/time -f 'Elapsed time: %E[h:]min:sec. CPU time: user %U sys %S (%P). Peak memory: %MKB.' /home/pramit/EDA_TOOLS/OpenFASOC/conda-env/bin/openroad -exit -no_init  /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/scripts/pdn.tcl -metrics /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/logs/sky130hd/async_up_down//2_6_pdn.json) 2>&1 | tee /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/logs/sky130hd/async_up_down//2_6_pdn.log
+OpenROAD 0264023b6c2a8ae803b8d440478d657387277d93 
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[WARNING ORD-0046] -defer_connection has been deprecated.
+[WARNING ORD-0046] -defer_connection has been deprecated.
+[WARNING ORD-0046] -defer_connection has been deprecated.
+[WARNING ORD-0046] -defer_connection has been deprecated.
+[WARNING ORD-0046] -defer_connection has been deprecated.
+[WARNING ORD-0046] -defer_connection has been deprecated.
+[WARNING ORD-0046] -defer_connection has been deprecated.
+[WARNING ORD-0046] -defer_connection has been deprecated.
+[WARNING ORD-0046] -defer_connection has been deprecated.
+[INFO PDN-0001] Inserting grid: grid
+[INFO PDN-0001] Inserting grid: CORE_macro_grid_1 - one_bit_adc
+[INFO PDN-0001] Inserting grid: CORE_macro_grid_1 - ring_osc
+Elapsed time: 0:00.72[h:]min:sec. CPU time: user 0.35 sys 0.18 (73%). Peak memory: 91784KB.
+cp /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/results/sky130hd/async_up_down//2_6_floorplan_pdn.odb /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/results/sky130hd/async_up_down//2_floorplan.odb
+(/usr/bin/time -f 'Elapsed time: %E[h:]min:sec. CPU time: user %U sys %S (%P). Peak memory: %MKB.' /home/pramit/EDA_TOOLS/OpenFASOC/conda-env/bin/openroad -exit -no_init  /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/scripts/global_place_skip_io.tcl -metrics /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/logs/sky130hd/async_up_down//3_1_place_gp_skip_io.json) 2>&1 | tee /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/logs/sky130hd/async_up_down//3_1_place_gp_skip_io.log
+OpenROAD 0264023b6c2a8ae803b8d440478d657387277d93 
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO GPL-0002] DBU: 1000
+[INFO GPL-0003] SiteSize: 460 2720
+[INFO GPL-0004] CoreAreaLxLy: 15180 16320
+[INFO GPL-0005] CoreAreaUxUy: 99820 68000
+[INFO GPL-0006] NumInstances: 175
+[INFO GPL-0007] NumPlaceInstances: 0
+[INFO GPL-0008] NumFixedInstances: 101
+[INFO GPL-0009] NumDummyInstances: 74
+[INFO GPL-0010] NumNets: 4
+[INFO GPL-0011] NumPins: 5
+[INFO GPL-0012] DieAreaLxLy: 0 0
+[INFO GPL-0013] DieAreaUxUy: 120000 90000
+[INFO GPL-0014] CoreAreaLxLy: 15180 16320
+[INFO GPL-0015] CoreAreaUxUy: 99820 68000
+[INFO GPL-0016] CoreArea: 4374195200
+[INFO GPL-0017] NonPlaceInstsArea: 3224342400
+[INFO GPL-0018] PlaceInstsArea: 0
+[INFO GPL-0019] Util(%): 0.00
+[INFO GPL-0020] StdInstsArea: 0
+[INFO GPL-0021] MacroInstsArea: 0
+[WARNING GPL-0136] No placeable instances - skipping placement.
+Elapsed time: 0:01.72[h:]min:sec. CPU time: user 0.63 sys 0.42 (61%). Peak memory: 89168KB.
+(/usr/bin/time -f 'Elapsed time: %E[h:]min:sec. CPU time: user %U sys %S (%P). Peak memory: %MKB.' /home/pramit/EDA_TOOLS/OpenFASOC/conda-env/bin/openroad -exit -no_init  /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/scripts/io_placement.tcl -metrics /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/logs/sky130hd/async_up_down//3_2_place_iop.json) 2>&1 | tee /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/logs/sky130hd/async_up_down//3_2_place_iop.log
+OpenROAD 0264023b6c2a8ae803b8d440478d657387277d93 
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+Found 2 macro blocks.
+Using 1u default distance from corners.
+Using 2 tracks default min distance between IO pins.
+[INFO PPL-0007] Random pin placement.
+Elapsed time: 0:00.79[h:]min:sec. CPU time: user 0.51 sys 0.14 (84%). Peak memory: 89492KB.
+(/usr/bin/time -f 'Elapsed time: %E[h:]min:sec. CPU time: user %U sys %S (%P). Peak memory: %MKB.' /home/pramit/EDA_TOOLS/OpenFASOC/conda-env/bin/openroad -exit -no_init  /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/scripts/global_place.tcl -metrics /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/logs/sky130hd/async_up_down//3_3_place_gp.json) 2>&1 | tee /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/logs/sky130hd/async_up_down//3_3_place_gp.log
+OpenROAD 0264023b6c2a8ae803b8d440478d657387277d93 
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO GPL-0002] DBU: 1000
+[INFO GPL-0003] SiteSize: 460 2720
+[INFO GPL-0004] CoreAreaLxLy: 15180 16320
+[INFO GPL-0005] CoreAreaUxUy: 99820 68000
+[INFO GPL-0006] NumInstances: 175
+[INFO GPL-0007] NumPlaceInstances: 0
+[INFO GPL-0008] NumFixedInstances: 101
+[INFO GPL-0009] NumDummyInstances: 74
+[INFO GPL-0010] NumNets: 4
+[INFO GPL-0011] NumPins: 8
+[INFO GPL-0012] DieAreaLxLy: 0 0
+[INFO GPL-0013] DieAreaUxUy: 120000 90000
+[INFO GPL-0014] CoreAreaLxLy: 15180 16320
+[INFO GPL-0015] CoreAreaUxUy: 99820 68000
+[INFO GPL-0016] CoreArea: 4374195200
+[INFO GPL-0017] NonPlaceInstsArea: 3224342400
+[INFO GPL-0018] PlaceInstsArea: 0
+[INFO GPL-0019] Util(%): 0.00
+[INFO GPL-0020] StdInstsArea: 0
+[INFO GPL-0021] MacroInstsArea: 0
+[InitialPlace]  Iter: 1 CG residual: 0.00000012 HPWL: 359210
+[InitialPlace]  Iter: 2 CG residual: 0.00000012 HPWL: 359210
+[InitialPlace]  Iter: 3 CG residual: 0.00000012 HPWL: 359210
+[InitialPlace]  Iter: 4 CG residual: 0.00000012 HPWL: 359210
+[InitialPlace]  Iter: 5 CG residual: 0.00000012 HPWL: 359210
+[WARNING GPL-0136] No placeable instances - skipping placement.
+
+==========================================================================
+global place check_setup
+--------------------------------------------------------------------------
+Warning: There are 2 input ports missing set_input_delay.
+Warning: There is 1 output port missing set_output_delay.
+Warning: There is 1 unconstrained endpoint.
+
+==========================================================================
+global place report_tns
+--------------------------------------------------------------------------
+tns 0.00
+
+==========================================================================
+global place report_wns
+--------------------------------------------------------------------------
+wns 0.00
+
+==========================================================================
+global place report_worst_slack
+--------------------------------------------------------------------------
+worst slack INF
+
+==========================================================================
+global place report_checks -path_delay min
+--------------------------------------------------------------------------
+No paths found.
+
+==========================================================================
+global place report_checks -path_delay max
+--------------------------------------------------------------------------
+No paths found.
+
+==========================================================================
+global place report_checks -unconstrained
+--------------------------------------------------------------------------
+Startpoint: in_bias (input port)
+Endpoint: one_bit_adc/BIAS (internal pin)
+Path Group: (none)
+Path Type: max
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                          0.00    0.00 ^ input external delay
+                  0.00    0.00    0.00 ^ in_bias (in)
+     1    0.01                           in_bias (net)
+                  0.00    0.00    0.00 ^ one_bit_adc/BIAS (COMPARATOR)
+                                  0.00   data arrival time
+-----------------------------------------------------------------------------
+(Path is unconstrained)
+
+
+
+==========================================================================
+global place report_power
+--------------------------------------------------------------------------
+Group                  Internal  Switching    Leakage      Total
+                          Power      Power      Power      Power (Watts)
+----------------------------------------------------------------
+Sequential             0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Combinational          0.00e+00   0.00e+00   1.75e-10   1.75e-10 100.0%
+Macro                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Pad                    0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+----------------------------------------------------------------
+Total                  0.00e+00   0.00e+00   1.75e-10   1.75e-10 100.0%
+                           0.0%       0.0%     100.0%
+
+==========================================================================
+global place report_design_area
+--------------------------------------------------------------------------
+Design area 838 u^2 19% utilization.
+
+Elapsed time: 0:00.87[h:]min:sec. CPU time: user 0.46 sys 0.12 (67%). Peak memory: 90704KB.
+cp /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/results/sky130hd/async_up_down//3_3_place_gp.odb /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/results/sky130hd/async_up_down//3_4_place_resized.odb
+(/usr/bin/time -f 'Elapsed time: %E[h:]min:sec. CPU time: user %U sys %S (%P). Peak memory: %MKB.' /home/pramit/EDA_TOOLS/OpenFASOC/conda-env/bin/openroad -exit -no_init  /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/scripts/detail_place.tcl -metrics /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/logs/sky130hd/async_up_down//3_5_opendp.json) 2>&1 | tee /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/logs/sky130hd/async_up_down//3_5_opendp.log
+OpenROAD 0264023b6c2a8ae803b8d440478d657387277d93 
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+Placement Analysis
+---------------------------------
+total displacement          0.0 u
+average displacement        0.0 u
+max displacement            0.0 u
+original HPWL             249.6 u
+legalized HPWL            249.6 u
+delta HPWL                    0 %
+
+[INFO FLW-0012] Placement violations .
+
+==========================================================================
+detailed place check_setup
+--------------------------------------------------------------------------
+Warning: There are 2 input ports missing set_input_delay.
+Warning: There is 1 output port missing set_output_delay.
+Warning: There is 1 unconstrained endpoint.
+
+==========================================================================
+detailed place report_tns
+--------------------------------------------------------------------------
+tns 0.00
+
+==========================================================================
+detailed place report_wns
+--------------------------------------------------------------------------
+wns 0.00
+
+==========================================================================
+detailed place report_worst_slack
+--------------------------------------------------------------------------
+worst slack INF
+
+==========================================================================
+detailed place report_checks -path_delay min
+--------------------------------------------------------------------------
+No paths found.
+
+==========================================================================
+detailed place report_checks -path_delay max
+--------------------------------------------------------------------------
+No paths found.
+
+==========================================================================
+detailed place report_checks -unconstrained
+--------------------------------------------------------------------------
+Startpoint: in_bias (input port)
+Endpoint: one_bit_adc/BIAS (internal pin)
+Path Group: (none)
+Path Type: max
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                          0.00    0.00 ^ input external delay
+                  0.00    0.00    0.00 ^ in_bias (in)
+     1    0.01                           in_bias (net)
+                  0.00    0.00    0.00 ^ one_bit_adc/BIAS (COMPARATOR)
+                                  0.00   data arrival time
+-----------------------------------------------------------------------------
+(Path is unconstrained)
+
+
+
+==========================================================================
+detailed place report_check_types -max_slew -max_cap -max_fanout -violators
+--------------------------------------------------------------------------
+
+==========================================================================
+detailed place max_slew_check_slack
+--------------------------------------------------------------------------
+Inf
+
+==========================================================================
+detailed place max_slew_check_limit
+--------------------------------------------------------------------------
+Inf
+
+==========================================================================
+detailed place max_fanout_check_slack
+--------------------------------------------------------------------------
+1.0000000150474662e+30
+
+==========================================================================
+detailed place max_fanout_check_limit
+--------------------------------------------------------------------------
+1.0000000150474662e+30
+
+==========================================================================
+detailed place max_capacitance_check_slack
+--------------------------------------------------------------------------
+Inf
+
+==========================================================================
+detailed place max_capacitance_check_limit
+--------------------------------------------------------------------------
+Inf
+
+==========================================================================
+detailed place max_slew_violation_count
+--------------------------------------------------------------------------
+max slew violation count 0
+
+==========================================================================
+detailed place max_fanout_violation_count
+--------------------------------------------------------------------------
+max fanout violation count 0
+
+==========================================================================
+detailed place max_cap_violation_count
+--------------------------------------------------------------------------
+max cap violation count 0
+
+==========================================================================
+detailed place setup_violation_count
+--------------------------------------------------------------------------
+setup violation count 0
+
+==========================================================================
+detailed place hold_violation_count
+--------------------------------------------------------------------------
+hold violation count 0
+
+==========================================================================
+detailed place critical path delay
+--------------------------------------------------------------------------
+-1
+
+==========================================================================
+detailed place critical path slack
+--------------------------------------------------------------------------
+0
+
+==========================================================================
+detailed place slack div critical path delay
+--------------------------------------------------------------------------
+0.000000
+
+==========================================================================
+detailed place report_power
+--------------------------------------------------------------------------
+Group                  Internal  Switching    Leakage      Total
+                          Power      Power      Power      Power (Watts)
+----------------------------------------------------------------
+Sequential             0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Combinational          0.00e+00   0.00e+00   1.75e-10   1.75e-10 100.0%
+Macro                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Pad                    0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+----------------------------------------------------------------
+Total                  0.00e+00   0.00e+00   1.75e-10   1.75e-10 100.0%
+                           0.0%       0.0%     100.0%
+
+==========================================================================
+detailed place report_design_area
+--------------------------------------------------------------------------
+Design area 838 u^2 19% utilization.
+
+Elapsed time: 0:00.50[h:]min:sec. CPU time: user 0.34 sys 0.06 (80%). Peak memory: 90668KB.
+cp /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/results/sky130hd/async_up_down//3_5_place_dp.odb /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/results/sky130hd/async_up_down//3_place.odb
+cp /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/results/sky130hd/async_up_down//2_floorplan.sdc /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/results/sky130hd/async_up_down//3_place.sdc
+
+cp /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/results/sky130hd/async_up_down//3_place.odb /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/results/sky130hd/async_up_down//4_1_cts.odb
+(/usr/bin/time -f 'Elapsed time: %E[h:]min:sec. CPU time: user %U sys %S (%P). Peak memory: %MKB.' /home/pramit/EDA_TOOLS/OpenFASOC/conda-env/bin/openroad -exit -no_init  /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/scripts/fillcell.tcl -metrics /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/logs/sky130hd/async_up_down//4_2_cts_fillcell.json) 2>&1 | tee /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/logs/sky130hd/async_up_down//4_2_cts_fillcell.log
+OpenROAD 0264023b6c2a8ae803b8d440478d657387277d93 
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO DPL-0001] Placed 401 filler instances.
+Elapsed time: 0:00.83[h:]min:sec. CPU time: user 0.35 sys 0.26 (73%). Peak memory: 90180KB.
+cp /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/results/sky130hd/async_up_down//4_2_cts_fillcell.odb /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/results/sky130hd/async_up_down//4_cts.odb
+cp /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/results/sky130hd/async_up_down//3_place.sdc /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/results/sky130hd/async_up_down//4_cts.sdc
+(/usr/bin/time -f 'Elapsed time: %E[h:]min:sec. CPU time: user %U sys %S (%P). Peak memory: %MKB.' /home/pramit/EDA_TOOLS/OpenFASOC/conda-env/bin/openroad -exit -no_init  /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/scripts/global_route.tcl -metrics /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/logs/sky130hd/async_up_down//5_1_fastroute.json) 2>&1 | tee /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/logs/sky130hd/async_up_down//5_1_fastroute.log
+OpenROAD 0264023b6c2a8ae803b8d440478d657387277d93 
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO GRT-0020] Min routing layer: met1
+[INFO GRT-0021] Max routing layer: met5
+[INFO GRT-0022] Global adjustment: 0%
+[INFO GRT-0023] Grid origin: (0, 0)
+[INFO GRT-0043] No OR_DEFAULT vias defined.
+[INFO GRT-0088] Layer li1     Track-Pitch = 0.4600  line-2-Via Pitch: 0.3400
+[INFO GRT-0088] Layer met1    Track-Pitch = 0.3400  line-2-Via Pitch: 0.3400
+[INFO GRT-0088] Layer met2    Track-Pitch = 0.4600  line-2-Via Pitch: 0.3500
+[INFO GRT-0088] Layer met3    Track-Pitch = 0.6800  line-2-Via Pitch: 0.6150
+[INFO GRT-0088] Layer met4    Track-Pitch = 0.9200  line-2-Via Pitch: 1.0400
+[INFO GRT-0088] Layer met5    Track-Pitch = 3.4000  line-2-Via Pitch: 3.1100
+[INFO GRT-0019] Found 0 clock nets.
+[INFO GRT-0001] Minimum degree: 2
+[INFO GRT-0002] Maximum degree: 2
+[INFO GRT-0003] Macros: 2
+[INFO GRT-0004] Blockages: 42
+
+[INFO GRT-0053] Routing resources analysis:
+          Routing      Original      Derated      Resource
+Layer     Direction    Resources     Resources    Reduction (%)
+---------------------------------------------------------------
+li1        Vertical            0             0          0.00%
+met1       Horizontal       4420          2630          40.50%
+met2       Vertical         3315          2083          37.16%
+met3       Horizontal       2210          1455          34.16%
+met4       Vertical         1326           770          41.93%
+met5       Horizontal        442           224          49.32%
+---------------------------------------------------------------
+
+[INFO GRT-0197] Via related to pin nodes: 15
+[INFO GRT-0198] Via related Steiner nodes: 0
+[INFO GRT-0199] Via filling finished.
+[INFO GRT-0111] Final number of vias: 20
+[INFO GRT-0112] Final usage 3D: 90
+
+[INFO GRT-0096] Final congestion report:
+Layer         Resource        Demand        Usage (%)    Max H / Max V / Total Overflow
+---------------------------------------------------------------------------------------
+li1                  0             0            0.00%             0 /  0 /  0
+met1              2630            11            0.42%             0 /  0 /  0
+met2              2083            11            0.53%             0 /  0 /  0
+met3              1455             3            0.21%             0 /  0 /  0
+met4               770             5            0.65%             0 /  0 /  0
+met5               224             0            0.00%             0 /  0 /  0
+---------------------------------------------------------------------------------------
+Total             7162            30            0.42%             0 /  0 /  0
+
+[INFO GRT-0018] Total wirelength: 586 um
+[INFO GRT-0014] Routed nets: 4
+[WARNING GRT-0026] Missing route to pin one_bit_adc/INP.
+
+==========================================================================
+global route check_setup
+--------------------------------------------------------------------------
+Warning: There are 2 input ports missing set_input_delay.
+Warning: There is 1 output port missing set_output_delay.
+Warning: There is 1 unconstrained endpoint.
+
+==========================================================================
+global route report_tns
+--------------------------------------------------------------------------
+tns 0.00
+
+==========================================================================
+global route report_wns
+--------------------------------------------------------------------------
+wns 0.00
+
+==========================================================================
+global route report_worst_slack
+--------------------------------------------------------------------------
+worst slack INF
+
+==========================================================================
+global route report_clock_skew
+--------------------------------------------------------------------------
+
+==========================================================================
+global route report_checks -path_delay min
+--------------------------------------------------------------------------
+No paths found.
+
+==========================================================================
+global route report_checks -path_delay max
+--------------------------------------------------------------------------
+No paths found.
+
+==========================================================================
+global route report_checks -unconstrained
+--------------------------------------------------------------------------
+Startpoint: in_bias (input port)
+Endpoint: one_bit_adc/BIAS (internal pin)
+Path Group: (none)
+Path Type: max
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                          0.00    0.00 ^ input external delay
+                  0.00    0.00    0.00 ^ in_bias (in)
+     1    0.02                           in_bias (net)
+                  0.00    0.00    0.00 ^ one_bit_adc/BIAS (COMPARATOR)
+                                  0.00   data arrival time
+-----------------------------------------------------------------------------
+(Path is unconstrained)
+
+
+
+==========================================================================
+global route report_check_types -max_slew -max_cap -max_fanout -violators
+--------------------------------------------------------------------------
+
+==========================================================================
+global route max_slew_check_slack
+--------------------------------------------------------------------------
+Inf
+
+==========================================================================
+global route max_slew_check_limit
+--------------------------------------------------------------------------
+Inf
+
+==========================================================================
+global route max_fanout_check_slack
+--------------------------------------------------------------------------
+1.0000000150474662e+30
+
+==========================================================================
+global route max_fanout_check_limit
+--------------------------------------------------------------------------
+1.0000000150474662e+30
+
+==========================================================================
+global route max_capacitance_check_slack
+--------------------------------------------------------------------------
+Inf
+
+==========================================================================
+global route max_capacitance_check_limit
+--------------------------------------------------------------------------
+Inf
+
+==========================================================================
+global route max_slew_violation_count
+--------------------------------------------------------------------------
+max slew violation count 0
+
+==========================================================================
+global route max_fanout_violation_count
+--------------------------------------------------------------------------
+max fanout violation count 0
+
+==========================================================================
+global route max_cap_violation_count
+--------------------------------------------------------------------------
+max cap violation count 0
+
+==========================================================================
+global route setup_violation_count
+--------------------------------------------------------------------------
+setup violation count 0
+
+==========================================================================
+global route hold_violation_count
+--------------------------------------------------------------------------
+hold violation count 0
+
+==========================================================================
+global route critical path delay
+--------------------------------------------------------------------------
+-1
+
+==========================================================================
+global route critical path slack
+--------------------------------------------------------------------------
+0
+
+==========================================================================
+global route slack div critical path delay
+--------------------------------------------------------------------------
+0.000000
+
+==========================================================================
+global route report_power
+--------------------------------------------------------------------------
+Group                  Internal  Switching    Leakage      Total
+                          Power      Power      Power      Power (Watts)
+----------------------------------------------------------------
+Sequential             0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Combinational          0.00e+00   0.00e+00   1.75e-10   1.75e-10 100.0%
+Macro                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Pad                    0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+----------------------------------------------------------------
+Total                  0.00e+00   0.00e+00   1.75e-10   1.75e-10 100.0%
+                           0.0%       0.0%     100.0%
+
+==========================================================================
+global route report_design_area
+--------------------------------------------------------------------------
+Design area 838 u^2 19% utilization.
+
+
+==========================================================================
+check_antennas
+--------------------------------------------------------------------------
+[WARNING ANT-0011] -report_violating_nets is deprecated.
+[INFO GRT-0043] No OR_DEFAULT vias defined.
+[INFO ANT-0002] Found 0 net violations.
+[INFO ANT-0001] Found 0 pin violations.
+[WARNING FLW-0006] No clocks found.
+[INFO FLW-0011] Path endpoint count 2
+
+Elapsed time: 0:00.80[h:]min:sec. CPU time: user 0.33 sys 0.21 (68%). Peak memory: 146560KB.
+(/usr/bin/time -f 'Elapsed time: %E[h:]min:sec. CPU time: user %U sys %S (%P). Peak memory: %MKB.' /home/pramit/EDA_TOOLS/OpenFASOC/conda-env/bin/openroad -exit -no_init  /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/scripts/detail_route.tcl -metrics /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/logs/sky130hd/async_up_down//5_2_TritonRoute.json) 2>&1 | tee /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/logs/sky130hd/async_up_down//5_2_TritonRoute.log
+OpenROAD 0264023b6c2a8ae803b8d440478d657387277d93 
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 2 thread(s).
+detailed_route arguments:  -bottom_routing_layer met1 -top_routing_layer met5 -save_guide_updates -verbose 1
+[INFO DRT-0149] Reading tech and libs.
+
+Units:                1000
+Number of layers:     13
+Number of macros:     443
+Number of vias:       25
+Number of viarulegen: 25
+
+[INFO DRT-0150] Reading design.
+
+Design:                   async_up_down
+Die area:                 ( 0 0 ) ( 120000 90000 )
+Number of track patterns: 12
+Number of DEF vias:       4
+Number of components:     502
+Number of terminals:      3
+Number of snets:          2
+Number of nets:           4
+
+[INFO DRT-0167] List of default vias:
+  Layer mcon
+    default via: L1M1_PR
+  Layer via
+    default via: M1M2_PR
+  Layer via2
+    default via: M2M3_PR
+  Layer via3
+    default via: M3M4_PR
+  Layer via4
+    default via: M4M5_PR
+[INFO DRT-0162] Library cell analysis.
+[INFO DRT-0163] Instance analysis.
+[INFO DRT-0164] Number of unique instances = 16.
+[INFO DRT-0168] Init region query.
+[INFO DRT-0024]   Complete FR_MASTERSLICE.
+[INFO DRT-0024]   Complete Fr_VIA.
+[INFO DRT-0024]   Complete li1.
+[INFO DRT-0024]   Complete mcon.
+[INFO DRT-0024]   Complete met1.
+[INFO DRT-0024]   Complete via.
+[INFO DRT-0024]   Complete met2.
+[INFO DRT-0024]   Complete via2.
+[INFO DRT-0024]   Complete met3.
+[INFO DRT-0024]   Complete via3.
+[INFO DRT-0024]   Complete met4.
+[INFO DRT-0024]   Complete via4.
+[INFO DRT-0024]   Complete met5.
+[INFO DRT-0033] FR_MASTERSLICE shape region query size = 0.
+[INFO DRT-0033] FR_VIA shape region query size = 0.
+[INFO DRT-0033] li1 shape region query size = 1442.
+[INFO DRT-0033] mcon shape region query size = 5765.
+[INFO DRT-0033] met1 shape region query size = 1167.
+[INFO DRT-0033] via shape region query size = 358.
+[INFO DRT-0033] met2 shape region query size = 208.
+[INFO DRT-0033] via2 shape region query size = 240.
+[INFO DRT-0033] met3 shape region query size = 173.
+[INFO DRT-0033] via3 shape region query size = 226.
+[INFO DRT-0033] met4 shape region query size = 80.
+[INFO DRT-0033] via4 shape region query size = 13.
+[INFO DRT-0033] met5 shape region query size = 16.
+[INFO DRT-0165] Start pin access.
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[WARNING DRT-6000] Macro pin has more than 1 polygon
+[INFO DRT-0078]   Complete 5 pins.
+[INFO DRT-0081]   Complete 4 unique inst patterns.
+[INFO DRT-0084]   Complete 0 groups.
+#scanned instances     = 502
+#unique  instances     = 16
+#stdCellGenAp          = 0
+#stdCellValidPlanarAp  = 0
+#stdCellValidViaAp     = 0
+#stdCellPinNoAp        = 0
+#stdCellPinCnt         = 0
+#instTermValidViaApCnt = 0
+#macroGenAp            = 127
+#macroValidPlanarAp    = 102
+#macroValidViaAp       = 67
+#macroNoAp             = 0
+[INFO DRT-0166] Complete pin access.
+[INFO DRT-0267] cpu time = 00:00:00, elapsed time = 00:00:00, memory = 95.95 (MB), peak = 95.95 (MB)
+
+Number of guides:     39
+
+[INFO DRT-0169] Post process guides.
+[INFO DRT-0176] GCELLGRID X 0 DO 17 STEP 6900 ;
+[INFO DRT-0177] GCELLGRID Y 0 DO 13 STEP 6900 ;
+[INFO DRT-0028]   Complete FR_MASTERSLICE.
+[INFO DRT-0028]   Complete Fr_VIA.
+[INFO DRT-0028]   Complete li1.
+[INFO DRT-0028]   Complete mcon.
+[INFO DRT-0028]   Complete met1.
+[INFO DRT-0028]   Complete via.
+[INFO DRT-0028]   Complete met2.
+[INFO DRT-0028]   Complete via2.
+[INFO DRT-0028]   Complete met3.
+[INFO DRT-0028]   Complete via3.
+[INFO DRT-0028]   Complete met4.
+[INFO DRT-0028]   Complete via4.
+[INFO DRT-0028]   Complete met5.
+[INFO DRT-0178] Init guide query.
+[INFO DRT-0035]   Complete FR_MASTERSLICE (guide).
+[INFO DRT-0035]   Complete Fr_VIA (guide).
+[INFO DRT-0035]   Complete li1 (guide).
+[INFO DRT-0035]   Complete mcon (guide).
+[INFO DRT-0035]   Complete met1 (guide).
+[INFO DRT-0035]   Complete via (guide).
+[INFO DRT-0035]   Complete met2 (guide).
+[INFO DRT-0035]   Complete via2 (guide).
+[INFO DRT-0035]   Complete met3 (guide).
+[INFO DRT-0035]   Complete via3 (guide).
+[INFO DRT-0035]   Complete met4 (guide).
+[INFO DRT-0035]   Complete via4 (guide).
+[INFO DRT-0035]   Complete met5 (guide).
+[INFO DRT-0036] FR_MASTERSLICE guide region query size = 0.
+[INFO DRT-0036] FR_VIA guide region query size = 0.
+[INFO DRT-0036] li1 guide region query size = 1.
+[INFO DRT-0036] mcon guide region query size = 0.
+[INFO DRT-0036] met1 guide region query size = 6.
+[INFO DRT-0036] via guide region query size = 0.
+[INFO DRT-0036] met2 guide region query size = 7.
+[INFO DRT-0036] via2 guide region query size = 0.
+[INFO DRT-0036] met3 guide region query size = 3.
+[INFO DRT-0036] via3 guide region query size = 0.
+[INFO DRT-0036] met4 guide region query size = 1.
+[INFO DRT-0036] via4 guide region query size = 0.
+[INFO DRT-0036] met5 guide region query size = 0.
+[INFO DRT-0179] Init gr pin query.
+[INFO DRT-0185] Post process initialize RPin region query.
+[INFO DRT-0181] Start track assignment.
+
+[INFO DRT-0184] Done with 9 vertical wires in 1 frboxes and 9 horizontal wires in 1 frboxes.
+[INFO DRT-0186] Done with 2 vertical wires in 1 frboxes and 1 horizontal wires in 1 frboxes.
+[INFO DRT-0182] Complete track assignment.
+[INFO DRT-0267] cpu time = 00:00:00, elapsed time = 00:00:00, memory = 96.87 (MB), peak = 96.87 (MB)
+[INFO DRT-0187] Start routing data preparation.
+[INFO DRT-0267] cpu time = 00:00:00, elapsed time = 00:00:00, memory = 96.87 (MB), peak = 96.87 (MB)
+[INFO DRT-0194] Start detail routing.
+[INFO DRT-0195] Start 0th optimization iteration.
+    Completing 10% with 0 violations.
+    elapsed time = 00:00:00, memory = 100.25 (MB).
+    Completing 20% with 0 violations.
+    elapsed time = 00:00:00, memory = 102.71 (MB).
+    Completing 30% with 0 violations.
+    elapsed time = 00:00:00, memory = 104.07 (MB).
+    Completing 40% with 0 violations.
+    elapsed time = 00:00:00, memory = 104.07 (MB).
+    Completing 50% with 0 violations.
+    elapsed time = 00:00:00, memory = 108.95 (MB).
+    Completing 60% with 1 violations.
+    elapsed time = 00:00:00, memory = 109.46 (MB).
+[INFO DRT-0199]   Number of violations = 27.
+Viol/Layer         li1   mcon   met1   met2   met3   met4
+Metal Spacing        0      0      1      1      0      2
+Recheck              4      0      3      4      6      5
+Short                0      1      0      0      0      0
+[INFO DRT-0267] cpu time = 00:00:01, elapsed time = 00:00:02, memory = 410.38 (MB), peak = 452.39 (MB)
+Total wire length = 267 um.
+Total wire length on LAYER li1 = 0 um.
+Total wire length on LAYER met1 = 99 um.
+Total wire length on LAYER met2 = 116 um.
+Total wire length on LAYER met3 = 35 um.
+Total wire length on LAYER met4 = 16 um.
+Total wire length on LAYER met5 = 0 um.
+Total number of vias = 13.
+Up-via summary (total 13):.
+
+---------------------
+ FR_MASTERSLICE     0
+            li1     0
+           met1     8
+           met2     3
+           met3     2
+           met4     0
+---------------------
+                   13
+
+
+[INFO DRT-0195] Start 1st optimization iteration.
+    Completing 10% with 27 violations.
+    elapsed time = 00:00:00, memory = 411.90 (MB).
+    Completing 20% with 27 violations.
+    elapsed time = 00:00:00, memory = 411.90 (MB).
+    Completing 30% with 27 violations.
+    elapsed time = 00:00:00, memory = 411.90 (MB).
+    Completing 40% with 27 violations.
+    elapsed time = 00:00:00, memory = 411.90 (MB).
+    Completing 50% with 27 violations.
+    elapsed time = 00:00:00, memory = 412.21 (MB).
+    Completing 60% with 27 violations.
+    elapsed time = 00:00:00, memory = 412.21 (MB).
+    Completing 70% with 27 violations.
+    elapsed time = 00:00:00, memory = 412.21 (MB).
+    Completing 80% with 27 violations.
+    elapsed time = 00:00:00, memory = 412.21 (MB).
+    Completing 90% with 27 violations.
+    elapsed time = 00:00:00, memory = 412.21 (MB).
+    Completing 100% with 0 violations.
+    elapsed time = 00:00:00, memory = 412.21 (MB).
+[INFO DRT-0199]   Number of violations = 0.
+[INFO DRT-0267] cpu time = 00:00:00, elapsed time = 00:00:00, memory = 450.00 (MB), peak = 454.12 (MB)
+Total wire length = 267 um.
+Total wire length on LAYER li1 = 0 um.
+Total wire length on LAYER met1 = 92 um.
+Total wire length on LAYER met2 = 122 um.
+Total wire length on LAYER met3 = 36 um.
+Total wire length on LAYER met4 = 16 um.
+Total wire length on LAYER met5 = 0 um.
+Total number of vias = 13.
+Up-via summary (total 13):.
+
+---------------------
+ FR_MASTERSLICE     0
+            li1     0
+           met1     8
+           met2     3
+           met3     2
+           met4     0
+---------------------
+                   13
+
+
+[INFO DRT-0198] Complete detail routing.
+Total wire length = 267 um.
+Total wire length on LAYER li1 = 0 um.
+Total wire length on LAYER met1 = 92 um.
+Total wire length on LAYER met2 = 122 um.
+Total wire length on LAYER met3 = 36 um.
+Total wire length on LAYER met4 = 16 um.
+Total wire length on LAYER met5 = 0 um.
+Total number of vias = 13.
+Up-via summary (total 13):.
+
+---------------------
+ FR_MASTERSLICE     0
+            li1     0
+           met1     8
+           met2     3
+           met3     2
+           met4     0
+---------------------
+                   13
+
+
+[INFO DRT-0267] cpu time = 00:00:01, elapsed time = 00:00:03, memory = 450.00 (MB), peak = 454.12 (MB)
+
+[INFO DRT-0180] Post processing.
+Elapsed time: 0:04.79[h:]min:sec. CPU time: user 1.27 sys 1.33 (54%). Peak memory: 465024KB.
+cp /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/results/sky130hd/async_up_down//5_2_route.odb /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/results/sky130hd/async_up_down//5_route.odb
+cp /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/results/sky130hd/async_up_down//5_route.odb /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/results/sky130hd/async_up_down//6_1_fill.odb
+cp /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/results/sky130hd/async_up_down//4_cts.sdc /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/results/sky130hd/async_up_down//5_route.sdc
+cp /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/results/sky130hd/async_up_down//5_route.sdc /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/results/sky130hd/async_up_down//6_1_fill.sdc
+(/usr/bin/time -f 'Elapsed time: %E[h:]min:sec. CPU time: user %U sys %S (%P). Peak memory: %MKB.' /home/pramit/EDA_TOOLS/OpenFASOC/conda-env/bin/openroad -exit -no_init  /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/scripts/final_report.tcl -metrics /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/logs/sky130hd/async_up_down//6_report.json) 2>&1 | tee /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/logs/sky130hd/async_up_down//6_report.log
+OpenROAD 0264023b6c2a8ae803b8d440478d657387277d93 
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO] Deleted 0 routing obstructions
+[INFO RCX-0431] Defined process_corner X with ext_model_index 0
+[INFO RCX-0029] Defined extraction corner X
+[INFO RCX-0008] extracting parasitics of async_up_down ...
+[INFO RCX-0435] Reading extraction model file /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/../../../common/platforms/sky130hd/rcx_patterns.rules ...
+[INFO RCX-0436] RC segment generation async_up_down (max_merge_res 50.0) ...
+[INFO RCX-0040] Final 9 rc segments
+[INFO RCX-0439] Coupling Cap extraction async_up_down ...
+[INFO RCX-0440] Coupling threshhold is 0.1000 fF, coupling capacitance less than 0.1000 fF will be grounded.
+[INFO RCX-0043] 164 wires to be extracted
+[INFO RCX-0442] 90% completion -- 148 wires have been extracted
+[INFO RCX-0442] 100% completion -- 164 wires have been extracted
+[INFO RCX-0045] Extract 4 nets, 13 rsegs, 13 caps, 1 ccs
+[INFO RCX-0015] Finished extracting async_up_down.
+[INFO RCX-0016] Writing SPEF ...
+[INFO RCX-0443] 4 nets finished
+[INFO RCX-0017] Finished writing SPEF ...
+[WARNING PSM-0016] Voltage pad location (VSRC) file not specified, defaulting pad location to checkerboard pattern on core area.
+[WARNING PSM-0017] X direction bump pitch is not specified, defaulting to 140um.
+[WARNING PSM-0018] Y direction bump pitch is not specified, defaulting to 140um.
+[WARNING PSM-0063] Specified bump pitches of 140.000 and 140.000 are less than core width of 84.640 or core height of 51.680. Changing bump location to the center of the die at (57.500, 42.160).
+[WARNING PSM-0065] VSRC location not specified, using default checkerboard pattern with one VDD every size bumps in x-direction and one in two bumps in the y-direction
+[INFO PSM-0076] Setting metal node density to be standard cell height times 5.
+[INFO PSM-0031] Number of PDN nodes on net VDD = 296.
+[INFO PSM-0064] Number of voltage sources = 1.
+[INFO PSM-0040] All PDN stripes on net VDD are connected.
+########## IR report #################
+Worstcase voltage: 1.80e+00 V
+Average IR drop  : 4.91e-11 V
+Worstcase IR drop: 1.26e-10 V
+######################################
+[WARNING PSM-0016] Voltage pad location (VSRC) file not specified, defaulting pad location to checkerboard pattern on core area.
+[WARNING PSM-0017] X direction bump pitch is not specified, defaulting to 140um.
+[WARNING PSM-0018] Y direction bump pitch is not specified, defaulting to 140um.
+[WARNING PSM-0063] Specified bump pitches of 140.000 and 140.000 are less than core width of 84.640 or core height of 51.680. Changing bump location to the center of the die at (57.500, 42.160).
+[WARNING PSM-0065] VSRC location not specified, using default checkerboard pattern with one VDD every size bumps in x-direction and one in two bumps in the y-direction
+[INFO PSM-0076] Setting metal node density to be standard cell height times 5.
+[WARNING PSM-0030] VSRC location at (57.500um, 42.160um) and size 10.000um, is not located on an existing power stripe node. Moving to closest node at (55.890um, 29.920um).
+[INFO PSM-0031] Number of PDN nodes on net VSS = 290.
+[INFO PSM-0064] Number of voltage sources = 1.
+[INFO PSM-0040] All PDN stripes on net VSS are connected.
+########## IR report #################
+Worstcase voltage: 9.81e-11 V
+Average IR drop  : 3.91e-11 V
+Worstcase IR drop: 9.81e-11 V
+######################################
+
+==========================================================================
+finish check_setup
+--------------------------------------------------------------------------
+
+Warning: There are 2 input ports missing set_input_delay.
+Warning: There is 1 output port missing set_output_delay.
+Warning: There is 1 unconstrained endpoint.
+
+==========================================================================
+finish report_tns
+--------------------------------------------------------------------------
+tns 0.00
+
+==========================================================================
+finish report_wns
+--------------------------------------------------------------------------
+wns 0.00
+
+==========================================================================
+finish report_worst_slack
+--------------------------------------------------------------------------
+worst slack INF
+
+==========================================================================
+finish report_clock_skew
+--------------------------------------------------------------------------
+
+==========================================================================
+finish report_checks -path_delay min
+--------------------------------------------------------------------------
+No paths found.
+
+==========================================================================
+finish report_checks -path_delay max
+--------------------------------------------------------------------------
+No paths found.
+
+==========================================================================
+finish report_checks -unconstrained
+--------------------------------------------------------------------------
+Startpoint: in_bias (input port)
+Endpoint: one_bit_adc/BIAS (internal pin)
+Path Group: (none)
+Path Type: max
+
+Fanout     Cap    Slew   Delay    Time   Description
+-----------------------------------------------------------------------------
+                          0.00    0.00 ^ input external delay
+                  0.00    0.00    0.00 ^ in_bias (in)
+     1    0.01                           in_bias (net)
+                  0.00    0.00    0.00 ^ one_bit_adc/BIAS (COMPARATOR)
+                                  0.00   data arrival time
+-----------------------------------------------------------------------------
+(Path is unconstrained)
+
+
+
+==========================================================================
+finish report_check_types -max_slew -max_cap -max_fanout -violators
+--------------------------------------------------------------------------
+
+==========================================================================
+finish max_slew_check_slack
+--------------------------------------------------------------------------
+Inf
+
+==========================================================================
+finish max_slew_check_limit
+--------------------------------------------------------------------------
+Inf
+
+==========================================================================
+finish max_fanout_check_slack
+--------------------------------------------------------------------------
+1.0000000150474662e+30
+
+==========================================================================
+finish max_fanout_check_limit
+--------------------------------------------------------------------------
+1.0000000150474662e+30
+
+==========================================================================
+finish max_capacitance_check_slack
+--------------------------------------------------------------------------
+Inf
+
+==========================================================================
+finish max_capacitance_check_limit
+--------------------------------------------------------------------------
+Inf
+
+==========================================================================
+finish max_slew_violation_count
+--------------------------------------------------------------------------
+max slew violation count 0
+
+==========================================================================
+finish max_fanout_violation_count
+--------------------------------------------------------------------------
+max fanout violation count 0
+
+==========================================================================
+finish max_cap_violation_count
+--------------------------------------------------------------------------
+max cap violation count 0
+
+==========================================================================
+finish setup_violation_count
+--------------------------------------------------------------------------
+setup violation count 0
+
+==========================================================================
+finish hold_violation_count
+--------------------------------------------------------------------------
+hold violation count 0
+
+==========================================================================
+finish critical path delay
+--------------------------------------------------------------------------
+-1
+
+==========================================================================
+finish critical path slack
+--------------------------------------------------------------------------
+0
+
+==========================================================================
+finish slack div critical path delay
+--------------------------------------------------------------------------
+0.000000
+
+==========================================================================
+finish report_power
+--------------------------------------------------------------------------
+Group                  Internal  Switching    Leakage      Total
+                          Power      Power      Power      Power (Watts)
+----------------------------------------------------------------
+Sequential             0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Combinational          0.00e+00   0.00e+00   1.75e-10   1.75e-10 100.0%
+Macro                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Pad                    0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+----------------------------------------------------------------
+Total                  0.00e+00   0.00e+00   1.75e-10   1.75e-10 100.0%
+                           0.0%       0.0%     100.0%
+
+==========================================================================
+finish report_design_area
+--------------------------------------------------------------------------
+Design area 838 u^2 19% utilization.
+
+libGL error: MESA-LOADER: failed to open swrast: /usr/lib/dri/swrast_dri.so: cannot open shared object file: No such file or directory (search paths /usr/lib/x86_64-linux-gnu/dri:\$${ORIGIN}/dri:/usr/lib/dri, suffix _dri)
+libGL error: failed to load driver: swrast
+[WARNING STA-0323] clock '*' not found.
+Elapsed time: 0:03.15[h:]min:sec. CPU time: user 1.11 sys 0.74 (58%). Peak memory: 164096KB.
+cp /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/results/sky130hd/async_up_down//5_route.sdc /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/results/sky130hd/async_up_down//6_final.sdc
+(/usr/bin/time -f 'Elapsed time: %E[h:]min:sec. CPU time: user %U sys %S (%P). Peak memory: %MKB.' stdbuf -o L /home/pramit/EDA_TOOLS/OpenFASOC/conda-env/bin/klayout -zz -rd design_name=async_up_down \
+        -rd in_def=/home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/results/sky130hd/async_up_down//6_final.def \
+        -rd in_files="/home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/../../../common/platforms/sky130hd/gds/sky130_fd_sc_hd.gds ../blocks/sky130hd/gds/COMPARATOR.gds ../blocks/sky130hd/gds/RING_OSCILLATOR.gds " \
+        -rd config_file=/home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/../../../common/platforms/sky130hd/fill.json \
+        -rd seal_file="" \
+        -rd out_file=/home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/results/sky130hd/async_up_down//6_1_merged.gds \
+        -rd tech_file=/home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/objects/sky130hd/async_up_down//klayout.lyt \
+        -rd layer_map= \
+        -r /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/util/def2stream.py) 2>&1 | tee /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/logs/sky130hd/async_up_down//6_1_merge.log
+
+[INFO] Reporting cells prior to loading DEF ...
+[INFO] Reading DEF ...
+[INFO] Clearing cells...
+[INFO] Merging GDS/OAS files...
+	/home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/../../../common/platforms/sky130hd/gds/sky130_fd_sc_hd.gds
+	../blocks/sky130hd/gds/COMPARATOR.gds
+	../blocks/sky130hd/gds/RING_OSCILLATOR.gds
+[INFO] Copying toplevel cell 'async_up_down'
+INFO: Reading config file: /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/../../../common/platforms/sky130hd/fill.json
+[INFO] Checking for missing cell from GDS/OAS...
+[INFO] All LEF cells have matching GDS/OAS cells
+[INFO] Checking for orphan cell in the final layout...
+[INFO] No orphan cells
+[INFO] Writing out GDS/OAS '/home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/results/sky130hd/async_up_down//6_1_merged.gds'
+Elapsed time: 0:01.84[h:]min:sec. CPU time: user 0.37 sys 0.59 (52%). Peak memory: 104284KB.
+cp /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/results/sky130hd/async_up_down//6_1_merged.gds /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/results/sky130hd/async_up_down//6_final.gds
+make[1]: Leaving directory '/home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow'
+#----------------------------------------------------------------------
+# Place and Route finished
+#----------------------------------------------------------------------
+make[1]: Entering directory '/home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow'
+[INFO][FLOW] Using platform directory /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/../../../common/platforms/sky130hd
+Makefile:423: target '(/usr/bin/time' doesn't match the target pattern
+Makefile:423: target '-f' doesn't match the target pattern
+Makefile:423: target ''Elapsed' doesn't match the target pattern
+Makefile:423: target 'time' doesn't match the target pattern
+Makefile:464: target '(/usr/bin/time' doesn't match the target pattern
+Makefile:464: target '-f' doesn't match the target pattern
+Makefile:464: target ''Elapsed' doesn't match the target pattern
+Makefile:464: target 'time' doesn't match the target pattern
+/home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/../../../common/drc-lvs-check/run_drc.sh
+
+Magic 8.3 revision 371 - Compiled on Sun Feb 26 07:48:59 AM PST 2023.
+Starting magic under Tcl interpreter
+Using the terminal as the console.
+Using NULL graphics device.
+Processing system .magicrc file
+Sourcing design .magicrc for technology sky130A ...
+2 Magic internal units = 1 Lambda
+Input style sky130(): scaleFactor=2, multiplier=2
+The following types are not handled by extraction and will be treated as non-electrical types:
+    ubm 
+Scaled tech values by 2 / 1 to match internal grid scaling
+Loading sky130A Device Generator Menu ...
+Loading "/home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/../../../common/drc-lvs-check/magic_commands.tcl" from command line.
+Warning: Calma reading is not undoable!  I hope that's OK.
+Library written using GDS-II Release 6.0
+Library name: LIB
+Reading "VIA_M3M4_PR".
+Saving contents of cell VIA_M3M4_PR
+Reading "VIA_M2M3_PR".
+Saving contents of cell VIA_M2M3_PR
+Reading "VIA_M1M2_PR".
+Saving contents of cell VIA_M1M2_PR
+Reading "VIA_via2_3_1600_480_1_5_320_320".
+Saving contents of cell VIA_via2_3_1600_480_1_5_320_320
+Reading "VIA_via3_4_1600_480_1_4_400_400".
+Saving contents of cell VIA_via3_4_1600_480_1_4_400_400
+Reading "VIA_via4_5_1600_480_1_4_400_400".
+Saving contents of cell VIA_via4_5_1600_480_1_4_400_400
+Reading "VIA_via5_6_1600_1600_1_1_1600_1600".
+Saving contents of cell VIA_via5_6_1600_1600_1_1_1600_1600
+Reading "RING_OSCILLATOR".
+Reading "COMPARATOR".
+Reading "sky130_fd_sc_hd__tapvpwrvgnd_1".
+Reading "sky130_fd_sc_hd__decap_4".
+Reading "sky130_fd_sc_hd__fill_2".
+Reading "sky130_fd_sc_hd__fill_1".
+Reading "sky130_fd_sc_hd__fill_4".
+Reading "sky130_fd_sc_hd__fill_8".
+Reading "async_up_down".
+CIF file read warning: CIF style sky130(): units rescaled by factor of 5 / 1
+Error while reading cell "async_up_down" (byte position 126304): Unknown layer/datatype in boundary, layer=14 type=0
+[INFO]: Loading async_up_down
+
+Loading DRC CIF style.
+No errors found.
+[INFO]: DONE with /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/reports/sky130hd/async_up_down//6_final_drc.rpt
+
+Using technology "sky130A", version 1.0.403-0-g12df12e
+# magic -rcfile /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/../../../common/drc-lvs-check/sky130A/sky130A.magicrc -noconsole -dnull /home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow/../../../common/drc-lvs-check/magic_commands.tcl < /dev/null
+make[1]: Leaving directory '/home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/flow'
+#----------------------------------------------------------------------
+# DRC finished
+#----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/pramit/EDA_TOOLS/OpenFASOC/OpenFASOC/openfasoc/generators/async_up_down-gen/tools/async-up-down-gen.py", line 131, in <module>
+    os.mkdir(genDir + args.outputDir)
+FileExistsError: [Errno 17] File exists: 'tools/.././work'
+make: *** [Makefile:17: sky130hd_build] Error 1
+
+​
+
+

@@ -1,0 +1,26 @@
+OpenROAD 0264023b6c2a8ae803b8d440478d657387277d93 
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO MPL-0005] Found 2 macros.
+[WARNING MPL-0002] Some instances do not have Liberty models. TritonMP will place macros without connection information.
+[INFO MPL-0069] Initial weighted wire length 2443.05.
+Begin one level partition.
+[INFO MPL-0076] Partition 2 macros.
+[INFO MPL-0077] Using 1 cut lines.
+[INFO MPL-0079] Cut line 128.34.
+End one level partition.
+Begin horizontal partition.
+Begin east partition.
+[INFO MPL-0076] Partition 0 macros.
+[INFO MPL-0077] Using 0 cut lines.
+End east partition.
+Begin west partition.
+[INFO MPL-0076] Partition 2 macros.
+[INFO MPL-0077] Using 1 cut lines.
+[INFO MPL-0079] Cut line 43.52.
+End west partition.
+End horizontal partition.
+[INFO MPL-0070] Using 1 partition sets.
+[INFO MPL-0071] Solution 1 weighted wire length 2594.96.
+[INFO MPL-0073] Best weighted wire length 2594.96.
+Elapsed time: 0:00.70[h:]min:sec. CPU time: user 0.33 sys 0.11 (62%). Peak memory: 90188KB.
