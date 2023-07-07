@@ -1,4 +1,4 @@
-# msvsd32bitsram
+# msvs_onebitadc
 # Index
 - [Installation of Oracle Virtual Box with Ubuntu 22.04](#1-installation-of-oracle-virtual-box-with-ubuntu-2204)
 - [Installation of Tools and SKY130 PDKs](#2-installation-of-tools-and-sky130-pdks)
